@@ -1,0 +1,183 @@
+/* ================================
+   BRAND MARQUEE – AARAA
+   Seamless | Gapless | Smooth
+   Keyframe: scroll-marquee (matches aaraa-custom.css)
+================================ */
+
+/* Utility spacing */
+.mt-66 { margin-top: 66px; }
+.mb-2  { margin-bottom: 0.5rem; }
+
+/* -------------------------------
+   Main Marquee Container
+------------------------------- */
+.tf-marquee {
+  width: 100%;
+  overflow: hidden !important;
+  background: #ffffff;
+  padding: 24px 0;
+  display: block !important;
+
+  /* soft edge fade */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+/* -------------------------------
+   Wrapper (viewport)
+------------------------------- */
+.marquee-wrapper {
+  width: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  display: block !important;
+  min-width: auto !important;
+  flex: none !important;
+  animation: none !important;
+}
+
+/* -------------------------------
+   Moving Track (ONLY this animates)
+------------------------------- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-marquee 50s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover — target the stationary wrapper, not the moving track */
+.tf-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* -------------------------------
+   Individual Brand Item
+------------------------------- */
+.marquee-child-item {
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* -------------------------------
+   Brand Image
+------------------------------- */
+.brand-item {
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.brand-item img {
+  height: 60px;
+  width: auto;
+  display: block;
+  object-fit: contain !important;
+  transition: transform 0.3s ease;
+}
+
+/* Hover scale */
+.brand-item:hover img {
+  transform: scale(1.1);
+}
+
+/* -------------------------------
+   wg-brand overrides
+------------------------------- */
+.wg-brand {
+  height: auto !important;
+}
+
+.wg-brand .brand-item {
+  max-width: none !important;
+  width: auto !important;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.wg-brand .brand-item:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+/* -------------------------------
+   Keyframes
+   Scrolls HALF the track width —
+   works because JS doubles the items
+------------------------------- */
+@keyframes scroll-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* -------------------------------
+   Tablet (768–991px)
+------------------------------- */
+@media (max-width: 991px) {
+  .wg-brand {
+    height: auto !important;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+  }
+  .brand-item img {
+    height: 50px;
+  }
+  .marquee-child-item {
+    padding: 0 20px;
+  }
+  .marquee-track {
+    animation-duration: 55s;
+  }
+}
+
+/* -------------------------------
+   Mobile (<768px)
+------------------------------- */
+@media (max-width: 767px) {
+  .brand-item img {
+    height: 38px;
+  }
+  .marquee-child-item {
+    padding: 0 14px;
+  }
+  .marquee-track {
+    animation-duration: 60s;
+  }
+}
+
+/* -------------------------------
+   Large Desktop (≥1400px)
+------------------------------- */
+@media (min-width: 1400px) {
+  .brand-item img {
+    height: 70px;
+  }
+  .marquee-track {
+    animation-duration: 45s;
+  }
+}
+
+/* -------------------------------
+   Accessibility
+------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
+}

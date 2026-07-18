@@ -1,0 +1,4 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^api/(.*)$ https://aaraa-infra-web.web.app/api/$1 [R=307,L]
+</IfModule>

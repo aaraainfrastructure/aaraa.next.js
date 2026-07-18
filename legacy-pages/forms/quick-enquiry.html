@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Enquiry | AARAA Infrastructure</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <div class="aaraa-wrap">
+    <div class="back-to-home">
+      <a href="../index.html" class="btn-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="back-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Home
+      </a>
+    </div>
+    <div class="aaraa-card">
+      <div class="aaraa-head">
+        <h1>Quick Enquiry</h1>
+        <p>Fill in your details and we'll get back to you shortly.</p>
+      </div>
+      <form data-aaraa-form="Quick Enquiry" novalidate enctype="multipart/form-data">
+        <!-- honeypot anti-spam (hidden from humans) -->
+        <div class="hp" aria-hidden="true">
+          <label>Company Website<input class="hp-input" type="text" name="company_website_hp" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="grid">
+      <div class="field">
+        <label for="full_name">Full Name <span class="req">*</span></label>
+        <input type="text" id="full_name" name="full_name" required placeholder="Your full name">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="company">Company Name</label>
+        <input type="text" id="company" name="company" placeholder="Company name (optional)">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="your@email.com" data-rule="email">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="phone">Phone Number <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" required placeholder="+91 9XXXXXXXXX" data-rule="tel">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="service">Service Interested In</label>
+        <select id="service" name="service">
+          <option value="" disabled selected>Select a service...</option>
+          <option value="Civil Construction">Civil Construction</option>
+          <option value="MEP &amp; HVAC">MEP &amp; HVAC</option>
+          <option value="Interior Fit-Outs">Interior Fit-Outs</option>
+          <option value="Infrastructure">Infrastructure</option>
+          <option value="Renewables">Renewables</option>
+          <option value="General Contracting">General Contracting</option>
+          <option value="Other">Other</option>
+        </select>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="project_location">Project Location</label>
+        <input type="text" id="project_location" name="project_location" placeholder="City, State">
+        <span class="error"></span>
+      </div>
+      <div class="field full">
+        <label for="message">Message <span class="req">*</span></label>
+        <textarea id="message" name="message" required placeholder="Tell us about your requirement..."></textarea>
+        <span class="error"></span>
+      </div>
+        </div>
+        <!-- Turnstile anti-spam widget (rendered dynamically by forms.js) -->
+        <div class="cf-turnstile-container" style="margin: 18px 0 10px; display: flex; justify-content: flex-start;"></div>
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>I consent to AARAA Infrastructure storing and processing the information I have submitted to respond to my request, in line with the <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>. (Required under the DPDP Act, 2023)</span>
+        </label>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+        </div>
+        <div class="form-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+  <script src="../assets/js/config.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
+  <script src="../assets/js/forms.js"></script>
+</body>
+</html>

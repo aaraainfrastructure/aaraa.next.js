@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Careers | Aaraa Infrastructure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 2rem; background: #f8f9fa; }
+    h2 { text-align: center; margin-bottom: 1rem; }
+    .accordion { background: #fff; border: 1px solid #ccc; margin-bottom: 0.5rem; border-radius: 5px; }
+    .accordion-header { padding: 1rem; cursor: pointer; font-weight: bold; background: #e9ecef; }
+    .accordion-content { display: none; padding: 1rem; background: #fff; }
+    .apply-btn { margin-top: 1rem; background: #007bff; color: #fff; padding: 0.5rem 1rem; border: none; border-radius: 3px; cursor: pointer; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+    .modal-content { background: #fff; padding: 2rem; max-width: 400px; margin: 10% auto; border-radius: 8px; }
+    .modal-content input, .modal-content textarea { width: 100%; margin-bottom: 1rem; padding: 0.5rem; }
+    .close { float: right; font-size: 1.2rem; cursor: pointer; }
+  </style>
+  
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1495102235345639');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+loading="lazy" decoding="async" src="https://www.facebook.com/tr?id=1495102235345639&ev=PageView&noscript=1" alt=""
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.youtube.com"><link rel="dns-prefetch" href="https://connect.facebook.net">
+<meta name="description" content="Apply for career opportunities at AARAA Infrastructure. Join our team of engineering and construction professionals across India.">
+<link rel="canonical" href="https://www.aaraainfrastructure.com/job-apply.html">
+
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.aaraainfrastructure.com/#organization",
+  "name": "AARAA Infrastructure Pvt Ltd",
+  "url": "https://www.aaraainfrastructure.com",
+  "logo": "https://www.aaraainfrastructure.com/image/logo/aaraa-logo.png",
+  "description": "AARAA Infrastructure is a leading PAN India construction company specializing in industrial, commercial, institutional, infrastructure, and renewable energy projects with turnkey EPC execution.",
+  "foundingDate": "2012",
+  "founder": {
+    "@type": "Person",
+    "name": "N K"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-8681003111",
+    "contactType": "customer service",
+    "email": "info@aaraainfrastructure.com",
+    "availableLanguage": [
+      "English",
+      "Tamil",
+      "Hindi"
+    ]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "#85, 4th Floor, Lotus Tower, Anna Salai, Guindy",
+    "addressLocality": "Chennai",
+    "addressRegion": "Tamil Nadu",
+    "postalCode": "600032",
+    "addressCountry": "IN"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/aaraa-infrastructure",
+    "https://www.facebook.com/people/Aaraa-Infrastructure/61577346574499/"
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.aaraainfrastructure.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Careers",
+      "item": "https://www.aaraainfrastructure.com/career.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Apply",
+      "item": "https://www.aaraainfrastructure.com/job-apply.html"
+    }
+  ]
+}</script>
+  <!-- Firebase Import Map (CDN-based module resolution) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js",
+      "firebase/firestore": "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js",
+      "firebase/analytics": "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js",
+      "firebase/storage": "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js"
+    }
+  }
+  </script>
+</head>
+<body>
+<main>
+<h1>Submit Your Job Application</h1>
+
+<h2>Join Our Team</h2>
+
+<div id="career-accordion">
+
+  <!-- Accordion Items -->
+</div>
+
+<!-- Modal Form -->
+<div id="applyModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3 id="positionTitle">Apply Now</h3>
+    <form id="applyForm" method="POST" enctype="multipart/form-data" data-form-type="career">
+      <input type="hidden" name="position" id="positionInput">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="file" name="resume" required>
+      
+      <!-- Cloudflare Turnstile Widget -->
+      <div class="cf-turnstile-placeholder" style="margin-bottom: 15px; display: flex; justify-content: center;"></div>
+<button type="submit" id="applySubmit" class="apply-btn">
+        <span class="apply-btn-text">Submit Application</span>
+        <span class="apply-btn-loading" hidden>
+          <span class="spinner" style="display:inline-block; width:16px; height:16px; border:2px solid currentColor; border-top-color:transparent; border-radius:50%; animation:spin 0.6s linear infinite; margin-right:8px; vertical-align:middle;"></span>
+          Processing...
+        </span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const jobs = [
+    { title: "Site Engineer", description: "Responsible for managing daily site operations, ensuring work quality, and coordinating with contractors and teams." },
+    { title: "Construction Manager", description: "Oversees the entire construction process, ensuring timely project delivery, cost control, and adherence to safety protocols." },
+    { title: "Project Manager", description: "Manages project planning, execution, and closure. Coordinates between clients, architects, and construction teams." },
+    { title: "Quantity Surveyor", description: "Prepares tender documents, cost estimations, and ensures financial efficiency for construction projects." },
+    { title: "Planning Engineer", description: "Develops detailed project schedules, monitors progress, and implements planning methodologies for efficient execution." },
+    { title: "Business Development", description: "Identifies new business opportunities, builds client relationships, and works on strategies for business growth." },
+    { title: "Architect", description: "Designs innovative building plans, collaborates with clients for requirements, and ensures aesthetic and functional excellence." },
+    { title: "Structural Engineer", description: "Analyzes and designs building structures, ensuring stability, strength, and compliance with engineering standards." }
+  ];
+
+  const container = document.getElementById('career-accordion');
+  jobs.forEach(job => {
+    const item = document.createElement('div');
+    item.className = 'accordion';
+    item.innerHTML = `
+      <div class="accordion-header" onclick="toggleAccordion(this)">${job.title}</div>
+      <div class="accordion-content">
+        <p>${job.description}</p>
+        <button class="apply-btn" onclick="openModal('${job.title}')">Apply Now</button>
+      </div>
+    `;
+    container.appendChild(item);
+  });
+
+  function toggleAccordion(header) {
+    const content = header.nextElementSibling;
+    content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+  }
+
+  function openModal(position) {
+    document.getElementById('applyModal').style.display = 'block';
+    document.getElementById('positionTitle').innerText = `Apply for ${position}`;
+    document.getElementById('positionInput').value = position;
+  }
+
+  function closeModal() {
+    document.getElementById('applyModal').style.display = 'none';
+  }
+
+  window.onclick = function(e) {
+    if (e.target == document.getElementById('applyModal')) closeModal();
+  };
+</script>
+
+  <!-- ⭐ API BRIDGE - MUST be before app.js ⭐ -->
+  <script src="js/api-bridge.js"></script>
+<script type="module" src="js/firebase/app.js?v=4"></script>
+
+<!-- START: Firebase v9 Modular Google Auth & Submit Handler -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+
+  // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyCjousdSRR0SJS3Qzv2sac-x7O-KnAzOAM",
+    authDomain: "aaraa-infra-web.firebaseapp.com",
+    projectId: "aaraa-infra-web",
+    storageBucket: "aaraa-infra-web.firebasestorage.app",
+    messagingSenderId: "1097946746049",
+    appId: "1:1097946746049:web:66255acd518f19b2a9d840",
+    measurementId: "G-DHGDK2T2VR"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+  const provider = new GoogleAuthProvider();
+
+  // Bind to existing UI
+  const form = document.getElementById('applyForm');
+  const submitBtn = document.getElementById('applySubmit');
+
+  if(form && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // 1. Run basic HTML5 validation before launching Google Auth
+      if (!form.checkValidity()) {
+         return; 
+      }
+
+      // 2. Set UI to Loading State
+      submitBtn.querySelector('.apply-btn-text').hidden = true;
+      submitBtn.querySelector('.apply-btn-loading').hidden = false;
+      submitBtn.disabled = true;
+
+      try {
+        // 3. Trigger Google Login Popup
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        // 4. Gather Form Data
+        const formData = new FormData(form);
+        const resumeFile = formData.get("resume");
+        let resumeUrl = "";
+
+        // 5. Upload Resume to Firebase Storage
+        if (resumeFile && resumeFile.size > 0) {
+          const storageRef = ref(storage, `resumes/${Date.now()}_${resumeFile.name.replace(/\s+/g, '_')}`);
+          const uploadResult = await uploadBytes(storageRef, resumeFile);
+          resumeUrl = await getDownloadURL(uploadResult.ref);
+        }
+
+        // 6. Save payload to Firestore and Trigger Email extension
+        await addDoc(collection(db, "career_applications"), {
+          applicantName: formData.get("name"),
+          verifiedEmail: user.email, 
+          phone: formData.get("phone"),
+          position: formData.get("position"),
+          coverNote: "N/A", 
+          resumeUrl: resumeUrl,
+          status: "New",
+          submittedAt: serverTimestamp(),
+          to: ["aaraainfrastructure@gmail.com", "hr@aaraainfrastructure.com", "digital@aaraainfrastructure.com"],
+          message: {
+            subject: `New Job Application: ${formData.get("position")} - ${formData.get("name")}`,
+            html: `
+              <div style="font-family: Arial, sans-serif; color: #1f2328; max-width: 600px;">
+                <h2 style="color: #ed2f39;">AARAA Infrastructure - New Candidate</h2>
+                <p>A new application has been securely authenticated and submitted via the web portal.</p>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                  <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Applicant:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${formData.get("name")}</td></tr>
+                  <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Verified Google Email:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${user.email}</td></tr>
+                  <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Phone:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${formData.get("phone")}</td></tr>
+                  <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Position:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${formData.get("position")}</td></tr>
+                </table>
+                <div style="margin-top: 30px;">
+                  <a href="${resumeUrl}" style="background-color: #ed2f39; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">Download Resume</a>
+                </div>
+              </div>
+            `
+          }
+        });
+
+        // 7. Show success feedback
+        alert('Thank you! Your job application has been submitted successfully.');
+        form.reset();
+        if(typeof closeModal === 'function') closeModal();
+
+      } catch (error) {
+        console.error("Submission Error:", error);
+        
+        let errorMessage = "An error occurred during submission. Please try again.";
+        if (error.code === 'auth/popup-closed-by-user') {
+            errorMessage = "Google Sign-In was cancelled. Authentication is required to apply.";
+        }
+        alert('Submission Error: ' + errorMessage);
+        
+      } finally {
+        // 8. Restore Button State
+        submitBtn.querySelector('.apply-btn-text').hidden = false;
+        submitBtn.querySelector('.apply-btn-loading').hidden = true;
+        submitBtn.disabled = false;
+      }
+    });
+  }
+</script>
+<!-- END: Firebase v9 Modular Google Auth & Submit Handler -->
+</main>
+
+<!-- Cloudflare Turnstile API Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
+</body>
+</html>

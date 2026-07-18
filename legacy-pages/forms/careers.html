@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Opportunities | AARAA Infrastructure</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <div class="aaraa-wrap">
+    <div class="back-to-home">
+      <a href="../index.html" class="btn-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="back-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Home
+      </a>
+    </div>
+    <div class="aaraa-card">
+      <div class="aaraa-head">
+        <h1>Career Opportunities</h1>
+        <p>Please supply correct information. Upload credentials to submit your application.</p>
+      </div>
+      <form data-aaraa-form="Job Application" novalidate enctype="multipart/form-data">
+        <!-- honeypot anti-spam (hidden from humans) -->
+        <div class="hp" aria-hidden="true">
+          <label>Company Website<input class="hp-input" type="text" name="company_website_hp" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="grid">
+      <div class="field">
+        <label for="full_name">Full Name <span class="req">*</span></label>
+        <input type="text" id="full_name" name="full_name" required placeholder="Enter full name">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="your@email.com" data-rule="email">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="phone">Mobile Number <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" required placeholder="+91 9XXXXXXXXX" data-rule="tel">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="current_location">Current Location <span class="req">*</span></label>
+        <input type="text" id="current_location" name="current_location" required placeholder="City, State">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="position">Position Applied For <span class="req">*</span></label>
+        <select id="position" name="position" required>
+          <option value="" disabled selected>Select Job Role</option>
+          <option value="Project Manager (Construction)">Project Manager (Construction)</option>
+          <option value="Site Engineer (Civil)">Site Engineer (Civil)</option>
+          <option value="Structural Engineer">Structural Engineer</option>
+          <option value="MEP Coordinator / Engineer">MEP Coordinator / Engineer</option>
+          <option value="Planning &amp; Scheduling Engineer">Planning &amp; Scheduling Engineer</option>
+          <option value="Quantity Surveyor / Cost Estimator">Quantity Surveyor / Cost Estimator</option>
+          <option value="QA/QC Engineer">QA/QC Engineer</option>
+          <option value="HSE Officer / Safety Engineer">HSE Officer / Safety Engineer</option>
+          <option value="Land Surveyor">Land Surveyor</option>
+          <option value="Billing Engineer">Billing Engineer</option>
+          <option value="Site Supervisor / Foreman">Site Supervisor / Foreman</option>
+          <option value="CAD Draughtsman / Operator">CAD Draughtsman / Operator</option>
+          <option value="Procurement &amp; Purchase Officer">Procurement &amp; Purchase Officer</option>
+          <option value="Heavy Equipment Operator">Heavy Equipment Operator</option>
+          <option value="General Site Supervisor">General Site Supervisor</option>
+          <option value="Administrative / Accounts Assistant">Administrative / Accounts Assistant</option>
+          <option value="Other">Other</option>
+        </select>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="experience">Years of Experience <span class="req">*</span></label>
+        <input type="number" id="experience" name="experience" required placeholder="Total experience in years">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="current_employer">Current Employer</label>
+        <input type="text" id="current_employer" name="current_employer" placeholder="Current organization (optional)">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="current_ctc">Current CTC (LPA)</label>
+        <input type="number" id="current_ctc" name="current_ctc" placeholder="e.g. 6.5">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="expected_ctc">Expected CTC (LPA)</label>
+        <input type="number" id="expected_ctc" name="expected_ctc" placeholder="e.g. 8.5">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="notice_period">Notice Period <span class="req">*</span></label>
+        <select id="notice_period" name="notice_period" required>
+          <option value="" disabled selected>Select Option</option>
+          <option value="Immediate">Immediate</option>
+          <option value="15 days">15 days</option>
+          <option value="30 days">30 days</option>
+          <option value="60 days">60 days</option>
+          <option value="90 days">90 days</option>
+        </select>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="qualification">Highest Qualification <span class="req">*</span></label>
+        <input type="text" id="qualification" name="qualification" required placeholder="e.g. B.E. Civil Engineering">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="skills">Skills <span class="req">*</span></label>
+        <input type="text" id="skills" name="skills" required placeholder="e.g. AutoCAD, Project Scheduling, QS">
+        <span class="error"></span>
+      </div>
+      <div class="field full">
+        <label for="cover_letter">Cover Letter</label>
+        <textarea id="cover_letter" name="cover_letter" placeholder="Brief statement about your candidature"></textarea>
+        <span class="error"></span>
+      </div>
+      <div class="section-title">Documents</div>
+      <div class="field">
+        <label for="resume">Resume / CV <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf,.doc,.docx • Max 5MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" data-maxsize="5" required>
+        </div>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="portfolio">Portfolio (Optional)</label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf,.zip,.docx • Max 10MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="portfolio" name="portfolio" accept=".pdf,.zip,.docx" data-maxsize="10">
+        </div>
+        <span class="error"></span>
+      </div>
+        </div>
+        <!-- Turnstile anti-spam widget (rendered dynamically by forms.js) -->
+        <div class="cf-turnstile-container" style="margin: 18px 0 10px; display: flex; justify-content: flex-start;"></div>
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>I consent to AARAA Infrastructure storing and processing the information I have submitted to respond to my request, in line with the <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>. (Required under the DPDP Act, 2023)</span>
+        </label>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Submit Application</button>
+        </div>
+        <div class="form-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+  <script src="../assets/js/config.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
+  <script src="../assets/js/forms.js"></script>
+</body>
+</html>

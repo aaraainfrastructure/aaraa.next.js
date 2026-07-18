@@ -1,0 +1,949 @@
+
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AARAA Infrastructure | Official BOAT Apprenticeship Partner</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="css/aaraa-popups.css" rel="stylesheet" />
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#bec6e0",
+                    "outline": "#926f6b",
+                    "inverse-primary": "#ffb4ab",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container": "#e5eeff",
+                    "background": "#f8f9ff",
+                    "primary-fixed-dim": "#ffb4ab",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#565e74",
+                    "on-primary-container": "#fffafa",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#ffdad6",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "surface": "#f8f9ff",
+                    "surface-dim": "#cbdbf5",
+                    "outline-variant": "#e7bdb8",
+                    "tertiary-container": "#6f7478",
+                    "on-tertiary-container": "#f8fbff",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#5d3f3c",
+                    "on-primary-fixed": "#410002",
+                    "primary": "#ba0013",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-container": "#5c647a",
+                    "surface-tint": "#c00014",
+                    "tertiary": "#575c5f",
+                    "secondary-container": "#dae2fd",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-primary-fixed-variant": "#93000d",
+                    "on-background": "#0b1c30",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#dae2fd",
+                    "on-tertiary-fixed": "#171c1f",
+                    "surface-bright": "#f8f9ff",
+                    "inverse-surface": "#213145",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-fixed-variant": "#43474b",
+                    "surface-variant": "#d3e4fe",
+                    "tertiary-fixed-dim": "#c3c7cb",
+                    "tertiary-fixed": "#dfe3e7",
+                    "primary-container": "#e31e24",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-tablet": "32px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Work Sans"],
+                    "headline-lg": ["Manrope"],
+                    "body-md": ["Work Sans"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "label-sm": ["Work Sans"],
+                    "headline-xl": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "label-md": ["Work Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+  <!-- Navigation Header (Tailwind Version) -->
+  <header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-outline-variant/30">
+    <div class="max-w-container-max mx-auto px-gutter h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a class="flex items-center" href="index.html" aria-label="AARAA Infrastructure Home">
+        <img class="h-10 w-auto object-contain" src="image/logo/logo-black.png" alt="AARAA Infrastructure">
+      </a>
+      
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-x-8">
+        <!-- Explore Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-on-surface hover:text-primary font-label-md transition-colors py-2 focus:outline-none">
+            Explore AARAA
+            <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">keyboard_arrow_down</span>
+          </button>
+          <div class="absolute top-full left-0 mt-1 w-48 bg-white border border-outline-variant rounded-xl shadow-lg opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50 p-2">
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="about.html">Behind the Build</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="history.html">Our History</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="blog.html">Our Blog</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="gallery.html">Gallery</a>
+          </div>
+        </div>
+        
+        <!-- Join Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-on-surface hover:text-primary font-label-md transition-colors py-2 focus:outline-none">
+            Join AARAA
+            <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">keyboard_arrow_down</span>
+          </button>
+          <div class="absolute top-full left-0 mt-1 w-64 bg-white border border-outline-variant rounded-xl shadow-lg opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50 p-2">
+            <div class="px-4 py-1 text-[11px] font-bold text-secondary uppercase tracking-widest border-b border-outline-variant/30 mb-1">Work With Us</div>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="/forms/careers.html">Career Opportunities</a>
+            <div class="px-4 py-1 text-[11px] font-bold text-secondary uppercase tracking-widest border-b border-outline-variant/30 my-1">Partner With Us</div>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="/forms/partnership.html">Strategic Partnerships</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="/forms/joint-venture.html">Joint Ventures</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="/forms/vendor.html">Become a Vendor</a>
+            <div class="px-4 py-1 text-[11px] font-bold text-secondary uppercase tracking-widest border-b border-outline-variant/30 my-1">Build With Us</div>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="/forms/subcontractor.html">Subcontractor Empanelment</a>
+            <div class="px-4 py-1 text-[11px] font-bold text-secondary uppercase tracking-widest border-b border-outline-variant/30 my-1">Learn With Us</div>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="internship-program.html">Internship Program</a>
+          </div>
+        </div>
+        
+        <!-- Sectors Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-on-surface hover:text-primary font-label-md transition-colors py-2 focus:outline-none">
+            Sectors
+            <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">keyboard_arrow_down</span>
+          </button>
+          <div class="absolute top-full left-0 mt-1 w-52 bg-white border border-outline-variant rounded-xl shadow-lg opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50 p-2">
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="commercial.html">Commercial</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="industrial.html">Industrial</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="infrastructure.html">Infrastructure</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="institutional.html">Institutional</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="renewables.html">Renewables</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="interior-fitout.html">Interior FIT-OUTS</a>
+          </div>
+        </div>
+
+        <!-- Services Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-on-surface hover:text-primary font-label-md transition-colors py-2 focus:outline-none">
+            Services
+            <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">keyboard_arrow_down</span>
+          </button>
+          <div class="absolute top-full left-0 mt-1 w-64 bg-white border border-outline-variant rounded-xl shadow-lg opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50 p-2">
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="civil-and-pre-engineered-buildings.html">Civil & PEB Contracts</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="interior-fitout-contracts.html">Interior Contracts</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="mep-hvac-services.html">MEP & HVAC</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="general-contracting-services.html">General Contracting</a>
+          </div>
+        </div>
+
+        <!-- Projects Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-on-surface hover:text-primary font-label-md transition-colors py-2 focus:outline-none">
+            Projects
+            <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">keyboard_arrow_down</span>
+          </button>
+          <div class="absolute top-full left-0 mt-1 w-56 bg-white border border-outline-variant rounded-xl shadow-lg opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50 p-2">
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="on-going-projects.html">Legacy of Excellence</a>
+            <a class="block px-4 py-2 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors font-label-md" href="completed-projects.html">Delivered Milestones</a>
+          </div>
+        </div>
+
+        <a class="text-on-surface hover:text-primary font-label-md transition-colors py-2" href="contact-us.html">Contact</a>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a class="px-5 py-2.5 bg-primary text-white font-label-md rounded-lg hover:bg-primary-container transition-all hover:shadow-md cursor-pointer" href="javascript:void(0);" data-aaraa-enquiry>Enquiry</a>
+        <a class="px-5 py-2.5 bg-transparent border border-primary text-primary font-label-md rounded-lg hover:bg-primary hover:text-white transition-all cursor-pointer" href="javascript:void(0);" data-aaraa-vendor>Become a Vendor</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="lg:hidden p-2 text-on-surface hover:text-primary transition-colors focus:outline-none" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="lg:hidden fixed inset-0 top-20 bg-background/95 backdrop-blur-md z-40 flex flex-col p-6 border-t border-outline-variant/30 transform translate-x-full transition-transform duration-300 overflow-y-auto" id="mobileMenuDrawer">
+      <div class="space-y-6 flex-grow pb-12">
+        <!-- Explore -->
+        <div class="space-y-2">
+          <div class="text-[12px] font-bold text-secondary uppercase tracking-widest mb-1">Explore AARAA</div>
+          <div class="grid grid-cols-2 gap-2 pl-2">
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="about.html">Behind the Build</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="history.html">Our History</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="blog.html">Our Blog</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="gallery.html">Gallery</a>
+          </div>
+        </div>
+
+        <!-- Join -->
+        <div class="space-y-2">
+          <div class="text-[12px] font-bold text-secondary uppercase tracking-widest mb-1">Join AARAA</div>
+          <div class="grid grid-cols-2 gap-2 pl-2">
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md col-span-2 font-semibold text-primary" href="/forms/careers.html">Career Opportunities</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="/forms/partnership.html">Partnerships</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="/forms/joint-venture.html">Joint Ventures</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="/forms/vendor.html">Become a Vendor</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="/forms/subcontractor.html">Subcontractor</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="internship-program.html">Internship</a>
+          </div>
+        </div>
+
+        <!-- Sectors -->
+        <div class="space-y-2">
+          <div class="text-[12px] font-bold text-secondary uppercase tracking-widest mb-1">Sectors</div>
+          <div class="grid grid-cols-2 gap-2 pl-2">
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="commercial.html">Commercial</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="industrial.html">Industrial</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="infrastructure.html">Infrastructure</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="institutional.html">Institutional</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="renewables.html">Renewables</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="interior-fitout.html">Interior Fit-out</a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div class="space-y-2">
+          <div class="text-[12px] font-bold text-secondary uppercase tracking-widest mb-1">Services</div>
+          <div class="grid grid-cols-2 gap-2 pl-2">
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="civil-and-pre-engineered-buildings.html">Civil & PEB</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="interior-fitout-contracts.html">Interior</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="mep-hvac-services.html">MEP & HVAC</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="general-contracting-services.html">General</a>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="space-y-2">
+          <div class="text-[12px] font-bold text-secondary uppercase tracking-widest mb-1">Projects</div>
+          <div class="grid grid-cols-2 gap-2 pl-2">
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="on-going-projects.html">Ongoing</a>
+            <a class="text-on-surface hover:text-primary py-1 block text-body-md" href="completed-projects.html">Completed</a>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-outline-variant/30 flex flex-col gap-4">
+          <a class="text-center py-3 bg-primary text-white font-label-md rounded-lg" href="javascript:void(0);" data-aaraa-enquiry>Enquiry</a>
+          <a class="text-center py-3 bg-transparent border border-primary text-primary font-label-md rounded-lg" href="javascript:void(0);" data-aaraa-vendor>Become a Vendor</a>
+          <a class="text-center py-3 text-on-surface hover:text-primary font-semibold" href="contact-us.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+    if (mobileMenuBtn && mobileMenuDrawer) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenuDrawer.classList.contains('translate-x-full');
+        if (isOpen) {
+          mobileMenuDrawer.classList.add('translate-x-full');
+          mobileMenuBtn.querySelector('span').textContent = 'menu';
+        } else {
+          mobileMenuDrawer.classList.remove('translate-x-full');
+          mobileMenuBtn.querySelector('span').textContent = 'close';
+        }
+      });
+      mobileMenuDrawer.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenuDrawer.classList.add('translate-x-full');
+          mobileMenuBtn.querySelector('span').textContent = 'menu';
+        });
+      });
+    }
+  </script>
+
+<!-- Hero Section -->
+<header class="relative h-[80vh] flex items-center overflow-hidden">
+<!-- STITCH_SHADER_START:ANIMATION_3 class="absolute inset-0 w-full h-full opacity-40" -->
+<div class="absolute inset-0 w-full h-full opacity-40" style="display:block;">
+<canvas height="819" id="shader-canvas-ANIMATION_3" style="display:block;width:100%;height:100%" width="1280"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_3');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Abstract geometric "blueprint" grid
+    vec2 grid = fract(uv * 20.0 + u_time * 0.1);
+    float line = smoothstep(0.02, 0.0, abs(grid.x - 0.5)) + smoothstep(0.02, 0.0, abs(grid.y - 0.5));
+    
+    // Flowing gradient in brand colors (Red #e31e24 and Dark Blue)
+    vec3 color1 = vec3(0.89, 0.12, 0.14); // AARAA Red
+    vec3 color2 = vec3(0.05, 0.07, 0.15); // Deep Blue
+    
+    float noise = sin(uv.x * 3.0 + u_time) * cos(uv.y * 3.0 - u_time * 0.5);
+    vec3 finalColor = mix(color2, color1, 0.1 + 0.1 * noise);
+    
+    // Overlay the faint grid
+    finalColor += line * 0.03;
+    
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_3 -->
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent z-10"></div>
+<div class="relative z-20 max-w-container-max mx-auto px-gutter grid lg:grid-cols-2 gap-12 items-center w-full">
+<div class="reveal-up active">
+<span class="inline-block px-4 py-1 bg-primary/10 text-primary font-label-md rounded-full mb-6 uppercase tracking-wider">Partnerships &amp; Training</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-4 leading-tight">
+                    AARAA Infrastructure Pvt. Ltd. Becomes an Official <span class="text-primary">BOAT</span> Apprenticeship Partner
+                </h1>
+<p class="font-headline-md text-headline-md text-secondary mb-8 max-w-xl">
+                    In Association with the Government of Tamil Nadu &amp; the Directorate of Technical Education (DOTE)
+                </p>
+<div class="glass-card p-6 rounded-xl border border-outline-variant inline-flex items-center gap-8 shadow-sm">
+<img class="h-16 object-contain" data-alt="Official logo of the Board of Apprenticeship Training (BOAT) Southern Region, featuring a professional and academic seal with clean blue and gold elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9u6o6u8WG9MFl5Y99H_CTU_LXbX1MfmF-bEkS-h25tMnVI6NlkdxG05QAhG7fS-4shz9vabZTd3wuywZSU1O2nLBRjpIkDjCHMCVH098Ezbk2pyY7ULY-VZdy-RgSZC-mnE38b8sIQPwh3pHvam-bf5dyopk5gXHrdORX8xnhnc0FblQQ3MTkGCX1FsIouiSZGL_TCzLocxfePmHJwi4-FCoB27OEoKvSifrKhwlm4yz4TM1MHPJJ"/>
+<div class="h-12 w-px bg-outline-variant"></div>
+<img class="h-16 object-contain" data-alt="Official emblem of the Government of Tamil Nadu, featuring the Temple Tower Srivilliputhur symbol, rendered with professional clarity and traditional colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcpFMqbnmuoGtqht3ls5JFkR_ZY6Dy5Sm9R2Y9PaJjgHsJPvHp5a02wwiTXe8D9L3kjF-V8_roHNVe8hFOZpM5SxiUpDv_rGXKOOV2FVVikAqZ8RsHHbNrjX0bgpHhTdz8Q1GgTcXenyFKSoxjbohXWIDag9adLgbWZOnMGi_WSfdX1p-7akfdkrrGtcPZaGOQDrgHaYv2nK2cV1c6NgyofCprGB2-Q5YmcBOxw8f_skNxntMIFpyp"/>
+</div>
+</div>
+<div class="hidden lg:block relative h-[600px] reveal-up active delay-300">
+<!-- STITCH_THREEJS_START:ANIMATION_4 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_4" style="width:100%;height:100%"><canvas height="600" style="display: block; width: 592px; height: 600px;" width="592"></canvas></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_4');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Three.js scene showing an abstract 3D "Bridge" or "Structure" representing the partnership
+const scene = new THREE.Scene();
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.device_ratio || 1);
+container.appendChild(renderer.domElement);
+
+// Geometry: Abstract building blocks / pillars
+const group = new THREE.Group();
+const material = new THREE.MeshPhongMaterial({ 
+    color: 0xe31e24, 
+    shininess: 100,
+    transparent: true,
+    opacity: 0.8
+});
+
+for(let i = 0; i < 5; i++) {
+    const geometry = new THREE.BoxGeometry(0.5, 2 + Math.random() * 2, 0.5);
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = (i - 2) * 1.2;
+    mesh.position.y = mesh.geometry.parameters.height / 2 - 1;
+    group.add(mesh);
+}
+
+scene.add(group);
+
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(5, 5, 5);
+scene.add(light);
+scene.add(new THREE.AmbientLight(0x404040));
+
+camera.position.z = 8;
+camera.position.y = 1;
+
+function animate() {
+    requestAnimationFrame(animate);
+    group.rotation.y += 0.005;
+    // Subtle breathing motion
+    group.children.forEach((child, i) => {
+        child.position.y = (child.geometry.parameters.height / 2 - 1) + Math.sin(Date.now() * 0.001 + i) * 0.1;
+    });
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+});
+
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_4 -->
+</div>
+</div>
+</header>
+<!-- Content Layout -->
+<main class="max-w-container-max mx-auto px-gutter py-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Side Navigation (Sticky) -->
+<aside class="hidden lg:block lg:col-span-3">
+<div class="sticky top-24 w-full h-fit flex flex-col gap-y-4 pr-8">
+<div class="mb-6">
+<h3 class="font-headline-sm text-headline-sm text-primary">Table of Contents</h3>
+<p class="font-label-md text-label-md text-secondary">On this page</p>
+</div>
+<nav class="flex flex-col">
+<a class="text-primary font-bold border-l-4 border-primary pl-4 py-2 bg-primary/5 font-label-md transition-all" href="#introduction">Introduction</a>
+<a class="text-tertiary dark:text-tertiary-fixed-dim border-l-2 border-outline-variant pl-4 py-2 hover:border-primary transition-all font-label-md" href="#disciplines">Key Disciplines</a>
+<a class="text-tertiary dark:text-tertiary-fixed-dim border-l-2 border-outline-variant pl-4 py-2 hover:border-primary transition-all font-label-md" href="#stories">Success Stories</a>
+<a class="text-tertiary dark:text-tertiary-fixed-dim border-l-2 border-outline-variant pl-4 py-2 hover:border-primary transition-all font-label-md" href="#apply">How to Apply</a>
+</nav>
+<button class="mt-8 bg-surface-container-high text-primary font-label-md py-4 px-6 rounded-lg flex items-center justify-between group hover:bg-primary hover:text-on-primary transition-all duration-300">
+                        Download Prospectus
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">download</span>
+</button>
+</div>
+</aside>
+<!-- Main Article Content -->
+<article class="lg:col-span-6 space-y-16">
+<!-- Introduction -->
+<section class="reveal-up active" id="introduction">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+<strong class="text-primary font-bold">AARAA Infrastructure Pvt. Ltd. </strong> is proud to announce its official partnership with the <strong class="text-on-surface font-semibold">Board of Apprenticeship Training (BOAT)</strong> under the Government of India, marking a significant milestone in our commitment to developing the next generation of skilled engineering professionals.
+                    </p>
+<p class="mt-6 font-body-md text-body-md text-secondary leading-relaxed">As an official BOAT Apprenticeship Partner, AARAA Infrastructure provides structured apprenticeship opportunities that combine classroom knowledge with practical industry experience. Eligible diploma and engineering graduates gain hands-on exposure to live Civil, Interior, and MEP projects while developing technical, professional, and leadership competencies required by the modern construction industry.</p>
+</section>
+<!-- Pull Quote -->
+<section class="reveal-up border-l-4 border-primary bg-surface-container-low p-10 italic active">
+<blockquote class="font-headline-md text-headline-md text-on-surface italic">
+                        "Together, we are not just building infrastructure—we are building careers, nurturing talent, and shaping the future of engineering excellence."
+                    </blockquote>
+<cite class="block mt-4 font-label-md text-label-md text-primary not-italic">— Alekhya / Business Head <br/>AARAA Infrastructure Pvt. Ltd.</cite>
+</section>
+<!-- Key Disciplines Bento -->
+<section class="reveal-up active" id="disciplines">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">Comprehensive Training Across Disciplines</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-white p-6 rounded-xl border border-outline-variant hover:shadow-lg transition-all group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 bg-primary/5 p-3 rounded-lg">architecture</span>
+<h4 class="font-headline-md text-headline-md mb-2">Civil Engineering</h4>
+<p class="font-body-md text-body-md text-secondary">Structural works, site supervision, concrete technology, and foundation systems.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant hover:shadow-lg transition-all group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 bg-primary/5 p-3 rounded-lg">home_repair_service</span>
+<h4 class="font-headline-md text-headline-md mb-2">Interior Fit-Out</h4>
+<p class="font-body-md text-body-md text-secondary">Modern commercial layouts, premium interior finishes, and partitioning systems.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant hover:shadow-lg transition-all group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 bg-primary/5 p-3 rounded-lg">bolt</span>
+<h4 class="font-headline-md text-headline-md mb-2">MEP Services</h4>
+<p class="font-body-md text-body-md text-secondary">Mechanical, Electrical, Plumbing, HVAC systems, and fire safety integration.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant hover:shadow-lg transition-all group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 bg-primary/5 p-3 rounded-lg">event_note</span>
+<h4 class="font-headline-md text-headline-md mb-2">Project Planning</h4>
+<p class="font-body-md text-body-md text-secondary">Scheduling, resource allocation, progress monitoring, and milestones tracking.</p>
+</div>
+</div>
+</section>
+<!-- Mission Section -->
+<section class="reveal-up bg-inverse-surface rounded-2xl p-12 text-white overflow-hidden relative active" id="stories">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[100px]"></div>
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg mb-6">Bridging the Gap: Academic to Industry</h2>
+<p class="font-body-lg text-body-lg mb-8 opacity-90 text-white">
+                            This partnership reinforces AARAA Infrastructure Pvt. Ltd.'s vision of bridging the gap between academic education and industry expectations. We aim to empower young professionals with the knowledge and confidence needed to contribute meaningfully to India's evolving infrastructure sector.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<span class="bg-primary px-4 py-2 rounded font-label-md">#SkillIndia</span>
+<span class="bg-white/10 px-4 py-2 rounded font-label-md">#EngineeringTalent</span>
+<span class="bg-white/10 px-4 py-2 rounded font-label-md">#NationBuilding</span>
+</div>
+</div>
+</section>
+<!-- You Might Also Like -->
+
+</article>
+<!-- Secondary Sidebar -->
+<aside class="lg:col-span-3 space-y-12">
+<!-- Recent Success Stories -->
+<div class="reveal-up active">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-primary pb-2">Recent Stories</h3>
+<div class="space-y-6">
+<a class="flex gap-4 group" href="#">
+<div class="w-20 h-20 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Close-up of a high-quality building material sample, showing steel reinforcement bars being laid in a geometric pattern for a foundation. Corporate engineering aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuButyNxc1DEfkwhHPgtm9nrdpEERP9xjtkmHImpsiGmlvW0PN0bbZOY0HAM-EpHUZcwBr8pIZL8asT31h2jxdu1vN49UUurWHzqexW2hI6WPlVQnOLqMe-tIRVAqTYareA8TcSoM95vNUgbOpgz6ApP84RWvDKduEFKR0ustJNZj20ioWz2m1EvbGmVQMdxsf1PM6Wx8rAhzmI78eQOn-_-C-mJW3kj45AmrZVpmKSJxdRPVWrL8aCm"/>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">180 MWp Solar — Tuticorin Project</h5>
+<p class="text-[12px] text-secondary mt-1">July 15, 2024</p>
+</div>
+</a>
+<a class="flex gap-4 group" href="#">
+<div class="w-20 h-20 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="A cinematic low-angle shot of a towering glass skyscraper under construction, reflecting a vibrant sunset sky. Sleek modern engineering design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPfovio1kFocncfFE9N6IC_0zV-ub8Ahj5EOcsvphCffumz9x_-qY7qawMT-oMeI5BeIg-n9yxkbqlQfERWR3v4PoDrPmlTnFW5xYsGi74xkGIYGfNr6F1jxfDQaMVHwfbVQexT4Rmb5j1ivUwTNqZr3FUNlPZRfrZfIGetbGCODpg5KsKHVNsu6Ax4aeT46G4x_EwgejBTzaxl5ThgqTyW3oCzmuZ_DGUzjMlonuqX4PEkDiCRPjI"/>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">MEP Fit-Out — Reliance Chennai</h5>
+<p class="text-[12px] text-secondary mt-1">June 28, 2024</p>
+</div>
+</a>
+</div>
+</div>
+<!-- Call to Action Card -->
+        <div class="reveal-up bg-primary p-8 rounded-2xl text-on-primary active" id="apply">
+          <h3 class="font-headline-md text-headline-md mb-4">Partner With Us</h3>
+          <p class="font-body-md text-body-md mb-8 opacity-90 text-white/90">Are you a college or university looking to place your graduates in a high-growth environment?</p>
+          <button class="w-full bg-white text-primary font-bold py-4 rounded-xl hover:bg-surface hover:shadow-md transition-all active:scale-95 cursor-pointer" data-aaraa-enquiry>
+            Inquire About Partnerships
+          </button>
+          <p class="text-[10px] text-center mt-6 uppercase tracking-widest opacity-70">Engineering Excellence</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#05070f] text-[#bec6e0] pt-20 pb-8 border-t border-outline-variant/10">
+    <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      <div class="space-y-6">
+        <a href="index.html" class="block">
+          <img class="h-10 w-auto object-contain" src="image/logo/logo-white.png" alt="AARAA Infrastructure">
+        </a>
+        <p class="text-sm leading-relaxed text-secondary-fixed-dim">
+          AARAA Infrastructure Pvt. Ltd. is India's leading turnkey civil contractor, industrial builder, and Solar EPC contractor. We construct high-quality, sustainable buildings with engineering excellence.
+        </p>
+        <div class="flex gap-4">
+          <a class="w-10 h-10 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center text-white transition-colors" href="https://www.facebook.com/people/Aaraa-Infrastructure/61577346574499/" rel="noopener" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a class="w-10 h-10 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center text-white transition-colors" href="https://www.instagram.com/aaraa_infrastructure/" rel="noopener" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a class="w-10 h-10 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center text-white transition-colors" href="https://www.linkedin.com/company/aaraa-infrastructure/" rel="noopener" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a class="w-10 h-10 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center text-white transition-colors" href="https://www.youtube.com/@AaraaInfrastructure" rel="noopener" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="space-y-6">
+        <h5 class="text-white font-label-md uppercase tracking-widest text-sm border-b border-outline-variant/20 pb-2">Explore</h5>
+        <div class="flex flex-col gap-3">
+          <a class="hover:text-primary transition-colors text-sm" href="about.html">Behind the Build</a>
+          <a class="hover:text-primary transition-colors text-sm" href="history.html">Our History</a>
+          <a class="hover:text-primary transition-colors text-sm" href="blog.html">Our Blog</a>
+          <a class="hover:text-primary transition-colors text-sm" href="gallery.html">Gallery</a>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <h5 class="text-white font-label-md uppercase tracking-widest text-sm border-b border-outline-variant/20 pb-2">Services</h5>
+        <div class="flex flex-col gap-3">
+          <a class="hover:text-primary transition-colors text-sm" href="civil-and-pre-engineered-buildings.html">Civil & PEB Contracts</a>
+          <a class="hover:text-primary transition-colors text-sm" href="interior-fitout-contracts.html">Interior Fit-Out</a>
+          <a class="hover:text-primary transition-colors text-sm" href="mep-hvac-services.html">MEP & HVAC</a>
+          <a class="hover:text-primary transition-colors text-sm" href="general-contracting-services.html">General Contracting</a>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <h5 class="text-white font-label-md uppercase tracking-widest text-sm border-b border-outline-variant/20 pb-2">Contact & Office</h5>
+        <div class="space-y-4 text-sm">
+          <div class="flex gap-2">
+            <span class="material-symbols-outlined text-primary text-lg">map</span>
+            <p class="text-secondary-fixed-dim leading-relaxed">
+              <strong>Corporate:</strong> #85, 4th Floor, Lotus Tower, Anna Salai, Guindy, Chennai - 600032.
+            </p>
+          </div>
+          <div class="flex gap-2">
+            <span class="material-symbols-outlined text-primary text-lg">map</span>
+            <p class="text-secondary-fixed-dim leading-relaxed">
+              <strong>Branch:</strong> WeWork, Oberoi Commerz II, Mumbai - 400063.
+            </p>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="material-symbols-outlined text-primary text-lg">call</span>
+            <a class="hover:text-primary transition-colors" href="tel:+918681003111">+91 868 100 3111</a>
+          </div>
+          <div class="flex gap-2 items-center">
+            <span class="material-symbols-outlined text-primary text-lg">mail</span>
+            <a class="hover:text-primary transition-colors" href="mailto:info@aaraainfrastructure.com">info@aaraainfrastructure.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-outline-variant/10 pt-8 max-w-container-max mx-auto px-gutter flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-secondary-fixed-dim">
+      <span>© <span id="currentYear"></span> AARAA INFRASTRUCTURE. All rights reserved.</span>
+      <div class="flex gap-6">
+        <a class="hover:text-primary transition-colors" href="aaraa-privacy-policy.html">Privacy Policy</a>
+        <a class="hover:text-primary transition-colors" href="#">Terms of Use</a>
+        <a class="hover:text-primary transition-colors" href="#">Site Map</a>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
+
+  <!-- AARAA Enquiry Form Overlay -->
+  <div id="aaraaEnquiryOverlay" class="aaraa-popup-overlay">
+    <div class="aaraa-popup-box">
+      <button class="aaraa-popup-close" aria-label="Close enquiry form">×</button>
+      <div class="aaraa-popup-title" role="heading" aria-level="3">Quick Enquiry</div>
+      <p class="aaraa-popup-sub">Fill in your details and we'll get back to you shortly.</p>
+
+      <div class="aaraa-popup-form-body">
+        <form id="quickEnquiryForm">
+          <div class="aaraa-popup-row">
+            <div class="aaraa-popup-group">
+              <label for="eq_name">Full Name <span class="required">*</span></label>
+              <input id="eq_name" class="aaraa-popup-field" name="name" required placeholder="Your full name">
+            </div>
+            <div class="aaraa-popup-group">
+              <label for="eq_company">Company Name</label>
+              <input id="eq_company" class="aaraa-popup-field" name="company" placeholder="Company name (optional)">
+            </div>
+          </div>
+
+          <div class="aaraa-popup-row">
+            <div class="aaraa-popup-group">
+              <label for="eq_email">Email Address <span class="required">*</span></label>
+              <input id="eq_email" class="aaraa-popup-field" name="email" type="email" required placeholder="your@email.com">
+            </div>
+            <div class="aaraa-popup-group">
+              <label for="eq_phone">Phone Number <span class="required">*</span></label>
+              <input id="eq_phone" class="aaraa-popup-field" name="phone" type="tel" required placeholder="+91 9XXXXXXXXX">
+            </div>
+          </div>
+
+          <div class="aaraa-popup-group">
+            <label for="eq_service">Service Interested In</label>
+            <select id="eq_service" class="aaraa-popup-field" name="service">
+              <option value="">Select a service...</option>
+              <option value="Civil Works">Civil Works</option>
+              <option value="MEP">MEP</option>
+              <option value="HVAC">HVAC</option>
+              <option value="Interior Contracts">Interior Contracts</option>
+              <option value="General Contracting">General Contracting</option>
+              <option value="Infrastructure">Infrastructure</option>
+              <option value="Industrial">Industrial</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Renewable Energy">Renewable Energy</option>
+              <option value="PEB Buildings">PEB Buildings</option>
+            </select>
+          </div>
+
+          <div class="aaraa-popup-group">
+            <label for="eq_location">Project Location</label>
+            <input id="eq_location" class="aaraa-popup-field" name="location" placeholder="City, State">
+          </div>
+
+          <div class="aaraa-popup-group">
+            <label for="eq_message">Message <span class="required">*</span></label>
+            <textarea id="eq_message" class="aaraa-popup-field" name="message" required placeholder="Tell us about your requirement..."></textarea>
+          </div>
+
+          <div class="aaraa-popup-btns">
+            <button type="button" class="aaraa-popup-btn-close" data-aaraa-close="enquiry">Close</button>
+            <div class="cf-turnstile-placeholder" style="margin-bottom: 15px; display: flex; justify-content: center;"></div>
+            <button type="submit" class="aaraa-popup-submit">
+              <span class="aaraa-popup-btn-text">Submit Enquiry</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- AARAA Vendor Registration Form Overlay -->
+  <div id="aaraaVendorOverlay" class="aaraa-popup-overlay">
+    <div class="aaraa-popup-box">
+      <button class="aaraa-popup-close" aria-label="Close vendor form">×</button>
+      <div class="aaraa-popup-title" role="heading" aria-level="3">Vendor Registration</div>
+      <p class="aaraa-popup-sub">Register your company to partner with AARAA Infrastructure.</p>
+
+      <div class="aaraa-popup-form-body">
+        <form id="vendorForm">
+          <div class="aaraa-popup-row">
+            <div class="aaraa-popup-group">
+              <label for="v_company">Company Name <span class="required">*</span></label>
+              <input id="v_company" class="aaraa-popup-field" name="company" required placeholder="Your company name">
+            </div>
+            <div class="aaraa-popup-group">
+              <label for="v_name">Contact Person <span class="required">*</span></label>
+              <input id="v_name" class="aaraa-popup-field" name="name" required placeholder="Full name">
+            </div>
+          </div>
+
+          <div class="aaraa-popup-row">
+            <div class="aaraa-popup-group">
+              <label for="v_email">Email Address <span class="required">*</span></label>
+              <input id="v_email" class="aaraa-popup-field" name="email" type="email" required placeholder="your@email.com">
+            </div>
+            <div class="aaraa-popup-group">
+              <label for="v_phone">Phone Number <span class="required">*</span></label>
+              <input id="v_phone" class="aaraa-popup-field" name="phone" type="tel" required placeholder="+91 9XXXXXXXXX">
+            </div>
+          </div>
+
+          <div class="aaraa-popup-group">
+            <label for="v_category">Vendor Category <span class="required">*</span></label>
+            <select id="v_category" class="aaraa-popup-field" name="vendorCategory" required>
+              <option value="">Select category...</option>
+              <option value="Civil Contractor">Civil Contractor</option>
+              <option value="Material Supplier">Material Supplier</option>
+              <option value="Electrical Vendor">Electrical Vendor</option>
+              <option value="Plumbing Vendor">Plumbing Vendor</option>
+              <option value="HVAC Vendor">HVAC Vendor</option>
+              <option value="Interior Vendor">Interior Vendor</option>
+              <option value="Machinery Supplier">Machinery Supplier</option>
+              <option value="Transport Vendor">Transport Vendor</option>
+              <option value="Labour Contractor">Labour Contractor</option>
+              <option value="Renewable Energy Vendor">Renewable Energy Vendor</option>
+              <option value="PEB Supplier">PEB Supplier</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="aaraa-popup-row">
+            <div class="aaraa-popup-group">
+              <label for="v_gst">GST Number</label>
+              <input id="v_gst" class="aaraa-popup-field" name="gst" placeholder="22AAAAA0000A1Z5">
+            </div>
+            <div class="aaraa-popup-group">
+              <label for="v_pan">PAN Number</label>
+              <input id="v_pan" class="aaraa-popup-field" name="pan" placeholder="ABCDE1234F">
+            </div>
+          </div>
+
+          <div class="aaraa-popup-row">
+            <div class="aaraa-popup-group">
+              <label for="v_aadhaar">Aadhaar Number</label>
+              <input id="v_aadhaar" class="aaraa-popup-field" name="aadhaar" placeholder="12-digit Aadhaar number">
+            </div>
+            <div class="aaraa-popup-group">
+              <label for="v_location">City / State</label>
+              <input id="v_location" class="aaraa-popup-field" name="location" placeholder="City, State">
+            </div>
+          </div>
+
+          <div class="aaraa-popup-row">
+            <div class="aaraa-popup-group">
+              <label for="v_exp">Years of Experience</label>
+              <select id="v_exp" class="aaraa-popup-field" name="experience">
+                <option value="">Select...</option>
+                <option value="Less than 1 year">Less than 1 year</option>
+                <option value="1 - 3 years">1 - 3 years</option>
+                <option value="3 - 5 years">3 - 5 years</option>
+                <option value="5 - 10 years">5 - 10 years</option>
+                <option value="10+ years">10+ years</option>
+              </select>
+            </div>
+            <div class="aaraa-popup-group">
+              <label for="v_web">Website</label>
+              <input id="v_web" class="aaraa-popup-field" name="website" placeholder="https:// (optional)">
+            </div>
+          </div>
+
+          <div class="aaraa-popup-group">
+            <label for="v_services">Services / Materials Provided <span class="required">*</span></label>
+            <textarea id="v_services" class="aaraa-popup-field" name="services" required placeholder="Describe the services or materials you provide..."></textarea>
+          </div>
+
+          <div class="aaraa-popup-group">
+            <label for="v_message">Message</label>
+            <textarea id="v_message" class="aaraa-popup-field" name="message" placeholder="Any additional information..."></textarea>
+          </div>
+
+          <div class="aaraa-popup-btns">
+            <button type="button" class="aaraa-popup-btn-close" data-aaraa-close="vendor">Close</button>
+            <div class="cf-turnstile-placeholder" style="margin-bottom: 15px; display: flex; justify-content: center;"></div>
+            <button type="submit" class="aaraa-popup-submit">
+              <span class="aaraa-popup-btn-text">Submit Registration</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Simple active state for SideNav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['introduction', 'disciplines', 'stories', 'apply'];
+            let current = '';
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 150) {
+                        current = section;
+                    }
+                }
+            });
+
+            const navLinks = document.querySelectorAll('aside nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'font-bold', 'border-l-4', 'border-primary', 'bg-primary/5');
+                link.classList.add('text-tertiary', 'border-l-2', 'border-outline-variant');
+                
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-tertiary', 'border-l-2', 'border-outline-variant');
+                    link.classList.add('text-primary', 'font-bold', 'border-l-4', 'border-primary', 'bg-primary/5');
+                }
+            });
+        });
+    </script>
+
+  <!-- Modal support scripts -->
+  <script src="js/api-bridge.js"></script>
+  <script type="module" src="js/firebase/app.js?v=4"></script>
+  <script src="js/aaraa-popups.js"></script>
+  <script src="js/firebase-submit.js?v=7"></script>
+  <script src="js/aaraa-modals.js"></script>
+  
+  <!-- Cloudflare Turnstile API Script -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
+</body></html>

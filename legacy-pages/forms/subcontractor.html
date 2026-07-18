@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subcontractor Empanelment | AARAA Infrastructure</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <div class="aaraa-wrap">
+    <div class="back-to-home">
+      <a href="../index.html" class="btn-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="back-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Home
+      </a>
+    </div>
+    <div class="aaraa-card">
+      <div class="aaraa-head">
+        <h1>Subcontractor Empanelment</h1>
+        <p>Register as a certified vendor or sub-contractor. Upload credentials to submit your registration.</p>
+      </div>
+      <form data-aaraa-form="Subcontractor Empanelment" novalidate enctype="multipart/form-data">
+        <!-- honeypot anti-spam (hidden from humans) -->
+        <div class="hp" aria-hidden="true">
+          <label>Company Website<input class="hp-input" type="text" name="company_website_hp" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="grid">
+      <div class="field">
+        <label for="company">Company Name <span class="req">*</span></label>
+        <input type="text" id="company" name="company" required placeholder="Registered business name">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="director_name">Proprietor / Director Name <span class="req">*</span></label>
+        <input type="text" id="director_name" name="director_name" required placeholder="Full name of head">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="phone">Contact Number <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" required placeholder="+91 9XXXXXXXXX" data-rule="tel">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="email">Business Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="your@email.com" data-rule="email">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="gst">GST Number <span class="req">*</span></label>
+        <input type="text" id="gst" name="gst" required placeholder="22AAAAA0000A1Z5" data-rule="gst" maxlength="15">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="pan">PAN Number <span class="req">*</span></label>
+        <input type="text" id="pan" name="pan" required placeholder="ABCDE1234F" data-rule="pan" maxlength="10">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="state">State <span class="req">*</span></label>
+        <input type="text" id="state" name="state" required placeholder="e.g. Tamil Nadu">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="city">City <span class="req">*</span></label>
+        <input type="text" id="city" name="city" required placeholder="e.g. Chennai">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="trade_category">Trade Category <span class="req">*</span></label>
+        <select id="trade_category" name="trade_category" required>
+          <option value="" disabled selected>Select category...</option>
+          <option value="Civil">Civil</option>
+          <option value="Electrical">Electrical</option>
+          <option value="Plumbing">Plumbing</option>
+          <option value="HVAC">HVAC</option>
+          <option value="Steel &amp; Fabrication">Steel &amp; Fabrication</option>
+          <option value="Painting">Painting</option>
+          <option value="Waterproofing">Waterproofing</option>
+          <option value="Earthwork">Earthwork</option>
+          <option value="Other">Other</option>
+        </select>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="experience">Years of Experience <span class="req">*</span></label>
+        <input type="number" id="experience" name="experience" required placeholder="Business age in years">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="employees">Number of Employees <span class="req">*</span></label>
+        <input type="number" id="employees" name="employees" required placeholder="Total staff strength">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="major_clients">Major Clients <span class="req">*</span></label>
+        <input type="text" id="major_clients" name="major_clients" required placeholder="e.g. Larsen &amp; Toubro, Tata">
+        <span class="error"></span>
+      </div>
+      <div class="field full">
+        <label for="address">Corporate Address <span class="req">*</span></label>
+        <textarea id="address" name="address" required placeholder="Complete office address"></textarea>
+        <span class="error"></span>
+      </div>
+      <div class="section-title">Documents</div>
+      <div class="field">
+        <label for="gst_certificate">GST Certificate <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf,.jpg,.jpeg,.png • Max 10MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="gst_certificate" name="gst_certificate" accept=".pdf,.jpg,.jpeg,.png" data-maxsize="10" required>
+        </div>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="pan_copy">PAN Copy <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf,.jpg,.jpeg,.png • Max 10MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="pan_copy" name="pan_copy" accept=".pdf,.jpg,.jpeg,.png" data-maxsize="10" required>
+        </div>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="company_profile">Company Profile <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf • Max 15MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="company_profile" name="company_profile" accept=".pdf" data-maxsize="15" required>
+        </div>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="work_orders">Work Order Copies <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf,.zip • Max 20MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="work_orders" name="work_orders" accept=".pdf,.zip" data-maxsize="20" required>
+        </div>
+        <span class="error"></span>
+      </div>
+      <div class="field full">
+        <label for="safety_certs">Safety Certifications (Optional)</label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf • Max 10MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="safety_certs" name="safety_certs" accept=".pdf" data-maxsize="10">
+        </div>
+        <span class="error"></span>
+      </div>
+        </div>
+        <!-- Turnstile anti-spam widget (rendered dynamically by forms.js) -->
+        <div class="cf-turnstile-container" style="margin: 18px 0 10px; display: flex; justify-content: flex-start;"></div>
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>I consent to AARAA Infrastructure storing and processing the information I have submitted to respond to my request, in line with the <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>. (Required under the DPDP Act, 2023)</span>
+        </label>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Empanel Subcontractor</button>
+        </div>
+        <div class="form-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+  <script src="../assets/js/config.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
+  <script src="../assets/js/forms.js"></script>
+</body>
+</html>

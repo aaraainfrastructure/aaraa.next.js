@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /
+Disallow: /index.html
+
+# Allow OpenAI Search Bot (OAI-SearchBot)
+User-agent: OAI-SearchBot
+Allow: /
+
+Sitemap: https://aaraainfrastructure.com/sitemap.xml

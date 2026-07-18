@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joint Ventures | AARAA Infrastructure</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <div class="aaraa-wrap">
+    <div class="back-to-home">
+      <a href="../index.html" class="btn-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="back-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Home
+      </a>
+    </div>
+    <div class="aaraa-card">
+      <div class="aaraa-head">
+        <h1>Joint Ventures</h1>
+        <p>Submit corporate registration details and financial statements. Upload credentials to submit your proposal.</p>
+      </div>
+      <form data-aaraa-form="Joint Venture Proposal" novalidate enctype="multipart/form-data">
+        <!-- honeypot anti-spam (hidden from humans) -->
+        <div class="hp" aria-hidden="true">
+          <label>Company Website<input class="hp-input" type="text" name="company_website_hp" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="grid">
+      <div class="field">
+        <label for="organization">Organization Name <span class="req">*</span></label>
+        <input type="text" id="organization" name="organization" required placeholder="Registered corporate name">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="representative">Authorized Representative <span class="req">*</span></label>
+        <input type="text" id="representative" name="representative" required placeholder="Representative full name">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="designation">Designation <span class="req">*</span></label>
+        <input type="text" id="designation" name="designation" required placeholder="e.g. Managing Director, CEO">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="email">Corporate Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="your@email.com" data-rule="email">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="phone">Phone Number <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" required placeholder="+91 9XXXXXXXXX" data-rule="tel">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="registration_number">Company Registration Number (CIN/URN) <span class="req">*</span></label>
+        <input type="text" id="registration_number" name="registration_number" required placeholder="e.g. CIN">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="industry_segment">Industry Segment <span class="req">*</span></label>
+        <input type="text" id="industry_segment" name="industry_segment" required placeholder="e.g. Civil, Roads, Wind Power">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="years_operation">Years in Operation <span class="req">*</span></label>
+        <input type="number" id="years_operation" name="years_operation" required placeholder="Number of years in operation">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="annual_turnover">Annual Turnover (INR Cr) <span class="req">*</span></label>
+        <input type="number" id="annual_turnover" name="annual_turnover" required placeholder="e.g. 50">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="collaboration_areas">Areas of Collaboration <span class="req">*</span></label>
+        <input type="text" id="collaboration_areas" name="collaboration_areas" required placeholder="e.g. Technical capability, Land share">
+        <span class="error"></span>
+      </div>
+      <div class="field full">
+        <label for="jv_objective">Proposed JV Objective <span class="req">*</span></label>
+        <textarea id="jv_objective" name="jv_objective" required placeholder="Describe the project goal, scope, and shareholding interests"></textarea>
+        <span class="error"></span>
+      </div>
+      <div class="section-title">Documents</div>
+      <div class="field">
+        <label for="company_profile">Company Profile <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf • Max 15MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="company_profile" name="company_profile" accept=".pdf" data-maxsize="15" required>
+        </div>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="registration_cert">Registration Certificate <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf • Max 10MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="registration_cert" name="registration_cert" accept=".pdf" data-maxsize="10" required>
+        </div>
+        <span class="error"></span>
+      </div>
+      <div class="field full">
+        <label for="financial_doc">Financial Capability Document <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf • Max 15MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="financial_doc" name="financial_doc" accept=".pdf" data-maxsize="15" required>
+        </div>
+        <span class="error"></span>
+      </div>
+        </div>
+        <!-- Turnstile anti-spam widget (rendered dynamically by forms.js) -->
+        <div class="cf-turnstile-container" style="margin: 18px 0 10px; display: flex; justify-content: flex-start;"></div>
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>I consent to AARAA Infrastructure storing and processing the information I have submitted to respond to my request, in line with the <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>. (Required under the DPDP Act, 2023)</span>
+        </label>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Submit JV Proposal</button>
+        </div>
+        <div class="form-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+  <script src="../assets/js/config.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
+  <script src="../assets/js/forms.js"></script>
+</body>
+</html>

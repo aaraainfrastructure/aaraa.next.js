@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategic Partnerships | AARAA Infrastructure</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <div class="aaraa-wrap">
+    <div class="back-to-home">
+      <a href="../index.html" class="btn-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="back-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Home
+      </a>
+    </div>
+    <div class="aaraa-card">
+      <div class="aaraa-head">
+        <h1>Strategic Partnerships</h1>
+        <p>Register your corporate details and upload capabilities to initiate strategic discussions.</p>
+      </div>
+      <form data-aaraa-form="Strategic Partnership" novalidate enctype="multipart/form-data">
+        <!-- honeypot anti-spam (hidden from humans) -->
+        <div class="hp" aria-hidden="true">
+          <label>Company Website<input class="hp-input" type="text" name="company_website_hp" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="grid">
+      <div class="field">
+        <label for="company">Company Name <span class="req">*</span></label>
+        <input type="text" id="company" name="company" required placeholder="Enter company name">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="contact_person">Contact Person <span class="req">*</span></label>
+        <input type="text" id="contact_person" name="contact_person" required placeholder="Full name of representative">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="designation">Designation <span class="req">*</span></label>
+        <input type="text" id="designation" name="designation" required placeholder="e.g. Director, Business Development">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="your@email.com" data-rule="email">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="phone">Mobile Number <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" required placeholder="+91 9XXXXXXXXX" data-rule="tel">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="website">Website URL</label>
+        <input type="url" id="website" name="website" placeholder="https://www.company.com (optional)">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="industry">Industry <span class="req">*</span></label>
+        <input type="text" id="industry" name="industry" required placeholder="e.g. Real Estate, Consulting, Logistics">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="partnership_type">Partnership Type <span class="req">*</span></label>
+        <select id="partnership_type" name="partnership_type" required>
+          <option value="" disabled selected>Select Partnership Type</option>
+          <option value="Strategic Alliance">Strategic Alliance</option>
+          <option value="Channel Partner">Channel Partner</option>
+          <option value="Technology Partner">Technology Partner</option>
+          <option value="Supply Partner">Supply Partner</option>
+          <option value="Investment">Investment</option>
+          <option value="Other">Other</option>
+        </select>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="annual_turnover">Annual Turnover (INR Cr)</label>
+        <input type="number" id="annual_turnover" name="annual_turnover" placeholder="e.g. 25 (optional)">
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="geographic_presence">Geographic Presence</label>
+        <input type="text" id="geographic_presence" name="geographic_presence" placeholder="e.g. Tamil Nadu, Maharashtra (optional)">
+        <span class="error"></span>
+      </div>
+      <div class="field full">
+        <label for="proposal_summary">Proposal Summary <span class="req">*</span></label>
+        <textarea id="proposal_summary" name="proposal_summary" required placeholder="Brief outline of the partnership objective"></textarea>
+        <span class="error"></span>
+      </div>
+      <div class="section-title">Documents</div>
+      <div class="field">
+        <label for="company_profile">Company Profile <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf • Max 15MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="company_profile" name="company_profile" accept=".pdf" data-maxsize="15" required>
+        </div>
+        <span class="error"></span>
+      </div>
+      <div class="field">
+        <label for="capability_statement">Capability Statement <span class="req">*</span></label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf • Max 15MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="capability_statement" name="capability_statement" accept=".pdf" data-maxsize="15" required>
+        </div>
+        <span class="error"></span>
+      </div>
+      <div class="field full">
+        <label for="brochure">Company Brochure / Additional Files (Optional)</label>
+        <div class="dropzone">
+          <div class="dz-main">Drag &amp; drop or click to choose file</div>
+          <div class="dz-sub">.pdf,.zip • Max 15MB</div>
+          <div class="dz-file"></div>
+          <input type="file" id="brochure" name="brochure" accept=".pdf,.zip" data-maxsize="15">
+        </div>
+        <span class="error"></span>
+      </div>
+        </div>
+        <!-- Turnstile anti-spam widget (rendered dynamically by forms.js) -->
+        <div class="cf-turnstile-container" style="margin: 18px 0 10px; display: flex; justify-content: flex-start;"></div>
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>I consent to AARAA Infrastructure storing and processing the information I have submitted to respond to my request, in line with the <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>. (Required under the DPDP Act, 2023)</span>
+        </label>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Send Proposal</button>
+        </div>
+        <div class="form-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+  <script src="../assets/js/config.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
+  <script src="../assets/js/forms.js"></script>
+</body>
+</html>
