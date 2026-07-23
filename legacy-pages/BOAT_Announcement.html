@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AARAA Infrastructure | Official BOAT Apprenticeship Partner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#bec6e0",
+                    "outline": "#926f6b",
+                    "inverse-primary": "#ffb4ab",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container": "#e5eeff",
+                    "background": "#f8f9ff",
+                    "primary-fixed-dim": "#ffb4ab",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#565e74",
+                    "on-primary-container": "#fffafa",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#ffdad6",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "surface": "#f8f9ff",
+                    "surface-dim": "#cbdbf5",
+                    "outline-variant": "#e7bdb8",
+                    "tertiary-container": "#6f7478",
+                    "on-tertiary-container": "#f8fbff",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#5d3f3c",
+                    "on-primary-fixed": "#410002",
+                    "primary": "#ba0013",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-container": "#5c647a",
+                    "surface-tint": "#c00014",
+                    "tertiary": "#575c5f",
+                    "secondary-container": "#dae2fd",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-primary-fixed-variant": "#93000d",
+                    "on-background": "#0b1c30",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#dae2fd",
+                    "on-tertiary-fixed": "#171c1f",
+                    "surface-bright": "#f8f9ff",
+                    "inverse-surface": "#213145",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-fixed-variant": "#43474b",
+                    "surface-variant": "#d3e4fe",
+                    "tertiary-fixed-dim": "#c3c7cb",
+                    "tertiary-fixed": "#dfe3e7",
+                    "primary-container": "#e31e24",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-tablet": "32px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Work Sans"],
+                    "headline-lg": ["Manrope"],
+                    "body-md": ["Work Sans"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "label-sm": ["Work Sans"],
+                    "headline-xl": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "label-md": ["Work Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<!-- Hero Section -->
+<header class="relative h-[80vh] flex items-center overflow-hidden">
+<!-- STITCH_SHADER_START:ANIMATION_3 class="absolute inset-0 w-full h-full opacity-40" -->
+<div class="absolute inset-0 w-full h-full opacity-40" style="display:block;">
+<canvas height="819" id="shader-canvas-ANIMATION_3" style="display:block;width:100%;height:100%" width="1280"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_3');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Abstract geometric "blueprint" grid
+    vec2 grid = fract(uv * 20.0 + u_time * 0.1);
+    float line = smoothstep(0.02, 0.0, abs(grid.x - 0.5)) + smoothstep(0.02, 0.0, abs(grid.y - 0.5));
+    
+    // Flowing gradient in brand colors (Red #e31e24 and Dark Blue)
+    vec3 color1 = vec3(0.89, 0.12, 0.14); // AARAA Red
+    vec3 color2 = vec3(0.05, 0.07, 0.15); // Deep Blue
+    
+    float noise = sin(uv.x * 3.0 + u_time) * cos(uv.y * 3.0 - u_time * 0.5);
+    vec3 finalColor = mix(color2, color1, 0.1 + 0.1 * noise);
+    
+    // Overlay the faint grid
+    finalColor += line * 0.03;
+    
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_3 -->
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent z-10"></div>
+<div class="relative z-20 max-w-container-max mx-auto px-gutter grid lg:grid-cols-2 gap-12 items-center w-full">
+<div class="reveal-up active">
+<span class="inline-block px-4 py-1 bg-primary/10 text-primary font-label-md rounded-full mb-6 uppercase tracking-wider">Partnerships &amp; Training</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-4 leading-tight">
+                    AARAA Infrastructure Pvt. Ltd. Becomes an Official <span class="text-primary">BOAT</span> Apprenticeship Partner
+                </h1>
+<p class="font-headline-md text-headline-md text-secondary mb-8 max-w-xl">
+                    In Association with the Government of Tamil Nadu &amp; the Directorate of Technical Education (DOTE)
+                </p>
+<div class="glass-card p-6 rounded-xl border border-outline-variant inline-flex items-center gap-8 shadow-sm">
+<img class="h-16 object-contain" data-alt="Official logo of the Board of Apprenticeship Training (BOAT) Southern Region, featuring a professional and academic seal with clean blue and gold elements." src="data:image/png;base64,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"/>
+<div class="h-12 w-px bg-outline-variant"></div>
+<img class="h-16 object-contain" data-alt="Official emblem of the Government of Tamil Nadu, featuring the Temple Tower Srivilliputhur symbol, rendered with professional clarity and traditional colors." src="https://media.licdn.com/dms/image/v2/C4D0BAQEuEGAViFJyiA/company-logo_200_200/company-logo_200_200/0/1631306494951?e=1784764800&amp;v=beta&amp;t=pEUqN6yXNM9-LRKvtQLmxKNihw1WHhU1kSvop1XafZ4"/>
+</div>
+</div>
+<div class="hidden lg:block relative h-[600px] reveal-up active delay-300">
+<!-- STITCH_THREEJS_START:ANIMATION_4 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_4" style="width:100%;height:100%"><canvas height="600" style="display: block; width: 592px; height: 600px;" width="592"></canvas></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_4');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Three.js scene showing an abstract 3D "Bridge" or "Structure" representing the partnership
+const scene = new THREE.Scene();
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.device_ratio || 1);
+container.appendChild(renderer.domElement);
+
+// Geometry: Abstract building blocks / pillars
+const group = new THREE.Group();
+const material = new THREE.MeshPhongMaterial({ 
+    color: 0xe31e24, 
+    shininess: 100,
+    transparent: true,
+    opacity: 0.8
+});
+
+for(let i = 0; i < 5; i++) {
+    const geometry = new THREE.BoxGeometry(0.5, 2 + Math.random() * 2, 0.5);
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = (i - 2) * 1.2;
+    mesh.position.y = mesh.geometry.parameters.height / 2 - 1;
+    group.add(mesh);
+}
+
+scene.add(group);
+
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(5, 5, 5);
+scene.add(light);
+scene.add(new THREE.AmbientLight(0x404040));
+
+camera.position.z = 8;
+camera.position.y = 1;
+
+function animate() {
+    requestAnimationFrame(animate);
+    group.rotation.y += 0.005;
+    // Subtle breathing motion
+    group.children.forEach((child, i) => {
+        child.position.y = (child.geometry.parameters.height / 2 - 1) + Math.sin(Date.now() * 0.001 + i) * 0.1;
+    });
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+});
+
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_4 -->
+</div>
+</div>
+</header>
+<!-- Content Layout -->
+<main class="max-w-container-max mx-auto px-gutter py-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Side Navigation (Sticky) -->
+<!-- Main Article Content -->
+<article class="space-y-16 lg:col-span-9">
+<!-- Introduction -->
+<section class="reveal-up active" id="introduction">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+<strong class="text-primary font-bold">AARAA Infrastructure Pvt. Ltd.</strong> is proud to announce its official partnership with the <strong class="text-on-surface font-semibold">Board of Apprenticeship Training (BOAT)</strong> under the Government of India, marking a significant milestone in our commitment to developing the next generation of skilled engineering professionals.
+                    </p>
+<p class="mt-6 font-body-md text-body-md text-secondary leading-relaxed">As an official BOAT Apprenticeship Partner, AARAA Infrastructure provides structured apprenticeship opportunities that combine classroom knowledge with practical industry experience. Eligible diploma and engineering graduates gain hands-on exposure to live Civil, Interior, and MEP projects while developing technical, professional, and leadership competencies required by the modern construction industry.</p>
+</section>
+<!-- Pull Quote -->
+<section class="reveal-up border-l-4 border-primary bg-surface-container-low p-10 italic active">
+<blockquote class="font-headline-md text-headline-md text-on-surface italic">
+                        "Together, we are not just building infrastructure—we are building careers, nurturing talent, and shaping the future of engineering excellence."
+                    </blockquote>
+<cite class="block mt-4 font-label-md text-label-md text-primary not-italic">— Alekhya/Business Head <br> AARAA Infrastructure Pvt. Ltd.</cite>
+</section>
+<!-- Key Disciplines Bento -->
+<section class="reveal-up active" id="disciplines">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">Comprehensive Training Across Disciplines</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-white p-6 rounded-xl border border-outline-variant hover:shadow-lg transition-all group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 bg-primary/5 p-3 rounded-lg">architecture</span>
+<h4 class="font-headline-md text-headline-md mb-2">Civil Engineering</h4>
+<p class="font-body-md text-body-md text-secondary">Structural works, site supervision, concrete technology, and foundation systems.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant hover:shadow-lg transition-all group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 bg-primary/5 p-3 rounded-lg">home_repair_service</span>
+<h4 class="font-headline-md text-headline-md mb-2">Interior Fit-Out</h4>
+<p class="font-body-md text-body-md text-secondary">Modern commercial layouts, premium interior finishes, and partitioning systems.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant hover:shadow-lg transition-all group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 bg-primary/5 p-3 rounded-lg">bolt</span>
+<h4 class="font-headline-md text-headline-md mb-2">MEP Services</h4>
+<p class="font-body-md text-body-md text-secondary">Mechanical, Electrical, Plumbing, HVAC systems, and fire safety integration.</p>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant hover:shadow-lg transition-all group">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 bg-primary/5 p-3 rounded-lg">event_note</span>
+<h4 class="font-headline-md text-headline-md mb-2">Project Planning</h4>
+<p class="font-body-md text-body-md text-secondary">Scheduling, resource allocation, progress monitoring, and milestones tracking.</p>
+</div>
+</div>
+</section>
+<!-- Mission Section -->
+<section class="reveal-up bg-inverse-surface rounded-2xl p-12 text-white overflow-hidden relative active" id="stories">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[100px]"></div>
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg mb-6">Bridging the Gap: Academic to Industry</h2>
+<p class="font-body-lg text-body-lg mb-8 opacity-90 text-white">
+                            This partnership reinforces AARAA Infrastructure Pvt. Ltd.'s vision of bridging the gap between academic education and industry expectations. We aim to empower young professionals with the knowledge and confidence needed to contribute meaningfully to India's evolving infrastructure sector.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<span class="bg-primary px-4 py-2 rounded font-label-md">#SkillIndia</span>
+<span class="bg-white/10 px-4 py-2 rounded font-label-md">#EngineeringTalent</span>
+<span class="bg-white/10 px-4 py-2 rounded font-label-md">#NationBuilding</span>
+</div>
+</div>
+</section>
+<!-- You Might Also Like -->
+</article>
+<!-- Secondary Sidebar -->
+<aside class="lg:col-span-3 space-y-12">
+<!-- Recent Success Stories -->
+<div class="reveal-up active">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-primary pb-2">Recent Stories</h3>
+<div class="space-y-6">
+<a class="flex gap-4 group" href="#">
+<div class="w-20 h-20 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Close-up of a high-quality building material sample, showing steel reinforcement bars being laid in a geometric pattern for a foundation. Corporate engineering aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuButyNxc1DEfkwhHPgtm9nrdpEERP9xjtkmHImpsiGmlvW0PN0bbZOY0HAM-EpHUZcwBr8pIZL8asT31h2jxdu1vN49UUurWHzqexW2hI6WPlVQnOLqMe-tIRVAqTYareA8TcSoM95vNUgbOpgz6ApP84RWvDKduEFKR0ustJNZj20ioWz2m1EvbGmVQMdxsf1PM6Wx8rAhzmI78eQOn-_-C-mJW3kj45AmrZVpmKSJxdRPVWrL8aCm"/>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">180 MWp Solar — Tuticorin Project</h5>
+<p class="text-[12px] text-secondary mt-1">July 15, 2024</p>
+</div>
+</a>
+<a class="flex gap-4 group" href="#">
+<div class="w-20 h-20 rounded bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="A cinematic low-angle shot of a towering glass skyscraper under construction, reflecting a vibrant sunset sky. Sleek modern engineering design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPfovio1kFocncfFE9N6IC_0zV-ub8Ahj5EOcsvphCffumz9x_-qY7qawMT-oMeI5BeIg-n9yxkbqlQfERWR3v4PoDrPmlTnFW5xYsGi74xkGIYGfNr6F1jxfDQaMVHwfbVQexT4Rmb5j1ivUwTNqZr3FUNlPZRfrZfIGetbGCODpg5KsKHVNsu6Ax4aeT46G4x_EwgejBTzaxl5ThgqTyW3oCzmuZ_DGUzjMlonuqX4PEkDiCRPjI"/>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">MEP Fit-Out — Reliance Chennai</h5>
+<p class="text-[12px] text-secondary mt-1">June 28, 2024</p>
+</div>
+</a>
+</div>
+</div>
+<!-- Call to Action Card -->
+<div class="reveal-up bg-primary p-8 rounded-2xl text-on-primary active" id="apply">
+<h3 class="font-headline-md text-headline-md mb-4">Partner With Us</h3>
+<p class="font-body-md text-body-md mb-8 opacity-90">Are you a college or university looking to place your graduates in a high-growth environment?</p>
+<button class="w-full bg-white text-primary font-bold py-4 rounded-lg hover:bg-surface transition-all active:scale-95">
+                        Inquire About Partnerships
+                    </button>
+<p class="text-[12px] text-center mt-6 uppercase tracking-widest opacity-70">Engineering Excellence</p>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Simple active state for SideNav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['introduction', 'disciplines', 'stories', 'apply'];
+            let current = '';
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 150) {
+                        current = section;
+                    }
+                }
+            });
+
+            const navLinks = document.querySelectorAll('aside nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'font-bold', 'border-l-4', 'border-primary', 'bg-primary/5');
+                link.classList.add('text-tertiary', 'border-l-2', 'border-outline-variant');
+                
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-tertiary', 'border-l-2', 'border-outline-variant');
+                    link.classList.add('text-primary', 'font-bold', 'border-l-4', 'border-primary', 'bg-primary/5');
+                }
+            });
+        });
+    </script>
+</body></html>
