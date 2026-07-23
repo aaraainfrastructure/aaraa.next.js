@@ -1,10 +1,14 @@
 import './globals.css';
+import BrandMarquee from '@/components/BrandMarquee';
 export const metadata={metadataBase:new URL('https://aaraainfrastructure.com'),title:'AARAA Infrastructure'};
-export default function RootLayout({children}){return <html lang="en"><head><style dangerouslySetInnerHTML={{__html:`
-  .logo-header img,.rb-logo img,.logo-container img{max-width:212px;height:auto}
-  @media(max-width:768px){.logo-header img{max-width:160px}}
-  .wrapper{overflow-x:hidden}
-`}}/><script dangerouslySetInnerHTML={{__html:`
-  window.tailwind=window.tailwind||{};
-  tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-fixed-dim":"#bec6e0","outline":"#926f6b","inverse-primary":"#ffb4ab","on-tertiary":"#ffffff","inverse-on-surface":"#eaf1ff","surface-container":"#e5eeff","background":"#f8f9ff","primary-fixed-dim":"#ffb4ab","surface-container-lowest":"#ffffff","secondary":"#565e74","on-primary-container":"#fffafa","on-secondary-fixed-variant":"#3f465c","on-secondary":"#ffffff","primary-fixed":"#ffdad6","surface-container-highest":"#d3e4fe","surface-container-high":"#dce9ff","surface":"#f8f9ff","surface-dim":"#cbdbf5","outline-variant":"#e7bdb8","tertiary-container":"#6f7478","on-tertiary-container":"#f8fbff","error":"#ba1a1a","on-surface-variant":"#5d3f3c","on-primary-fixed":"#410002","primary":"#ba0013","on-surface":"#0b1c30","on-secondary-container":"#5c647a","surface-tint":"#c00014","tertiary":"#575c5f","secondary-container":"#dae2fd","on-secondary-fixed":"#131b2e","on-primary-fixed-variant":"#93000d","on-background":"#0b1c30","on-error":"#ffffff","on-primary":"#ffffff","on-error-container":"#93000a","secondary-fixed":"#dae2fd","on-tertiary-fixed":"#171c1f","surface-bright":"#f8f9ff","inverse-surface":"#213145","surface-container-low":"#eff4ff","on-tertiary-fixed-variant":"#43474b","surface-variant":"#d3e4fe","tertiary-fixed-dim":"#c3c7cb","tertiary-fixed":"#dfe3e7","primary-container":"#e31e24","error-container":"#ffdad6"}}}};
-`}}/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"/></head><body>{children}</body></html>}
+
+export default function RootLayout({children}){
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <BrandMarquee/>
+      </body>
+    </html>
+  );
+}
