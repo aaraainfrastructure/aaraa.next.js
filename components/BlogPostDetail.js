@@ -158,9 +158,11 @@ export default function BlogPostDetail({ page }) {
 
       {/* Hero Section */}
       <header className="blog-hero">
-        <div className="blog-hero-bg">
-          <img src={page.heroImage} alt={page.title} />
-        </div>
+        {page.heroImage && (
+          <div className="blog-hero-bg">
+            <img src={page.heroImage} alt={page.title} />
+          </div>
+        )}
         <div className="blog-hero-overlay"></div>
         <div className="blog-hero-container">
           <div className="blog-breadcrumbs">
