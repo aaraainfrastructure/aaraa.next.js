@@ -808,4 +808,50 @@
     <loc>https://aaraainfrastructure.com/location/industrial-hubs</loc>
     <priority>0.7</priority>
   </url>
+
+  <!-- Project Blog Posts & Dynamic Articles -->
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-1</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-2</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-3</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-4</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-5</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-6</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-7</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-8</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-9</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/blog-post-10</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aaraainfrastructure.com/potluck-celebration-2026</loc>
+    <priority>0.6</priority>
+  </url>
 </urlset>

@@ -10,10 +10,49 @@ export async function generateMetadata({params}){
   const {slug=[]}=await params;
   const p=await loadLegacyPage(slug);
   if(!p)return{};
+  
+  const pathName = slug.join('/');
+  let ogImage = '/logo.png';
+  
+  if (p.sourcePath && (p.sourcePath.startsWith('blog-post-') || p.sourcePath.startsWith('potluck-celebration-'))) {
+    try {
+      const ROOT = path.join(process.cwd(), 'legacy-pages');
+      const file = path.resolve(ROOT, p.sourcePath);
+      const rawHtml = await fs.readFile(file, 'utf8');
+      const blogData = parseBlogPost(rawHtml, p.sourcePath);
+      if (blogData.heroImage) {
+        ogImage = blogData.heroImage;
+      }
+    } catch (err) {
+      console.error("Failed to parse blog post image for metadata", err);
+    }
+  }
+
   return {
-    title:{absolute:p.title},
-    description:p.description||undefined,
-    alternates:p.canonical?{canonical:p.canonical}:undefined
+    title: { absolute: p.title },
+    description: p.description || undefined,
+    alternates: p.canonical ? { canonical: p.canonical } : undefined,
+    openGraph: {
+      title: p.title,
+      description: p.description || undefined,
+      url: `https://aaraainfrastructure.com/${pathName}`,
+      siteName: 'AARAA Infrastructure',
+      images: [
+        {
+          url: ogImage.startsWith('http') ? ogImage : `https://aaraainfrastructure.com${ogImage.startsWith('/') ? '' : '/'}${ogImage}`,
+          width: 1200,
+          height: 630,
+          alt: p.title,
+        }
+      ],
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: p.title,
+      description: p.description || undefined,
+      images: [ogImage.startsWith('http') ? ogImage : `https://aaraainfrastructure.com${ogImage.startsWith('/') ? '' : '/'}${ogImage}`],
+    }
   };
 }
 
