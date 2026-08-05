@@ -1,0 +1,176 @@
+/* ================================
+   HERO 3D SCROLL — canvas frame-sequence hero
+   Replaces the static page-title background image with a
+   GSAP ScrollTrigger-driven 300-frame scrub.
+================================ */
+.hero-3d-scroll {
+  position: relative;
+  width: 100%;
+  height: 250vh; /* scroll distance available to scrub through all frames */
+}
+
+.hero-3d-pin {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 750px;
+  overflow: hidden;
+  background: #0b0c10;
+}
+
+.hero-3d-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+.hero-3d-scroll.is-ready .hero-3d-canvas {
+  opacity: 1;
+}
+
+.hero-3d-pin::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.14) 28%, transparent 50%);
+}
+
+.hero-3d-caption {
+  position: absolute;
+  left: 5%;
+  bottom: 15%;
+  z-index: 2;
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+  max-width: 62%;
+  display: inline-block;
+  padding: 6px 24px;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+}
+
+.hero-3d-metrics {
+  position: absolute;
+  right: 5%;
+  bottom: 15%;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+}
+
+.hero-3d-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 78px;
+  padding: 10px 12px;
+  color: #fff;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+}
+
+.hero-3d-metric .num {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hero-3d-metric .label {
+  font-size: 9px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .85;
+  margin-top: 3px;
+}
+
+.hero-3d-loader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+  overflow: hidden;
+}
+
+.hero-3d-loader .bar {
+  height: 100%;
+  width: 0%;
+  background: #ed2f39;
+  transition: width .15s linear;
+}
+
+.hero-3d-scroll.is-loaded .hero-3d-loader {
+  opacity: 0;
+  transition: opacity .4s ease .2s;
+}
+
+@media (max-width: 991px) {
+  .hero-3d-scroll { height: 200vh; }
+  .hero-3d-pin { height: 560px; }
+}
+
+@media (max-width: 767px) {
+  .hero-3d-scroll { height: 160vh; }
+  .hero-3d-pin { height: 420px; }
+  .hero-3d-caption { left: 4%; max-width: 70%; bottom: 10%; padding: 5px 12px; border-radius: 8px; }
+  .hero-3d-caption h2 { font-size: 12px !important; }
+  .hero-3d-metrics { display: none; }
+}
+
+/* Show the "Welcome to AARAA..." intro right after the hero immediately
+   on every screen size, instead of waiting for its scroll-triggered
+   reveal animation */
+.main-content > .col-12 > .heading-section .tf-animate-2 {
+  clip-path: inset(-50px -50px -50px -50px) !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-3d-scroll { height: auto; }
+  .hero-3d-pin { position: relative; }
+}
+
+/* ================================
+   SECTOR "KEY FEATURES" IMAGE
+   Curved-border placeholder frame around the left-side photo
+================================ */
+.section-markets.p-what-we-do-detail .section-markets-inner .image {
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+}
+
+.section-markets.p-what-we-do-detail .section-markets-inner .image img {
+  border-radius: 28px;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .section-markets.p-what-we-do-detail .section-markets-inner .image,
+  .section-markets.p-what-we-do-detail .section-markets-inner .image img {
+    border-radius: 18px;
+  }
+}

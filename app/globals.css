@@ -1,1 +1,81 @@
 html,body{margin:0;padding:0;min-height:100%}*{box-sizing:border-box}
+
+/* ================================
+   PERSISTENT BOTTOM BRAND MARQUEE
+   Fixed across every route (rendered once in the root layout)
+================================ */
+:root{--aaraa-brand-bar-h: 44px}
+@media (max-width: 767px){:root{--aaraa-brand-bar-h: 34px}}
+
+body{padding-bottom:var(--aaraa-brand-bar-h)}
+
+.aaraa-fixed-brand-bar{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:9500;
+  height:var(--aaraa-brand-bar-h);
+  background:#ffffff;
+  box-shadow:0 -2px 10px rgba(0,0,0,0.08);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  mask-image:linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image:linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.aaraa-fixed-brand-track{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  animation:aaraa-brand-scroll 40s linear infinite;
+  will-change:transform;
+}
+
+.aaraa-fixed-brand-bar:hover .aaraa-fixed-brand-track{
+  animation-play-state:paused;
+}
+
+.aaraa-fixed-brand-item{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  padding:0 18px;
+}
+
+.aaraa-fixed-brand-item img{
+  height:22px;
+  width:auto;
+  display:block;
+  object-fit:contain;
+  filter:grayscale(100%);
+  opacity:0.7;
+  transition:opacity .3s ease, filter .3s ease;
+}
+
+.aaraa-fixed-brand-item:hover img{
+  opacity:1;
+  filter:grayscale(0%);
+}
+
+@keyframes aaraa-brand-scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+@media (max-width: 767px){
+  .aaraa-fixed-brand-item{padding:0 12px}
+  .aaraa-fixed-brand-item img{height:16px}
+  .aaraa-fixed-brand-track{animation-duration:32s}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .aaraa-fixed-brand-track{animation:none !important;transform:translateX(0) !important}
+}
+
+/* Keep the existing floating call/WhatsApp buttons above the new bottom bar */
+#ai-floating-cta{
+  bottom:calc(var(--fab-pad, 18px) + var(--aaraa-brand-bar-h)) !important;
+}

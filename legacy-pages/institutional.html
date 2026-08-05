@@ -300,7 +300,9 @@ loading="lazy" decoding="async" src="https://www.facebook.com/tr?id=149510223534
 </script>
 
 
-<link href="css/enhanced-responsive.css" rel="stylesheet"><link rel="canonical" href="https://www.aaraainfrastructure.com/institutional.html">
+<link href="css/enhanced-responsive.css" rel="stylesheet">
+<link href="css/hero-3d-scroll.css" rel="stylesheet">
+<link rel="canonical" href="https://www.aaraainfrastructure.com/institutional.html">
   <!-- Firebase Import Map (CDN-based module resolution) -->
   <script type="importmap">
   {
@@ -399,15 +401,13 @@ loading="lazy" decoding="async" src="https://www.facebook.com/tr?id=149510223534
                             <li class="menu-item menu-item-has-children position-relative">
                                 <a href="javascript:void(0)" class="item-link">Sectors</a>
                                 <ul class="sub-menu">
-
-                                    <li class="sub-menu-item"><a href="commercial.html" class="item-link-2">Commercial</a></li>
-                                    <li class="sub-menu-item"><a href="industrial.html" class="item-link-2">Industrial</a></li>
-                                    <li class="sub-menu-item"><a href="infrastructure.html" class="item-link-2">Infrastructure</a></li>
-                                    <li class="sub-menu-item"><a href="institutional.html" class="item-link-2">Institutional</a></li>
-                                    <li class="sub-menu-item"><a href="renewables.html" class="item-link-2">Renewables</a></li>
-                                    <li class="sub-menu-item"><a href="interior-fitout.html" class="item-link-2">Interior FIT-OUTS</a></li>
-                                    
-                                </ul>
+                                <li class="sub-menu-item"><a href="industrial.html" class="item-link-2">Industrial</a></li>
+                                <li class="sub-menu-item"><a href="infrastructure.html" class="item-link-2">Infrastructure</a></li>
+                                <li class="sub-menu-item"><a href="institutional.html" class="item-link-2">Institutional</a></li>
+                                <li class="sub-menu-item"><a href="renewables.html" class="item-link-2">Renewables</a></li>
+                                <li class="sub-menu-item"><a href="interior-fitout.html" class="item-link-2">Interior FIT-OUTS</a></li>
+                                <li class="sub-menu-item"><a href="commercial.html" class="item-link-2">Commercial</a></li>
+                            </ul>
                             </li>
 
 
@@ -497,14 +497,22 @@ loading="lazy" decoding="async" src="https://www.facebook.com/tr?id=149510223534
         <!-- /header -->
 
         <!-- page-title-home -->
-<section style="position: relative; height: 750px; width: 100%; background: url('image/page-title/instution.webp') center center / cover no-repeat;">
-  <!-- TEXT FIXED TO BOTTOM WITH LOGO-ALIGNED LEFT PADDING -->
-  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; color: white; text-align: center;">
-  <h2 style="font-size: 80px; line-height: 1; margin: 0; font-weight: bold;">
-   Institutional Construction 
-  </h2>
+<div class="hero-3d-scroll" data-frame-folder="/3d-scroll/institutional/" data-frame-prefix="ezgif-frame-" data-frame-ext=".jpg" data-frame-count="300" data-frame-pad="3">
+  <div class="hero-3d-pin">
+    <canvas class="hero-3d-canvas" aria-label="Institutional Construction — 3D preview"></canvas>
+    <div class="hero-3d-loader"><div class="bar"></div></div>
+    <div class="hero-3d-caption">
+      <h2 style="font-size: 18px; line-height: 1; margin: 0; font-weight: bold;">
+       Institutional Construction
+      </h2>
+    </div>
+    <div class="hero-3d-metrics">
+      <div class="hero-3d-metric"><span class="num">14+</span><span class="label">Years</span></div>
+      <div class="hero-3d-metric"><span class="num">100+</span><span class="label">Projects</span></div>
+      <div class="hero-3d-metric"><span class="num">20+</span><span class="label">Cities</span></div>
+    </div>
+  </div>
 </div>
-</section>
 
 
 
@@ -1314,6 +1322,7 @@ At Aaraa Infrastructure, we specialize in delivering high-quality  that support 
     <script src="js/gsap.min.js"></script>
     <script src="js/gsap-animation.js"></script>
     <script src="js/ScrollTrigger.min.js"></script>
+    <script src="js/hero-3d-scroll.js"></script>
     <script src="js/Splitetext.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/swiper-bundle.min.js"></script>
@@ -1456,14 +1465,13 @@ At Aaraa Infrastructure, we specialize in delivering high-quality  that support 
         <li>
             <a href="#">Sectors</a>
             <ul>
-                
-                <li><a href="commercial.html">Commercial</a></li>
-                <li><a href="industrial.html">Industrial</a></li>
-                <li><a href="institutional.html">Institutional</a></li>
-                <li><a href="infrastructure.html">Infrastructure</a></li>
-				<li><a href="renewables.html">Renewables</a></li>
-                <li><a href="interior-fitout.html">Interior FIT-OUTS</a></li>
-            </ul>
+                                <li><a href="industrial.html">Industrial</a></li>
+                                <li><a href="institutional.html">Institutional</a></li>
+                                <li><a href="infrastructure.html">Infrastructure</a></li>
+                                <li><a href="renewables.html">Renewables</a></li>
+                                <li><a href="interior-fitout.html">Interior FIT-OUTS</a></li>
+                                <li><a href="commercial.html">Commercial</a></li>
+                            </ul>
         </li>
         <li>
             <a href="#">Services</a>
