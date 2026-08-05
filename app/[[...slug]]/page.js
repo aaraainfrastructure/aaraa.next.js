@@ -23,7 +23,7 @@ export default async function Page({params}){
   if(!p)notFound();
 
   // Intercept blog posts and render the redesigned premium layout
-  if (p.sourcePath && p.sourcePath.startsWith('blog-post-')) {
+  if (p.sourcePath && (p.sourcePath.startsWith('blog-post-') || p.sourcePath.startsWith('potluck-celebration-'))) {
     try {
       const ROOT = path.join(process.cwd(), 'legacy-pages');
       const file = path.resolve(ROOT, p.sourcePath);

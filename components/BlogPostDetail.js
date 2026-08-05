@@ -230,13 +230,28 @@ export default function BlogPostDetail({ page }) {
         <main className="blog-main-column">
           {/* Large Video Card */}
           {page.videoSrc && (
-            <div className="blog-video-card blog-reveal">
-              <iframe
-                src={page.videoSrc}
-                title="Featured Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+            <div 
+              className="blog-video-card blog-reveal" 
+              style={page.videoSrc.includes('.mp4') ? { maxWidth: '400px', margin: '0 auto 64px', aspectRatio: '9/16' } : {}}
+            >
+              {page.videoSrc.includes('.mp4') ? (
+                <video 
+                  controls 
+                  preload="metadata" 
+                  poster={page.heroImage} 
+                  style={{ width: '100%', height: '100%', borderRadius: 'var(--radius-premium)', objectFit: 'contain', background: '#000' }}
+                >
+                  <source src={page.videoSrc} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <iframe
+                  src={page.videoSrc}
+                  title="Featured Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              )}
             </div>
           )}
 
