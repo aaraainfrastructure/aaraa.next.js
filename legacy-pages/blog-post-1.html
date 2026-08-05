@@ -151,7 +151,7 @@
     "datePublished": "2026-06-14",
     "dateModified": "2026-06-14",
     "author": {"@type": "Organization", "name": "AARAA Infrastructure"},
-    "publisher": {"@type": "Organization", "name": "AARAA Infrastructure", "logo": {"@type": "ImageObject", "url": "https://www.aaraainfrastructure.com/image/logo/logo-white.png"}},
+    "publisher": {"@type": "Organization", "name": "AARAA Infrastructure", "logo": {"@type": "ImageObject", "url": "https://www.aaraainfrastructure.com//logo.png"}},
     "mainEntityOfPage": "https://www.aaraainfrastructure.com/blog-post-1.html"
   }
 </script>
@@ -182,7 +182,7 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "AARAA Infrastructure Pvt. Ltd.",
-    "image": "https://www.aaraainfrastructure.com/image/logo/logo-white.png",
+    "image": "https://www.aaraainfrastructure.com//logo.png",
     "url": "https://www.aaraainfrastructure.com",
     "address": {"@type": "PostalAddress", "streetAddress": "Chennai", "addressLocality": "Chennai", "addressRegion": "Tamil Nadu", "postalCode": "600001", "addressCountry": "IN"},
     "geo": {"@type": "GeoCoordinates", "latitude": 13.0827, "longitude": 80.2707}
@@ -196,7 +196,7 @@
     <div class="max-w-container-max mx-auto px-gutter h-20 flex items-center justify-between">
       <!-- Logo -->
       <a class="flex items-center" href="index.html" aria-label="AARAA Infrastructure Home">
-        <img class="h-10 w-auto object-contain" src="image/logo/logo-black.png" alt="AARAA Infrastructure">
+        <img class="h-10 w-auto object-contain" src="/logo.png" alt="AARAA Infrastructure">
       </a>
       
       <!-- Desktop Navigation Menu -->
@@ -721,7 +721,7 @@
     <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
       <div class="space-y-6">
         <a href="index.html" class="block">
-          <img class="h-10 w-auto object-contain" src="image/logo/logo-white.png" alt="AARAA Infrastructure">
+          <img class="h-10 w-auto object-contain" src="/logo.png" alt="AARAA Infrastructure">
         </a>
         <p class="text-sm leading-relaxed text-secondary-fixed-dim">
           AARAA Infrastructure Pvt. Ltd. is India's leading turnkey civil contractor, industrial builder, and Solar EPC contractor. We construct high-quality, sustainable buildings with engineering excellence.
@@ -793,76 +793,6 @@
   <script>document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
 
   <!-- AARAA Enquiry Form Overlay -->
-  <div id="aaraaEnquiryOverlay" class="aaraa-popup-overlay">
-    <div class="aaraa-popup-box">
-      <button class="aaraa-popup-close" aria-label="Close enquiry form">×</button>
-      <div class="aaraa-popup-title" role="heading" aria-level="3">Quick Enquiry</div>
-      <p class="aaraa-popup-sub">Fill in your details and we'll get back to you shortly.</p>
-
-      <div class="aaraa-popup-form-body">
-        <form id="quickEnquiryForm">
-          <div class="aaraa-popup-row">
-            <div class="aaraa-popup-group">
-              <label for="eq_name">Full Name <span class="required">*</span></label>
-              <input id="eq_name" class="aaraa-popup-field" name="name" required placeholder="Your full name">
-            </div>
-            <div class="aaraa-popup-group">
-              <label for="eq_company">Company Name</label>
-              <input id="eq_company" class="aaraa-popup-field" name="company" placeholder="Company name (optional)">
-            </div>
-          </div>
-
-          <div class="aaraa-popup-row">
-            <div class="aaraa-popup-group">
-              <label for="eq_email">Email Address <span class="required">*</span></label>
-              <input id="eq_email" class="aaraa-popup-field" name="email" type="email" required placeholder="your@email.com">
-            </div>
-            <div class="aaraa-popup-group">
-              <label for="eq_phone">Phone Number <span class="required">*</span></label>
-              <input id="eq_phone" class="aaraa-popup-field" name="phone" type="tel" required placeholder="+91 9XXXXXXXXX">
-            </div>
-          </div>
-
-          <div class="aaraa-popup-group">
-            <label for="eq_service">Service Interested In</label>
-            <select id="eq_service" class="aaraa-popup-field" name="service">
-              <option value="">Select a service...</option>
-              <option value="Civil Works">Civil Works</option>
-              <option value="MEP">MEP</option>
-              <option value="HVAC">HVAC</option>
-              <option value="Interior Contracts">Interior Contracts</option>
-              <option value="General Contracting">General Contracting</option>
-              <option value="Infrastructure">Infrastructure</option>
-              <option value="Industrial">Industrial</option>
-              <option value="Commercial">Commercial</option>
-              <option value="Renewable Energy">Renewable Energy</option>
-              <option value="PEB Buildings">PEB Buildings</option>
-            </select>
-          </div>
-
-          <div class="aaraa-popup-group">
-            <label for="eq_location">Project Location</label>
-            <input id="eq_location" class="aaraa-popup-field" name="location" placeholder="City, State">
-          </div>
-
-          <div class="aaraa-popup-group">
-            <label for="eq_message">Message <span class="required">*</span></label>
-            <textarea id="eq_message" class="aaraa-popup-field" name="message" required placeholder="Tell us about your requirement..."></textarea>
-          </div>
-
-          <div class="aaraa-popup-btns">
-            <button type="button" class="aaraa-popup-btn-close" data-aaraa-close="enquiry">Close</button>
-            <div class="cf-turnstile-placeholder" style="margin-bottom: 15px; display: flex; justify-content: center;"></div>
-            <button type="submit" class="aaraa-popup-submit">
-              <span class="aaraa-popup-btn-text">Submit Enquiry</span>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- AARAA Vendor Registration Form Overlay -->
   <div id="aaraaVendorOverlay" class="aaraa-popup-overlay">
     <div class="aaraa-popup-box">
       <button class="aaraa-popup-close" aria-label="Close vendor form">×</button>

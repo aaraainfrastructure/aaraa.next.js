@@ -142,7 +142,7 @@ export default function BlogPostDetail({ page }) {
       <nav className="blog-nav-sticky">
         <div className="blog-nav-container">
           <Link href="/" className="blog-logo">
-            <img src="/image/logo/logo-black.png" alt="AARAA Infrastructure Logo" />
+            <img src="/logo.png" alt="AARAA Infrastructure Logo" />
           </Link>
           <div className="blog-nav-links">
             <Link href="/" className="blog-nav-link">Home</Link>
@@ -369,7 +369,7 @@ export default function BlogPostDetail({ page }) {
       <footer style={{ background: '#0B132B', color: '#FFFFFF', padding: '60px 24px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '40px' }}>
           <div>
-            <img src="/image/logo/logo-white.png" alt="AARAA Infrastructure Logo" style={{ height: '36px', marginBottom: '20px' }} />
+            <img src="/logo.png" alt="AARAA Infrastructure Logo" style={{ height: '36px', marginBottom: '20px' }} />
             <p style={{ opacity: 0.6, fontSize: '14px', maxWidth: '320px' }}>
               AARAA Infrastructure Pvt. Ltd. is a premier general contractor specializing in commercial, industrial, infrastructure, and renewable energy developments.
             </p>
