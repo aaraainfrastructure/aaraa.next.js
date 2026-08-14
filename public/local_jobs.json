@@ -29,22 +29,9 @@
       "Proficiency in reading structural drawings, AutoCad, and MS Excel.",
       "Strong leadership skills and fluent communication in Tamil and English."
     ],
-    "preferred_skills": [
-      "PEB Structure Execution",
-      "IS Code Compliance",
-      "Concrete Quality Testing"
-    ],
-    "technical_skills": [
-      "AutoCAD",
-      "Surveying Instruments",
-      "Bar Bending Schedules (BBS)"
-    ],
-    "benefits": [
-      "Performance Incentives",
-      "Health Insurance",
-      "On-site Allowance",
-      "Travel Reimbursement"
-    ],
+    "preferred_skills": ["PEB Structure Execution", "IS Code Compliance", "Concrete Quality Testing"],
+    "technical_skills": ["AutoCAD", "Surveying Instruments", "Bar Bending Schedules (BBS)"],
+    "benefits": ["Performance Incentives", "Health Insurance", "On-site Allowance", "Travel Reimbursement"],
     "project_type": "Commercial & Industrial Construction",
     "project_location": "Chennai Metropolitan Area",
     "reporting_to": "Project Manager",
@@ -89,21 +76,9 @@
       "Advanced proficiency in MS Excel, Highrise/ERP software, and AutoCAD.",
       "Strong understanding of CPWD/FIDIC contracts and measurement standards."
     ],
-    "preferred_skills": [
-      "Extra Item Costing",
-      "Subcontractor Reconciliation",
-      "BOQ Preparation"
-    ],
-    "technical_skills": [
-      "MS Excel (Advanced)",
-      "AutoCAD",
-      "ERP / Billing Software"
-    ],
-    "benefits": [
-      "Annual Bonus",
-      "Health Coverage",
-      "Professional Growth Opportunities"
-    ],
+    "preferred_skills": ["Extra Item Costing", "Subcontractor Reconciliation", "BOQ Preparation"],
+    "technical_skills": ["MS Excel (Advanced)", "AutoCAD", "ERP / Billing Software"],
+    "benefits": ["Annual Bonus", "Health Coverage", "Professional Growth Opportunities"],
     "project_type": "Turnkey Civil & Solar Infrastructure",
     "project_location": "Head Office / Site Offices, Chennai",
     "reporting_to": "Head of Commercial & Contracts",
@@ -146,21 +121,9 @@
       "3+ years experience managing MEP services in commercial or institutional building projects.",
       "In-depth knowledge of NBC, National Electrical Code (NEC), and Fire Safety regulations."
     ],
-    "preferred_skills": [
-      "HVAC Commissioning",
-      "Firefighting Standards",
-      "Electrical SLD Verification"
-    ],
-    "technical_skills": [
-      "AutoCAD MEP",
-      "MS Project",
-      "Electrical Load Calculations"
-    ],
-    "benefits": [
-      "Relocation Allowance",
-      "Health Insurance",
-      "Site Allowances"
-    ],
+    "preferred_skills": ["HVAC Commissioning", "Firefighting Standards", "Electrical SLD Verification"],
+    "technical_skills": ["AutoCAD MEP", "MS Project", "Electrical Load Calculations"],
+    "benefits": ["Relocation Allowance", "Health Insurance", "Site Allowances"],
     "project_type": "Commercial & Fit-Out Projects",
     "project_location": "Bengaluru, Karnataka",
     "reporting_to": "Senior Project Manager",
@@ -203,21 +166,9 @@
       "3-6 years civil planning experience using Primavera P6 or MS Project.",
       "Strong analytical skills and hands-on experience on industrial projects."
     ],
-    "preferred_skills": [
-      "Primavera P6",
-      "MS Project",
-      "S-Curve Analysis",
-      "Resource Levelling"
-    ],
-    "technical_skills": [
-      "Primavera P6",
-      "MS Excel Advanced",
-      "MS Project"
-    ],
-    "benefits": [
-      "Performance Incentives",
-      "Health Insurance"
-    ],
+    "preferred_skills": ["Primavera P6", "MS Project", "S-Curve Analysis", "Resource Levelling"],
+    "technical_skills": ["Primavera P6", "MS Excel Advanced", "MS Project"],
+    "benefits": ["Performance Incentives", "Health Insurance"],
     "project_type": "Industrial Manufacturing Facilities",
     "project_location": "Pune, Maharashtra",
     "reporting_to": "Project Director",
@@ -231,5 +182,146 @@
     "seo_title": "Planning Engineer Jobs in Pune | AARAA Infrastructure",
     "seo_description": "Planning & Scheduling Engineer opening in Pune with AARAA Infrastructure. Master scheduling, Primavera P6 & progress monitoring.",
     "created_at": "2026-08-10T10:00:00.000Z"
+  },
+  {
+    "id": "job-005",
+    "job_code": "AARAA-JOB-2026-005",
+    "title": "HR Executive / Manager",
+    "slug": "hr-executive-manager-chennai",
+    "department": "Human Resources",
+    "category": "Human Resources",
+    "location": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "employment_type": "Full-time",
+    "experience_min": 2,
+    "experience_max": 5,
+    "qualification": "MBA in HR / MSW / Any Graduate with Construction HR Experience",
+    "salary_min": 400000,
+    "salary_max": 700000,
+    "salary_currency": "INR",
+    "salary_period": "Year",
+    "description": "AARAA Infrastructure is hiring a dynamic HR Executive / Manager to oversee site manpower deployment, talent acquisition for civil/MEP engineers, payroll coordination, statutory compliance (PF/ESI/Labor Laws), and employee relations.",
+    "responsibilities": [
+      "Manage end-to-end recruitment for site engineers, quantity surveyors, project managers, and skilled site workforce.",
+      "Oversee onboarding, attendance tracking, site staff mobilization, and payroll processing.",
+      "Ensure compliance with labor laws, PF, ESI, minimum wages, and site safety regulations.",
+      "Conduct performance evaluations, employee engagement programs, and HR operational management."
+    ],
+    "requirements": [
+      "2 to 5 years experience in HR management within construction, EPC, or industrial engineering sectors.",
+      "Strong understanding of statutory labor compliance, PF, ESI, and site manpower management.",
+      "Excellent communication and interpersonal skills in English and Tamil."
+    ],
+    "preferred_skills": ["Site Manpower Recruitment", "Labor Law Compliance", "Payroll Processing", "PF & ESI Management"],
+    "technical_skills": ["MS Office (Excel/Word)", "HRMS Software", "Payroll Tools"],
+    "benefits": ["Health Insurance", "Performance Incentives", "Professional Growth Opportunities"],
+    "project_type": "EPC Construction & Infrastructure Projects",
+    "project_location": "Head Office, Chennai",
+    "reporting_to": "Head of HR / Managing Director",
+    "number_of_positions": 2,
+    "date_posted": "2026-08-14",
+    "published_at": "2026-08-14",
+    "valid_through": "2026-11-30",
+    "status": "PUBLISHED",
+    "featured": true,
+    "remote_allowed": false,
+    "seo_title": "HR Executive / Manager Jobs in Chennai | AARAA Infrastructure",
+    "seo_description": "Apply for HR Executive / Manager vacancy at AARAA Infrastructure, Chennai. Manage recruitment, site manpower & statutory compliance. 2-5 yrs experience required.",
+    "created_at": "2026-08-14T10:00:00.000Z"
+  },
+  {
+    "id": "job-006",
+    "job_code": "AARAA-JOB-2026-006",
+    "title": "Business Development Manager",
+    "slug": "business-development-manager-chennai",
+    "department": "Business Development",
+    "category": "Business Development",
+    "location": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "employment_type": "Full-time",
+    "experience_min": 2,
+    "experience_max": 5,
+    "qualification": "B.E. Civil / MBA in Marketing or Business Administration",
+    "salary_min": 450000,
+    "salary_max": 800000,
+    "salary_currency": "INR",
+    "salary_period": "Year",
+    "description": "Seeking a target-driven Business Development Manager to drive business growth across industrial civil construction, PEB structures, commercial fit-outs, and solar EPC projects in Tamil Nadu and South India.",
+    "responsibilities": [
+      "Identify new business leads, industrial clients, corporate developers, and tender opportunities.",
+      "Lead client presentations, proposal preparation, commercial negotiations, and contract closings.",
+      "Build relationships with architects, structural consultants, industrial park developers, and project managers.",
+      "Track market trends, competitive intelligence, and pipeline progress."
+    ],
+    "requirements": [
+      "2 to 5 years experience in business development or B2B sales for construction, PEB, or EPC infrastructure projects.",
+      "Strong network among industrial developers, manufacturing clients, and architects.",
+      "Outstanding presentation, negotiation, and relationship management skills."
+    ],
+    "preferred_skills": ["B2B Construction Sales", "Tender Bidding", "Client Relationship Management", "PEB & Civil Pitching"],
+    "technical_skills": ["MS PowerPoint", "MS Excel", "CRM Software"],
+    "benefits": ["Attractive Sales Commission", "Travel Allowance", "Health Insurance"],
+    "project_type": "Turnkey Industrial & EPC Projects",
+    "project_location": "Chennai & Regional Client Sites",
+    "reporting_to": "Vice President - Business Development",
+    "number_of_positions": 2,
+    "date_posted": "2026-08-14",
+    "published_at": "2026-08-14",
+    "valid_through": "2026-11-30",
+    "status": "PUBLISHED",
+    "featured": true,
+    "remote_allowed": false,
+    "seo_title": "Business Development Manager Jobs in Chennai | AARAA Infrastructure",
+    "seo_description": "Apply for Business Development Manager opening at AARAA Infrastructure, Chennai. Drive industrial construction & solar EPC sales. 2-5 yrs experience required.",
+    "created_at": "2026-08-14T10:00:00.000Z"
+  },
+  {
+    "id": "job-007",
+    "job_code": "AARAA-JOB-2026-007",
+    "title": "Procurement & Purchase Engineer",
+    "slug": "procurement-purchase-engineer-chennai",
+    "department": "Procurement & Supply Chain",
+    "category": "Procurement",
+    "location": "Chennai",
+    "state": "Tamil Nadu",
+    "country": "India",
+    "employment_type": "Full-time",
+    "experience_min": 2,
+    "experience_max": 5,
+    "qualification": "B.E. / B.Tech / Diploma in Civil / Mechanical / Electrical Engineering",
+    "salary_min": 400000,
+    "salary_max": 700000,
+    "salary_currency": "INR",
+    "salary_period": "Year",
+    "description": "AARAA Infrastructure is hiring a Procurement & Purchase Engineer to manage vendor sourcing, material procurement (steel, cement, RMC, PEB components, MEP items), commercial negotiation, and site delivery logistics.",
+    "responsibilities": [
+      "Source and evaluate vendors for civil construction materials, steel sections, cement, RMC, and MEP items.",
+      "Floating RFQs, preparing comparative statement analysis (CSA), and negotiating purchase orders.",
+      "Coordinate with site teams for material requisitions (MRN), delivery schedules, and quality inspections.",
+      "Manage vendor payments, rate contracts, and material reconciliation reports."
+    ],
+    "requirements": [
+      "2 to 5 years experience in procurement / purchasing for construction, PEB, or MEP infrastructure projects.",
+      "In-depth knowledge of construction material specifications, market rates, and supplier networks in South India.",
+      "Proficiency in ERP / Highrise software, MS Excel, and commercial negotiation."
+    ],
+    "preferred_skills": ["Material Sourcing", "Vendor Negotiation", "Comparative Analysis (CSA)", "PO Management"],
+    "technical_skills": ["ERP / Purchase Software", "MS Excel (Advanced)", "AutoCAD (Basic)"],
+    "benefits": ["Performance Incentives", "Health Insurance", "Annual Bonus"],
+    "project_type": "Civil, Industrial & Solar EPC Projects",
+    "project_location": "Head Office, Chennai",
+    "reporting_to": "Head of Procurement & Contracts",
+    "number_of_positions": 2,
+    "date_posted": "2026-08-14",
+    "published_at": "2026-08-14",
+    "valid_through": "2026-11-30",
+    "status": "PUBLISHED",
+    "featured": true,
+    "remote_allowed": false,
+    "seo_title": "Procurement & Purchase Engineer Jobs in Chennai | AARAA Infrastructure",
+    "seo_description": "Procurement & Purchase Engineer job opening at AARAA Infrastructure, Chennai. Manage construction material sourcing, vendor negotiation & POs. 2-5 yrs experience.",
+    "created_at": "2026-08-14T10:00:00.000Z"
   }
 ]
