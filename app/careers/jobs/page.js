@@ -16,80 +16,20 @@ export default function JobsListingPage() {
   useEffect(() => {
     async function loadJobs() {
       try {
-        // Fetch published jobs from store via client helper or initial load
-        const res = await fetch('/api/config'); // sanity fetch
-        // Load initial data
-        const initialJobs = [
-          {
-            id: "job-001",
-            job_code: "AARAA-JOB-2026-001",
-            title: "Civil Site Engineer",
-            slug: "civil-site-engineer-chennai",
-            department: "Site Engineering",
-            category: "Civil Engineering",
-            location: "Chennai",
-            state: "Tamil Nadu",
-            employment_type: "Full-time",
-            experience_min: 2,
-            experience_max: 5,
-            description: "AARAA Infrastructure is seeking an experienced Civil Site Engineer to oversee daily construction operations, quality execution, structural reinforcement, and contractor coordination for high-value commercial and industrial PEB projects in Chennai.",
-            date_posted: "2026-08-01",
-            status: "PUBLISHED",
-            featured: true
-          },
-          {
-            id: "job-002",
-            job_code: "AARAA-JOB-2026-002",
-            title: "Senior Quantity Surveyor & Billing Engineer",
-            slug: "quantity-surveyor-billing-engineer-chennai",
-            department: "Quantity Surveying",
-            category: "Billing & Estimation",
-            location: "Chennai",
-            state: "Tamil Nadu",
-            employment_type: "Full-time",
-            experience_min: 4,
-            experience_max: 8,
-            description: "Join AARAA Infrastructure as a Senior Quantity Surveyor & Billing Engineer. Responsible for joint measurement verification, client billing, subcontractor bill certification, rate analysis, and cost optimization.",
-            date_posted: "2026-08-05",
-            status: "PUBLISHED",
-            featured: true
-          },
-          {
-            id: "job-003",
-            job_code: "AARAA-JOB-2026-003",
-            title: "MEP Project Engineer",
-            slug: "mep-project-engineer-bengaluru",
-            department: "MEP (Mechanical, Electrical, Plumbing)",
-            category: "MEP",
-            location: "Bengaluru",
-            state: "Karnataka",
-            employment_type: "Full-time",
-            experience_min: 3,
-            experience_max: 7,
-            description: "AARAA Infrastructure is hiring a dedicated MEP Project Engineer for IT parks and commercial fit-out projects in Bengaluru. Manage HVAC, Electrical HT/LT systems, Plumbing, and Firefighting integration.",
-            date_posted: "2026-08-08",
-            status: "PUBLISHED",
-            featured: false
-          },
-          {
-            id: "job-004",
-            job_code: "AARAA-JOB-2026-004",
-            title: "Planning & Scheduling Engineer",
-            slug: "planning-scheduling-engineer-pune",
-            department: "Planning & Scheduling",
-            category: "Project Management",
-            location: "Pune",
-            state: "Maharashtra",
-            employment_type: "Full-time",
-            experience_min: 3,
-            experience_max: 6,
-            description: "Seeking a proactive Planning Engineer to develop baseline schedules, resource histograms, S-curves, and delay analyses for industrial manufacturing construction projects in Pune.",
-            date_posted: "2026-08-10",
-            status: "PUBLISHED",
-            featured: false
+        const res = await fetch('/api/careers/jobs', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setJobs(data);
+            return;
           }
-        ];
-        setJobs(initialJobs);
+        }
+        // Fallback fetch local_jobs.json directly
+        const localRes = await fetch('/local_jobs.json', { cache: 'no-store' });
+        if (localRes.ok) {
+          const localData = await localRes.json();
+          setJobs(localData);
+        }
       } catch (err) {
         console.error("Error loading jobs:", err);
       } finally {
@@ -111,9 +51,9 @@ export default function JobsListingPage() {
   const filteredJobs = jobs.filter(job => {
     if (filters.query) {
       const q = filters.query.toLowerCase();
-      const matchTitle = job.title.toLowerCase().includes(q);
-      const matchDept = job.department.toLowerCase().includes(q);
-      const matchDesc = job.description.toLowerCase().includes(q);
+      const matchTitle = job.title ? job.title.toLowerCase().includes(q) : false;
+      const matchDept = job.department ? job.department.toLowerCase().includes(q) : false;
+      const matchDesc = job.description ? job.description.toLowerCase().includes(q) : false;
       if (!matchTitle && !matchDept && !matchDesc) return false;
     }
     if (filters.department && job.department !== filters.department) return false;
