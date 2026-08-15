@@ -28,18 +28,21 @@ export async function generateMetadata({params}){
     }
   }
 
+  const canonicalUrl = p.canonical || `https://www.aaraainfrastructure.com/${pathName}`;
+  const fullOgImage = ogImage.startsWith('http') ? ogImage : `https://www.aaraainfrastructure.com${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
+
   return {
     title: { absolute: p.title },
     description: p.description || undefined,
-    alternates: p.canonical ? { canonical: p.canonical } : undefined,
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title: p.title,
       description: p.description || undefined,
-      url: `https://aaraainfrastructure.com/${pathName}`,
+      url: canonicalUrl,
       siteName: 'AARAA Infrastructure',
       images: [
         {
-          url: ogImage.startsWith('http') ? ogImage : `https://aaraainfrastructure.com${ogImage.startsWith('/') ? '' : '/'}${ogImage}`,
+          url: fullOgImage,
           width: 1200,
           height: 630,
           alt: p.title,
@@ -51,7 +54,7 @@ export async function generateMetadata({params}){
       card: 'summary_large_image',
       title: p.title,
       description: p.description || undefined,
-      images: [ogImage.startsWith('http') ? ogImage : `https://aaraainfrastructure.com${ogImage.startsWith('/') ? '' : '/'}${ogImage}`],
+      images: [fullOgImage],
     }
   };
 }

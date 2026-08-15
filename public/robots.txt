@@ -7,4 +7,5 @@ Disallow: /index.html
 User-agent: OAI-SearchBot
 Allow: /
 
-Sitemap: https://aaraainfrastructure.com/sitemap.xml
+Sitemap: https://www.aaraainfrastructure.com/sitemap.xml
+Sitemap: https://www.aaraainfrastructure.com/sitemap-jobs.xml

@@ -3,7 +3,7 @@ import BrandMarquee from '@/components/BrandMarquee';
 import Script from 'next/script';
 
 export const metadata = {
-  metadataBase: new URL('https://aaraainfrastructure.com'),
+  metadataBase: new URL('https://www.aaraainfrastructure.com'),
   title: 'AARAA Infrastructure',
   verification: {
     google: 'google_site_verification_placeholder',

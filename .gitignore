@@ -4,3 +4,7 @@ out
 .env*
 !.env.example
 .DS_Store
+scratch/
+public/local_submissions/
+public/local_uploads/
+
