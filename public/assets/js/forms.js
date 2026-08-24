@@ -129,7 +129,11 @@
       }
 
       var data = new FormData(form);
-      data.append('_formType', form.getAttribute('data-aaraa-form'));
+      var formName = form.getAttribute('data-aaraa-form') || 'Vendor Registration';
+      var companyVal = data.get('company') || data.get('company_name') || '';
+      var categoryVal = data.get('vendor_category') || data.get('vendorCategory') || '';
+      data.append('subject', 'AARAA ' + formName + ' — ' + (companyVal || 'Submission') + (categoryVal ? ' (' + categoryVal + ')' : ''));
+      data.append('_formType', formName);
       data.append('_submittedAt', new Date().toISOString());
       data.append('_pageUrl', window.location.href);
 

@@ -135,9 +135,23 @@ const FILE_CONFIGS = {
     sizeMB:   { resume: 5, bonafide_cert: 5, transcript: 5 }
   },
   vendor: {
-    required: ['incorporationCert', 'identityProof', 'addressProof'],
-    allowed:  { incorporationCert: ['.pdf', '.doc', '.docx'], identityProof: ['.pdf', '.doc', '.docx'], addressProof: ['.pdf', '.doc', '.docx'], tradeLicense: ['.pdf', '.doc', '.docx'] },
-    sizeMB:   { incorporationCert: 5, identityProof: 5, addressProof: 5, tradeLicense: 5 }
+    required: ['incorporationCert', 'incorporation_cert', 'identityProof', 'identity_proof', 'addressProof', 'address_proof'],
+    allowed:  {
+      incorporationCert: ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png'],
+      incorporation_cert: ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png'],
+      identityProof: ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png'],
+      identity_proof: ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png'],
+      addressProof: ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png'],
+      address_proof: ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png'],
+      tradeLicense: ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png'],
+      trade_license: ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png']
+    },
+    sizeMB:   {
+      incorporationCert: 10, incorporation_cert: 10,
+      identityProof: 10, identity_proof: 10,
+      addressProof: 10, address_proof: 10,
+      tradeLicense: 10, trade_license: 10
+    }
   }
 };
 
@@ -185,10 +199,12 @@ async function handleFormSubmit(e) {
   if (isJoinForm && FILE_CONFIGS[formType]) {
     const config = FILE_CONFIGS[formType];
     for (const [fieldName, allowedExts] of Object.entries(config.allowed)) {
+      const inputEl    = form.querySelector(`[name="${fieldName}"]`);
       const file       = formData.get(fieldName);
-      const isRequired = config.required.includes(fieldName);
+      const isRequired = inputEl && inputEl.hasAttribute('required');
       const limitMB    = config.sizeMB[fieldName] || 5;
-      if (file && file.size > 0) {
+
+      if (file && file instanceof File && file.size > 0) {
         const check = checkFileValidity(file, allowedExts, limitMB);
         if (!check.valid) { displayFieldError(form, fieldName, check.message); hasErrors = true; }
       } else if (isRequired) {
@@ -211,6 +227,21 @@ async function handleFormSubmit(e) {
     formData.append('formType',   formType);
     formData.append('sourceUrl',  window.location.href);
     formData.append('pageTitle',  document.title);
+
+    if (!formData.has('subject')) {
+      const companyVal = formData.get('company') || formData.get('company_name') || '';
+      const nameVal = formData.get('name') || formData.get('contact_person') || formData.get('full_name') || '';
+      const categoryVal = formData.get('vendorCategory') || formData.get('vendor_category') || '';
+      const subj = formType === 'vendor'
+        ? `AARAA Vendor Registration — ${companyVal || nameVal || 'Company'}${categoryVal ? ` (${categoryVal})` : ''}`
+        : `AARAA ${formType.toUpperCase()} Submission — ${companyVal || nameVal || 'New Lead'}`;
+      formData.append('subject', subj);
+      formData.append('_subject', subj);
+    }
+    const emailVal = formData.get('email');
+    if (emailVal) formData.append('_replyto', emailVal);
+    const personName = formData.get('name') || formData.get('contact_person') || formData.get('full_name');
+    if (personName) formData.append('_name', personName);
 
     // FormBold expects data as FormData. We send all submissions as FormData.
     const fetchOptions = {

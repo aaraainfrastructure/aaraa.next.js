@@ -1,7 +1,12 @@
 User-agent: *
-Disallow: /wp-admin/
 Allow: /
-Disallow: /index.html
+Disallow: /wp-admin/
+Disallow: /admin-dashboard
+Disallow: /e-mail-sign/
+Disallow: /aaraa-forms/
+Disallow: /forms/
+Disallow: /chat.html
+Disallow: /gpt.html
 
 # Allow OpenAI Search Bot (OAI-SearchBot)
 User-agent: OAI-SearchBot
