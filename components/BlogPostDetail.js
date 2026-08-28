@@ -53,9 +53,42 @@ const RELATED_POSTS = [
 export default function BlogPostDetail({ page }) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('');
-  const [lightboxImg, setLightboxImg] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
   const [revealedElements, setRevealedElements] = useState({});
   const proseRef = useRef(null);
+
+  const openLightbox = (index) => {
+    setLightboxIndex(index);
+  };
+
+  const closeLightbox = () => {
+    setLightboxIndex(null);
+  };
+
+  const nextLightboxImg = (e) => {
+    if (e) e.stopPropagation();
+    if (page.galleryImages && page.galleryImages.length > 0) {
+      setLightboxIndex((prev) => (prev === null ? 0 : (prev + 1) % page.galleryImages.length));
+    }
+  };
+
+  const prevLightboxImg = (e) => {
+    if (e) e.stopPropagation();
+    if (page.galleryImages && page.galleryImages.length > 0) {
+      setLightboxIndex((prev) => (prev === null ? 0 : (prev - 1 + page.galleryImages.length) % page.galleryImages.length));
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (lightboxIndex === null) return;
+      if (e.key === 'ArrowRight') nextLightboxImg();
+      if (e.key === 'ArrowLeft') prevLightboxImg();
+      if (e.key === 'Escape') closeLightbox();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, page.galleryImages]);
 
   // Scroll and reading progress
   useEffect(() => {
@@ -264,16 +297,18 @@ export default function BlogPostDetail({ page }) {
             dangerouslySetInnerHTML={{ __html: page.articleHtml }}
           />
 
-          {/* Image Gallery Asymmetric Grid */}
+          {/* Image Gallery Grid */}
           {page.galleryImages && page.galleryImages.length > 0 && (
             <div className="blog-gallery-section blog-reveal">
-              <h3 className="blog-gallery-title">Project Site Gallery</h3>
+              <h3 className="blog-gallery-title">
+                {page.category === 'Corporate & Culture' || (page.title && (page.title.includes('Onam') || page.title.includes('Celebration'))) ? 'Celebration Photo Gallery' : 'Project Site Gallery'}
+              </h3>
               <div className="blog-gallery-grid">
                 {page.galleryImages.map((img, index) => (
                   <div 
                     key={index} 
                     className={`blog-gallery-item ${index % 3 === 0 ? 'span-2' : ''}`}
-                    onClick={() => setLightboxImg(img.src)}
+                    onClick={() => openLightbox(index)}
                   >
                     <img src={img.src} alt={img.alt} loading="lazy" />
                     <div className="blog-gallery-overlay">
@@ -416,11 +451,30 @@ export default function BlogPostDetail({ page }) {
         </div>
       </footer>
 
-      {/* Lightbox Overlay */}
-      {lightboxImg && (
-        <div className="blog-lightbox" onClick={() => setLightboxImg(null)}>
-          <button className="blog-lightbox-close" onClick={() => setLightboxImg(null)}>×</button>
-          <img src={lightboxImg} className="blog-lightbox-img" alt="Enlarged gallery view" onClick={(e) => e.stopPropagation()} />
+      {/* Lightbox Slider Overlay */}
+      {lightboxIndex !== null && page.galleryImages && page.galleryImages[lightboxIndex] && (
+        <div className="blog-lightbox" onClick={closeLightbox}>
+          <button className="blog-lightbox-close" onClick={closeLightbox} aria-label="Close Lightbox">×</button>
+          
+          {page.galleryImages.length > 1 && (
+            <>
+              <button className="blog-lightbox-nav blog-lightbox-prev" onClick={prevLightboxImg} aria-label="Previous image">‹</button>
+              <button className="blog-lightbox-nav blog-lightbox-next" onClick={nextLightboxImg} aria-label="Next image">›</button>
+            </>
+          )}
+
+          <div className="blog-lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={page.galleryImages[lightboxIndex].src} 
+              className="blog-lightbox-img" 
+              alt={page.galleryImages[lightboxIndex].alt} 
+            />
+            <div className="blog-lightbox-caption-wrap">
+              <span style={{ fontWeight: 600 }}>{lightboxIndex + 1} / {page.galleryImages.length}</span>
+              <span style={{ margin: '0 6px', opacity: 0.4 }}>•</span>
+              <span>{page.galleryImages[lightboxIndex].alt}</span>
+            </div>
+          </div>
         </div>
       )}
     </div>
