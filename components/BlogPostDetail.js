@@ -297,25 +297,60 @@ export default function BlogPostDetail({ page }) {
             dangerouslySetInnerHTML={{ __html: page.articleHtml }}
           />
 
-          {/* Image Gallery Grid */}
+          {/* Image & Video Gallery Grid */}
           {page.galleryImages && page.galleryImages.length > 0 && (
             <div className="blog-gallery-section blog-reveal">
               <h3 className="blog-gallery-title">
-                {page.category === 'Corporate & Culture' || (page.title && (page.title.includes('Onam') || page.title.includes('Celebration'))) ? 'Celebration Photo Gallery' : 'Project Site Gallery'}
+                {page.category === 'Corporate & Culture' || (page.title && (page.title.includes('Onam') || page.title.includes('Celebration'))) ? 'Celebration Photo & Video Gallery' : 'Project Site Gallery'}
               </h3>
               <div className="blog-gallery-grid">
-                {page.galleryImages.map((img, index) => (
-                  <div 
-                    key={index} 
-                    className={`blog-gallery-item ${index % 3 === 0 ? 'span-2' : ''}`}
-                    onClick={() => openLightbox(index)}
-                  >
-                    <img src={img.src} alt={img.alt} loading="lazy" />
-                    <div className="blog-gallery-overlay">
-                      <span className="blog-gallery-caption">{img.alt}</span>
+                {page.galleryImages.map((item, index) => {
+                  const isVideo = item.type === 'video' || item.src.endsWith('.mp4') || item.src.endsWith('.webm');
+                  return (
+                    <div 
+                      key={index} 
+                      className={`blog-gallery-item ${index % 3 === 0 ? 'span-2' : ''}`}
+                      onClick={() => openLightbox(index)}
+                    >
+                      {isVideo ? (
+                        <div style={{ position: 'relative', width: '100%', height: '100%', background: '#000', overflow: 'hidden' }}>
+                          <video src={item.src} muted preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} />
+                          <div style={{
+                            position: 'absolute',
+                            inset: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: 'rgba(0,0,0,0.35)'
+                          }}>
+                            <div style={{
+                              width: '54px',
+                              height: '54px',
+                              borderRadius: '50%',
+                              background: 'rgba(186,0,19,0.92)',
+                              color: '#fff',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              fontSize: '20px',
+                              paddingLeft: '4px',
+                              boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
+                            }}>
+                              ▶
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <img src={item.src} alt={item.alt} loading="lazy" />
+                      )}
+                      <div className="blog-gallery-overlay">
+                        <span className="blog-gallery-caption">
+                          {isVideo ? '▶ Play Video — ' + item.alt : item.alt}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
@@ -464,11 +499,22 @@ export default function BlogPostDetail({ page }) {
           )}
 
           <div className="blog-lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img 
-              src={page.galleryImages[lightboxIndex].src} 
-              className="blog-lightbox-img" 
-              alt={page.galleryImages[lightboxIndex].alt} 
-            />
+            {page.galleryImages[lightboxIndex].type === 'video' || page.galleryImages[lightboxIndex].src.endsWith('.mp4') || page.galleryImages[lightboxIndex].src.endsWith('.webm') ? (
+              <video 
+                src={page.galleryImages[lightboxIndex].src} 
+                controls 
+                autoPlay 
+                playsInline
+                className="blog-lightbox-img" 
+                style={{ width: '100%', maxWidth: '800px', maxHeight: '75vh', borderRadius: '12px', background: '#000' }}
+              />
+            ) : (
+              <img 
+                src={page.galleryImages[lightboxIndex].src} 
+                className="blog-lightbox-img" 
+                alt={page.galleryImages[lightboxIndex].alt} 
+              />
+            )}
             <div className="blog-lightbox-caption-wrap">
               <span style={{ fontWeight: 600 }}>{lightboxIndex + 1} / {page.galleryImages.length}</span>
               <span style={{ margin: '0 6px', opacity: 0.4 }}>•</span>
