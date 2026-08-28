@@ -263,8 +263,8 @@ export default function BlogPostDetail({ page }) {
 
         {/* Main Column */}
         <main className="blog-main-column">
-          {/* Large Video Card */}
-          {page.videoSrc && (
+          {/* Standalone Video Card (if not part of gallery) */}
+          {page.videoSrc && (!page.galleryImages || !page.galleryImages.some(img => img.src === page.videoSrc)) && (
             <div 
               className="blog-video-card blog-reveal" 
               style={page.videoSrc.includes('.mp4') ? { maxWidth: '400px', margin: '0 auto 64px', aspectRatio: '9/16' } : {}}
@@ -314,7 +314,13 @@ export default function BlogPostDetail({ page }) {
                     >
                       {isVideo ? (
                         <div style={{ position: 'relative', width: '100%', height: '100%', background: '#000', overflow: 'hidden' }}>
-                          <video src={item.src} muted preload="metadata" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} />
+                          <video 
+                            src={`${item.src}#t=0.1`} 
+                            poster={page.heroImage} 
+                            muted 
+                            preload="metadata" 
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} 
+                          />
                           <div style={{
                             position: 'absolute',
                             inset: 0,
@@ -324,17 +330,17 @@ export default function BlogPostDetail({ page }) {
                             background: 'rgba(0,0,0,0.35)'
                           }}>
                             <div style={{
-                              width: '54px',
-                              height: '54px',
+                              width: '60px',
+                              height: '60px',
                               borderRadius: '50%',
-                              background: 'rgba(186,0,19,0.92)',
+                              background: 'rgba(186,0,19,0.95)',
                               color: '#fff',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
-                              fontSize: '20px',
+                              fontSize: '22px',
                               paddingLeft: '4px',
-                              boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
+                              boxShadow: '0 4px 25px rgba(186,0,19,0.6)'
                             }}>
                               ▶
                             </div>
