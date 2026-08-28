@@ -45,9 +45,9 @@ const Icons = {
 
 // Hardcoded premium related stories data
 const RELATED_POSTS = [
+  { id: 'onam-celebration-at-our-office', title: 'Onam Celebration at Our Office', category: 'Corporate & Culture', image: '/image/blog/onam-celebration-at-our-office.jpg', date: 'August 28, 2026' },
   { id: 'blog-post-9.html', title: 'BOAT Apprenticeship Partner', category: 'Partnerships', image: '/image/blog/blog-boat-partnership.png', date: 'July 3, 2026' },
-  { id: 'blog-post-3.html', title: '180 MWp Solar Project Tuticorin', category: 'Solar Energy', image: '/image/blog/blog-tuticorin.png', date: 'June 20, 2026' },
-  { id: 'blog-post-5.html', title: 'Civil, Interior & MEP for Reliance', category: 'Civil & Interior', image: '/image/blog/blog-reliance.png', date: 'May 10, 2026' }
+  { id: 'blog-post-3.html', title: '180 MWp Solar Project Tuticorin', category: 'Solar Energy', image: '/image/blog/blog-tuticorin.png', date: 'June 20, 2026' }
 ];
 
 export default function BlogPostDetail({ page }) {

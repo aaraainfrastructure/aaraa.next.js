@@ -77,7 +77,7 @@ export async function generateMetadata({params}){
   const pathName = slug.join('/');
   let ogImage = '/logo.png';
   
-  if (p.sourcePath && (p.sourcePath.startsWith('blog-post-') || p.sourcePath.startsWith('potluck-celebration-') || p.sourcePath.startsWith('blog/'))) {
+  if (p.sourcePath && (p.sourcePath.startsWith('blog-post-') || p.sourcePath.startsWith('potluck-celebration-') || p.sourcePath.startsWith('onam-celebration-') || p.sourcePath.startsWith('blog/'))) {
     try {
       const ROOT = path.join(process.cwd(), 'legacy-pages');
       const file = path.resolve(ROOT, p.sourcePath);
@@ -146,7 +146,7 @@ export default async function Page({params}){
   }
 
   // Intercept blog posts and render the redesigned premium layout
-  if (p.sourcePath && (p.sourcePath.startsWith('blog-post-') || p.sourcePath.startsWith('potluck-celebration-') || p.sourcePath.startsWith('blog/'))) {
+  if (p.sourcePath && (p.sourcePath.startsWith('blog-post-') || p.sourcePath.startsWith('potluck-celebration-') || p.sourcePath.startsWith('onam-celebration-') || p.sourcePath.startsWith('blog/'))) {
     try {
       const ROOT = path.join(process.cwd(), 'legacy-pages');
       const file = path.resolve(ROOT, p.sourcePath);
