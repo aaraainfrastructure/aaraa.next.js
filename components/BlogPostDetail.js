@@ -147,6 +147,9 @@ export default function BlogPostDetail({ page }) {
     const style = document.createElement('style');
     style.innerHTML = `
       .blog-prose img { display: none !important; }
+      .blog-prose video { display: none !important; }
+      .blog-prose audio { display: none !important; }
+      .blog-prose iframe { display: none !important; }
       .blog-prose blockquote { display: none !important; }
       .blog-prose cite { display: none !important; }
       .blog-prose #introduction + section[class*="border-l-4"] { display: none !important; }
