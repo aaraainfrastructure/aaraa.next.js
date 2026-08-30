@@ -98,9 +98,38 @@
         .internal-links-box { background: #0f172a; color: #cbd5e1; padding: 40px 0; margin-top: 60px; }
         .internal-links-box a { color: #94a3b8; text-decoration: none; margin-right: 16px; font-size: 0.9rem; }
         .internal-links-box a:hover { color: #fff; text-decoration: underline; }
+    
+        /* Top Brand Header Bar */
+        .brand-topbar { background: #0b1120; border-bottom: 1px solid #1e293b; padding: 12px 0; }
+        .brand-topbar-inner { display: flex; align-items: center; justify-content: space-between; }
+        .brand-logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; font-weight: 700; font-size: 1.1rem; }
+        .brand-logo-img { height: 40px; width: auto; object-fit: contain; }
+        .brand-nav-links { display: flex; align-items: center; gap: 20px; }
+        .topbar-link { color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+        .topbar-link:hover { color: #fff; }
+        .topbar-btn { background: var(--primary); color: #fff !important; padding: 6px 16px; border-radius: 6px; }
+        .topbar-btn:hover { background: var(--primary-dark); }
+        @media (max-width: 640px) { .brand-nav-links { display: none; } }
+
     </style>
 </head>
 <body>
+
+    <!-- Top Brand Navbar -->
+    <div class="brand-topbar">
+        <div class="container brand-topbar-inner">
+            <a href="https://www.aaraainfrastructure.com/" class="brand-logo-link" title="AARAA Infrastructure Home">
+                <img src="/logo.png" alt="AARAA Infrastructure Logo" class="brand-logo-img">
+                <span class="brand-name">AARAA Infrastructure</span>
+            </a>
+            <div class="brand-nav-links">
+                <a href="https://www.aaraainfrastructure.com/" class="topbar-link"><i class="fa-solid fa-house"></i> Main Website</a>
+                <a href="https://www.aaraainfrastructure.com/completed-projects" class="topbar-link"><i class="fa-solid fa-briefcase"></i> Projects</a>
+                <a href="https://www.aaraainfrastructure.com/contact-us" class="topbar-link topbar-btn"><i class="fa-solid fa-phone"></i> Contact Us</a>
+            </div>
+        </div>
+    </div>
+
 
     <header class="page-header">
         <div class="container">
