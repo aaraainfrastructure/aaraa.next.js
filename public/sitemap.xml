@@ -84,12 +84,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://www.aaraainfrastructure.com/blog-post</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  
   <url>
     <loc>https://www.aaraainfrastructure.com/blog-post-1</loc>
     <lastmod>2026-08-26</lastmod>
@@ -1500,18 +1495,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://www.aaraainfrastructure.com/mar</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.aaraainfrastructure.com/marquee</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <url>
     <loc>https://www.aaraainfrastructure.com/marriage-hall-details</loc>
     <lastmod>2026-08-26</lastmod>
@@ -1590,18 +1574,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://www.aaraainfrastructure.com/raje</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.aaraainfrastructure.com/raje_signature</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <url>
     <loc>https://www.aaraainfrastructure.com/rcc_new</loc>
     <lastmod>2026-08-26</lastmod>
@@ -1644,12 +1617,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://www.aaraainfrastructure.com/shanmugam_signature</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  
   <url>
     <loc>https://www.aaraainfrastructure.com/shell-projet</loc>
     <lastmod>2026-08-26</lastmod>
@@ -1693,9 +1661,93 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.aaraainfrastructure.com/work_shed</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.aaraainfrastructure.com/location/thoothukudi/solar-epc-contractor</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/kudligi/solar-epc-contractor</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/chennai/epc-contractor</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/hosur/industrial-construction-contractors</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/karnataka/solar-epc-contractor</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/maharashtra/institutional-building-contractor</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/chennai/commercial-building-contractors</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/tamil-nadu/civil-infrastructure-companies</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/andhra-pradesh/epc-contractors</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/tamil-nadu/solar-epc-contractor</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/tirunelveli/solar-epc-contractor</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/bengaluru/commercial-building-contractors</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/mumbai/commercial-building-contractors</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/telangana/epc-contractor</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.aaraainfrastructure.com/location/ncr/industrial-construction-contractors</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

@@ -91,12 +91,55 @@ export async function generateMetadata({params}){
     }
   }
 
+  const REDIRECTS_MAP = {
+    'projects-details': '/completed-projects',
+    'ongoingorchid-project': '/project-details-orchid',
+    '140-6-mw-wind-solar-hybrid-power-project': '/140.6_MW_Capacity_Wind–Solar_Hybrid_Power_Project',
+    'reliance-civil-interior-mep-fitout': '/commercial',
+    'Institutional-Development-VIBGYOR-Group-Hinjewadi-Pune': '/blog/institutional-development-vibgyor-group-hinjewadi',
+    'institutional-development-vibgyor-group-hinjewadi': '/blog/institutional-development-vibgyor-group-hinjewadi',
+    'contact': '/contact-us',
+    'privacy-policy': '/aaraa-privacy-policy',
+    'about-us': '/about',
+    'our-services': '/services',
+    'careers': '/careers',
+    'leadership': '/about',
+    'leadership-details': '/about',
+    'home-2': '/',
+    'home-3': '/',
+    'home-4': '/',
+    'home-5': '/',
+    'why-choose-us': '/about',
+    'core-values': '/about',
+    'what-we-do': '/services',
+    'what-we-do-detail': '/services',
+    'working-process': '/about',
+    'testimonials': '/about',
+    'pricing': '/contact-us',
+    'shop': '/services',
+    'shop-detail': '/services',
+    'epc-contractor-chennai': '/construction/epc-contractor-chennai',
+    'peb-company-chennai': '/construction/peb-company-chennai',
+    'solar-epc-company-chennai': '/construction/solar-epc-company-chennai',
+    'mep-contractor-chennai': '/construction/mep-contractor-chennai',
+    'steel-structure-contractor-chennai': '/construction/steel-structure-contractor-chennai',
+    'warehouse-construction-chennai': '/construction/warehouse-construction-chennai',
+    'industrial-construction-chennai': '/construction/industrial-construction-chennai',
+    'institutional-construction-chennai': '/construction/institutional-construction-chennai',
+    'infrastructure-construction-chennai': '/construction/infrastructure-construction-chennai',
+    'interior-fit-out-contractor-chennai': '/construction/interior-fit-out-contractor-chennai',
+    'renovation-contractor-chennai': '/construction/renovation-contractor-chennai',
+    'commercial-construction-chennai': '/construction/commercial-construction-chennai',
+    'renewable-energy-contractor-chennai': '/construction/renewable-energy-contractor-chennai'
+  };
+
   // Ensure clean canonical URL without .html and with proper domain
   let canonicalUrl = p.canonical;
-  if (!canonicalUrl || canonicalUrl.endsWith('.html') || !canonicalUrl.startsWith('https://www.aaraainfrastructure.com')) {
-    const cleanPath = pathName.replace(/\.html$/, '');
-    canonicalUrl = `https://www.aaraainfrastructure.com${cleanPath ? '/' + cleanPath : ''}`;
+  let cleanPath = pathName.replace(/\.html$/, '');
+  if (REDIRECTS_MAP[cleanPath]) {
+    cleanPath = REDIRECTS_MAP[cleanPath].replace(/^\//, '');
   }
+  canonicalUrl = `https://www.aaraainfrastructure.com${cleanPath ? '/' + cleanPath : ''}`;
 
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `https://www.aaraainfrastructure.com${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 
