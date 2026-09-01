@@ -47,6 +47,72 @@ export default function RootLayout({children}){
           `}
         </Script>
 
+        {/* Domain-Wide Mobile/Tablet Lead Form Auto-Pop Suppression Guard */}
+        <Script id="disable-mobile-lead-autopop" strategy="afterInteractive">
+          {`
+            (function() {
+              if (typeof window === 'undefined') return;
+              var lastUserInteraction = 0;
+              function recordUserTouchOrClick() { lastUserInteraction = Date.now(); }
+              window.addEventListener('click', recordUserTouchOrClick, true);
+              window.addEventListener('touchstart', recordUserTouchOrClick, { passive: true, capture: true });
+              window.addEventListener('pointerdown', recordUserTouchOrClick, { passive: true, capture: true });
+
+              function isMobileOrTablet() {
+                var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0;
+                var isSmall = w <= 1024;
+                var isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(navigator.userAgent || '');
+                var isTouch = ('ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)) && isSmall;
+                return isSmall || isMobileUA || isTouch;
+              }
+
+              function isUserInitiated() {
+                return (Date.now() - lastUserInteraction) < 1200;
+              }
+
+              window.__aaraaShouldBlockAutoPop = function() {
+                return isMobileOrTablet() && !isUserInitiated();
+              };
+
+              // MutationObserver to intercept any direct DOM auto-pop triggers on mobile/tablet
+              if (typeof MutationObserver !== 'undefined') {
+                var observer = new MutationObserver(function(mutations) {
+                  if (!isMobileOrTablet() || isUserInitiated()) return;
+                  mutations.forEach(function(mutation) {
+                    var target = mutation.target;
+                    if (!target || !target.classList) return;
+                    var isLeadModal = target.classList.contains('aaraa-popup-overlay') ||
+                                      target.classList.contains('ai-modal-overlay') ||
+                                      target.classList.contains('modal') ||
+                                      (target.id && /enquiry|vendor|popup|modal/i.test(target.id));
+                    if (isLeadModal) {
+                      var isFlexOrBlock = target.style.display === 'flex' || target.style.display === 'block';
+                      var isActive = target.classList.contains('active');
+                      if (isFlexOrBlock || isActive) {
+                        target.classList.remove('active');
+                        target.style.display = 'none';
+                        document.body.classList.remove('ai-modal-open', 'aaraa-popup-open');
+                        document.documentElement.classList.remove('ai-modal-open', 'aaraa-popup-open');
+                      }
+                    }
+                  });
+                });
+
+                var startObserver = function() {
+                  if (document.body) {
+                    observer.observe(document.body, { attributes: true, attributeFilter: ['class', 'style'], subtree: true });
+                  }
+                };
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', startObserver);
+                } else {
+                  startObserver();
+                }
+              }
+            })();
+          `}
+        </Script>
+
         {children}
         <BrandMarquee/>
       </body>

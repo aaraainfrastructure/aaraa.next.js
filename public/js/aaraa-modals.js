@@ -52,6 +52,10 @@
 
     openModal(overlay) {
       if (!overlay || overlay.classList.contains('active')) return;
+      if (window.__aaraaShouldBlockAutoPop && window.__aaraaShouldBlockAutoPop()) {
+        log('Suppressed automatic modal on mobile/tablet device:', overlay.id || overlay);
+        return;
+      }
       if (typeof window.__aaraaOpenPopup === 'function') {
         window.__aaraaOpenPopup(overlay);
         return;
@@ -300,6 +304,10 @@
 
       function _showOverlay(el) {
         if (!el) return false;
+        if (window.__aaraaShouldBlockAutoPop && window.__aaraaShouldBlockAutoPop()) {
+          log('Suppressed automatic overlay on mobile/tablet device:', el.id || el);
+          return false;
+        }
         if (el.classList.contains('aaraa-popup-overlay') || el.classList.contains('ai-modal-overlay')) {
           if (typeof window.__aaraaOpenPopup === 'function') {
             window.__aaraaOpenPopup(el);

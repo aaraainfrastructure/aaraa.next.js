@@ -70,8 +70,39 @@
     }
   }
 
+  /* --- Mobile/Tablet Auto-Pop Suppression Guard --- */
+  var lastUserInteractionTime = 0;
+  function recordInteraction() { lastUserInteractionTime = Date.now(); }
+  if (typeof window !== 'undefined') {
+    window.addEventListener('click', recordInteraction, true);
+    window.addEventListener('touchstart', recordInteraction, { passive: true, capture: true });
+    window.addEventListener('pointerdown', recordInteraction, { passive: true, capture: true });
+  }
+
+  function isMobileOrTabletDevice() {
+    if (typeof window === 'undefined') return false;
+    var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0;
+    var isSmall = w <= 1024;
+    var isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(navigator.userAgent || '');
+    var isTouch = ('ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)) && isSmall;
+    return isSmall || isMobileUA || isTouch;
+  }
+
+  function isUserInitiatedInteraction() {
+    return (Date.now() - lastUserInteractionTime) < 1200;
+  }
+
+  function shouldBlockAutoPop() {
+    if (window.__aaraaShouldBlockAutoPop) return window.__aaraaShouldBlockAutoPop();
+    return isMobileOrTabletDevice() && !isUserInitiatedInteraction();
+  }
+
   function openPopup(overlay) {
     if (!overlay || overlay.classList.contains('active')) return;
+    if (shouldBlockAutoPop()) {
+      console.log('[AARAA Guard] Suppressed automatic lead form popup on mobile/tablet device:', overlay.id || overlay);
+      return;
+    }
     activePopup = overlay;
     var isAaraa = overlay.classList.contains('aaraa-popup-overlay');
     lockBodyScroll(isAaraa ? 'aaraa-popup-overlay' : 'ai-modal-overlay');
