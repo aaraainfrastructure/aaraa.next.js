@@ -35,7 +35,15 @@ TARGET_URLS = [
     "https://www.aaraainfrastructure.com/location/kudligi/epc-contractor",
     "https://www.aaraainfrastructure.com/location/amaravati/epc-contractor",
     "https://www.aaraainfrastructure.com/location/ncr/epc-contractor",
-    "https://www.aaraainfrastructure.com/location/tamil-nadu/epc-contractor"
+    "https://www.aaraainfrastructure.com/location/tamil-nadu/epc-contractor",
+    "https://www.aaraainfrastructure.com/location/chennai/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/delhi/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/mumbai/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/andhra-pradesh/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/gadag/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/amaravati/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/telangana/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/ncr/solar-epc-contractor"
 ]
 
 print("=== STARTING GOOGLE SEARCH CONSOLE & INDEXING API SUBMISSION ===")
