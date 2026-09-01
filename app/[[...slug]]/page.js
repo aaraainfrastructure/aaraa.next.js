@@ -131,7 +131,8 @@ export async function generateMetadata({params}){
     'renovation-contractor-chennai': '/construction/renovation-contractor-chennai',
     'commercial-construction-chennai': '/construction/commercial-construction-chennai',
     'renewable-energy-contractor-chennai': '/construction/renewable-energy-contractor-chennai',
-    'location/tuticorin/solar-epc-contractor': '/location/thoothukudi/solar-epc-contractor'
+    'location/tuticorin/solar-epc-contractor': '/location/thoothukudi/solar-epc-contractor',
+    'location/tuticorin/commercial-contractor': '/location/thoothukudi/commercial-contractor'
   };
 
   // Ensure clean canonical URL without .html and with proper domain
@@ -183,7 +184,8 @@ export default async function Page({params}){
   }
 
   const REDIRECTS_MAP = {
-    'location/tuticorin/solar-epc-contractor': '/location/thoothukudi/solar-epc-contractor'
+    'location/tuticorin/solar-epc-contractor': '/location/thoothukudi/solar-epc-contractor',
+    'location/tuticorin/commercial-contractor': '/location/thoothukudi/commercial-contractor'
   };
   if (REDIRECTS_MAP[fullSlugStr]) {
     redirect(REDIRECTS_MAP[fullSlugStr]);

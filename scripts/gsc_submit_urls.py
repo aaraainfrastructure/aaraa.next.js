@@ -66,7 +66,7 @@ headers = {
 }
 
 # 1. Submit Sitemap to Google Search Console via REST API
-print("\n--- 1. Submitting Sitemap to Search Console ---")
+print("\n--- 1. Submitting Sitemap to Search Console ---", flush=True)
 properties = [
     "sc-domain:aaraainfrastructure.com",
     "https://www.aaraainfrastructure.com/"
@@ -79,16 +79,16 @@ for prop in properties:
     encoded_sitemap = requests.utils.quote(sitemap_url, safe="")
     api_url = f"https://www.googleapis.com/webmasters/v3/sites/{encoded_prop}/sitemaps/{encoded_sitemap}"
     try:
-        res = requests.put(api_url, headers=headers, timeout=15)
+        res = requests.put(api_url, headers=headers, timeout=5)
         if res.status_code in [200, 204]:
-            print(f"[OK] Sitemap successfully submitted to GSC property '{prop}'")
+            print(f"[OK] Sitemap successfully submitted to GSC property '{prop}'", flush=True)
         else:
-            print(f"  Note for property '{prop}': HTTP {res.status_code} - {res.text}")
+            print(f"  Note for property '{prop}': HTTP {res.status_code} - {res.text}", flush=True)
     except Exception as err:
-        print(f"  Note for property '{prop}': {err}")
+        print(f"  Note for property '{prop}': {err}", flush=True)
 
-# 2. Submit 15 URLs to Google Indexing API v3 via REST API
-print("\n--- 2. Submitting 15 Canonical URLs to Google Indexing API v3 ---")
+# 2. Submit URLs to Google Indexing API v3 via REST API
+print(f"\n--- 2. Submitting {len(TARGET_URLS)} Canonical URLs to Google Indexing API v3 ---", flush=True)
 indexing_api_endpoint = "https://indexing.googleapis.com/v3/urlNotifications:publish"
 
 success_count = 0
@@ -98,14 +98,14 @@ for idx, target_url in enumerate(TARGET_URLS, 1):
         "type": "URL_UPDATED"
     }
     try:
-        res = requests.post(indexing_api_endpoint, json=payload, headers=headers, timeout=15)
+        res = requests.post(indexing_api_endpoint, json=payload, headers=headers, timeout=5)
         if res.status_code == 200:
-            print(f"  [{idx}/15] [OK] Submitted: {target_url}")
+            print(f"  [{idx}/{len(TARGET_URLS)}] [OK] Submitted: {target_url}", flush=True)
             success_count += 1
         else:
-            print(f"  [{idx}/15] [FAIL] HTTP {res.status_code} for {target_url}: {res.text}")
+            print(f"  [{idx}/{len(TARGET_URLS)}] [FAIL] HTTP {res.status_code} for {target_url}: {res.text}", flush=True)
     except Exception as err:
-        print(f"  [{idx}/15] [FAIL] Exception for {target_url}: {err}")
+        print(f"  [{idx}/{len(TARGET_URLS)}] [FAIL] Exception for {target_url}: {err}", flush=True)
 
-print(f"\n[OK] Indexing API Submission Complete: {success_count}/15 URLs successfully notified to Googlebot.")
-print("=== SUBMISSION COMPLETE ===")
+print(f"\n[OK] Indexing API Submission Complete: {success_count}/{len(TARGET_URLS)} URLs successfully notified to Googlebot.", flush=True)
+print("=== SUBMISSION COMPLETE ===", flush=True)
