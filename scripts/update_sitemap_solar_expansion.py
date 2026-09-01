@@ -2,13 +2,18 @@ import os
 
 NEW_SOLAR_URLS = [
     "https://www.aaraainfrastructure.com/location/chennai/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/karnataka/solar-epc-contractor",
     "https://www.aaraainfrastructure.com/location/delhi/solar-epc-contractor",
     "https://www.aaraainfrastructure.com/location/mumbai/solar-epc-contractor",
     "https://www.aaraainfrastructure.com/location/andhra-pradesh/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/thoothukudi/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/tirunelveli/solar-epc-contractor",
     "https://www.aaraainfrastructure.com/location/gadag/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/kudligi/solar-epc-contractor",
     "https://www.aaraainfrastructure.com/location/amaravati/solar-epc-contractor",
     "https://www.aaraainfrastructure.com/location/telangana/solar-epc-contractor",
-    "https://www.aaraainfrastructure.com/location/ncr/solar-epc-contractor"
+    "https://www.aaraainfrastructure.com/location/ncr/solar-epc-contractor",
+    "https://www.aaraainfrastructure.com/location/tamil-nadu/solar-epc-contractor"
 ]
 
 sitemap_path = "public/sitemap.xml"

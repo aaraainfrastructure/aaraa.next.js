@@ -9,5 +9,6 @@ public/local_submissions/
 public/local_uploads/
 __pycache__/
 *.pyc
+service_account.json
 
 

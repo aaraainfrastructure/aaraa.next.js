@@ -130,7 +130,8 @@ export async function generateMetadata({params}){
     'interior-fit-out-contractor-chennai': '/construction/interior-fit-out-contractor-chennai',
     'renovation-contractor-chennai': '/construction/renovation-contractor-chennai',
     'commercial-construction-chennai': '/construction/commercial-construction-chennai',
-    'renewable-energy-contractor-chennai': '/construction/renewable-energy-contractor-chennai'
+    'renewable-energy-contractor-chennai': '/construction/renewable-energy-contractor-chennai',
+    'location/tuticorin/solar-epc-contractor': '/location/thoothukudi/solar-epc-contractor'
   };
 
   // Ensure clean canonical URL without .html and with proper domain
@@ -179,6 +180,13 @@ export default async function Page({params}){
   if (fullSlugStr.endsWith('.html')) {
     const cleanSlugStr = fullSlugStr.replace(/\.html$/, '');
     redirect(`/${cleanSlugStr}`);
+  }
+
+  const REDIRECTS_MAP = {
+    'location/tuticorin/solar-epc-contractor': '/location/thoothukudi/solar-epc-contractor'
+  };
+  if (REDIRECTS_MAP[fullSlugStr]) {
+    redirect(REDIRECTS_MAP[fullSlugStr]);
   }
 
   const p=await loadLegacyPage(slug);
