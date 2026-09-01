@@ -133,7 +133,8 @@ export async function generateMetadata({params}){
     'renewable-energy-contractor-chennai': '/construction/renewable-energy-contractor-chennai',
     'location/tuticorin/solar-epc-contractor': '/location/thoothukudi/solar-epc-contractor',
     'location/tuticorin/commercial-contractor': '/location/thoothukudi/commercial-contractor',
-    'location/tuticorin/construction-companies': '/location/thoothukudi/construction-companies'
+    'location/tuticorin/construction-companies': '/location/thoothukudi/construction-companies',
+    'location/tuticorin/institutional-contractor': '/location/thoothukudi/institutional-contractor'
   };
 
   // Ensure clean canonical URL without .html and with proper domain
@@ -187,7 +188,8 @@ export default async function Page({params}){
   const REDIRECTS_MAP = {
     'location/tuticorin/solar-epc-contractor': '/location/thoothukudi/solar-epc-contractor',
     'location/tuticorin/commercial-contractor': '/location/thoothukudi/commercial-contractor',
-    'location/tuticorin/construction-companies': '/location/thoothukudi/construction-companies'
+    'location/tuticorin/construction-companies': '/location/thoothukudi/construction-companies',
+    'location/tuticorin/institutional-contractor': '/location/thoothukudi/institutional-contractor'
   };
   if (REDIRECTS_MAP[fullSlugStr]) {
     redirect(REDIRECTS_MAP[fullSlugStr]);
