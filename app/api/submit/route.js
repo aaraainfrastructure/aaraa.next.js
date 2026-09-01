@@ -31,7 +31,7 @@ function validateFile(filename, mimeType, bufferSize) {
 
 export async function POST(request) {
   try {
-    const ipAddress = request.headers.get("x-forwarded-for") || "127.0.0.1";
+    const ipAddress = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "127.0.0.1";
     const contentType = request.headers.get("content-type") || "";
 
     let fields = {};
@@ -59,14 +59,16 @@ export async function POST(request) {
       }
     }
 
-    // Honeypot anti-spam check
-    if ((fields._honeypot && fields._honeypot.trim() !== "") || (fields.company_website_hp && fields.company_website_hp.trim() !== "")) {
+    // Safe Honeypot anti-spam check
+    const hp1 = fields._honeypot;
+    const hp2 = fields.company_website_hp;
+    if ((typeof hp1 === 'string' && hp1.trim() !== '') || (typeof hp2 === 'string' && hp2.trim() !== '')) {
       return Response.json({ success: false, message: "Spam submission rejected." }, { status: 400 });
     }
 
-    const formType = fields._formType || fields.formType || fields.leadType || "Vendor Registration";
-    const company = sanitizeString(fields.company || fields.company_name || "");
-    const name = sanitizeString(fields.contact_person || fields.name || fields.signatory_name || fields.full_name || "");
+    const formType = fields._formType || fields.formType || fields.leadType || "Project Consultation";
+    const company = sanitizeString(fields.company || fields.company_name || fields.companyName || "");
+    const name = sanitizeString(fields.contact_person || fields.name || fields.signatory_name || fields.full_name || fields.fullName || "");
     const category = sanitizeString(fields.vendor_category || fields.vendorCategory || "");
 
     const timestamp = new Date().toISOString();
@@ -81,14 +83,19 @@ export async function POST(request) {
         }
       }
 
-      const uploadDir = path.join(process.cwd(), 'public', 'local_uploads');
-      await fs.mkdir(uploadDir, { recursive: true });
+      // Safe local upload write (with try...catch fallback for read-only serverless filesystems like Vercel)
+      try {
+        const uploadDir = path.join(process.cwd(), 'public', 'local_uploads');
+        await fs.mkdir(uploadDir, { recursive: true });
 
-      for (const up of uploads) {
-        const sanitizedFilename = up.originalname.replace(/\s+/g, "_");
-        const localFilePath = path.join(uploadDir, `${submissionId}_${sanitizedFilename}`);
-        await fs.writeFile(localFilePath, up.buffer);
-        fileUrls[up.fieldname] = `/local_uploads/${submissionId}_${sanitizedFilename}`;
+        for (const up of uploads) {
+          const sanitizedFilename = up.originalname.replace(/\s+/g, "_");
+          const localFilePath = path.join(uploadDir, `${submissionId}_${sanitizedFilename}`);
+          await fs.writeFile(localFilePath, up.buffer);
+          fileUrls[up.fieldname] = `/local_uploads/${submissionId}_${sanitizedFilename}`;
+        }
+      } catch (fsUploadErr) {
+        console.warn("[Local Upload Backup Warning] Could not save upload locally (read-only filesystem):", fsUploadErr.message);
       }
     }
 
@@ -102,11 +109,15 @@ export async function POST(request) {
       ipAddress
     };
 
-    // Save submission locally
-    const localDir = path.join(process.cwd(), 'public', 'local_submissions');
-    await fs.mkdir(localDir, { recursive: true });
-    const submissionPath = path.join(localDir, `submission_${submissionId}.json`);
-    await fs.writeFile(submissionPath, JSON.stringify(record, null, 2), 'utf8');
+    // Safe local submission save (with try...catch fallback for read-only serverless filesystems like Vercel)
+    try {
+      const localDir = path.join(process.cwd(), 'public', 'local_submissions');
+      await fs.mkdir(localDir, { recursive: true });
+      const submissionPath = path.join(localDir, `submission_${submissionId}.json`);
+      await fs.writeFile(submissionPath, JSON.stringify(record, null, 2), 'utf8');
+    } catch (fsDirErr) {
+      console.warn("[Local Submission Backup Warning] Could not save submission locally (read-only filesystem):", fsDirErr.message);
+    }
 
     // Forward to FormBold
     try {
@@ -119,14 +130,22 @@ export async function POST(request) {
       fbFormData.append('_subject', subjectText);
       fbFormData.append('form_type', formType);
       fbFormData.append('submission_id', submissionId);
-      if (fields.email) fbFormData.append('_replyto', fields.email);
-      if (fields.name || fields.contact_person || fields.full_name) {
-        fbFormData.append('_name', fields.name || fields.contact_person || fields.full_name);
-      }
+      if (fields.email && typeof fields.email === 'string') fbFormData.append('_replyto', fields.email.trim());
+      if (name) fbFormData.append('_name', name);
 
+      // Safe field iteration (handles string, boolean, number, array, object)
       for (const [k, v] of Object.entries(fields)) {
-        if (typeof v === 'string' && v.trim() !== '' && !fbFormData.has(k) && !k.startsWith('_')) {
-          fbFormData.append(k, v.trim());
+        if (v === null || v === undefined) continue;
+        if (k.startsWith('_') || fbFormData.has(k)) continue;
+
+        if (typeof v === 'string') {
+          if (v.trim() !== '') fbFormData.append(k, v.trim());
+        } else if (typeof v === 'number' || typeof v === 'boolean') {
+          fbFormData.append(k, String(v));
+        } else if (Array.isArray(v)) {
+          fbFormData.append(k, v.join(', '));
+        } else if (typeof v === 'object') {
+          fbFormData.append(k, JSON.stringify(v));
         }
       }
 
@@ -144,16 +163,24 @@ export async function POST(request) {
       });
 
       if (!fbResponse.ok) {
-        let errText = "FormBold submission error.";
+        let errText = "FormBold submission failed.";
         try {
-          const errJson = await fbResponse.json();
-          errText = errJson.message || errText;
-        } catch (pErr) {
-          const txt = await fbResponse.text();
-          if (txt) errText = txt;
+          const rawText = await fbResponse.text();
+          try {
+            const errJson = JSON.parse(rawText);
+            errText = errJson.message || errJson.error || rawText;
+          } catch {
+            if (rawText && rawText.trim()) errText = rawText.slice(0, 200);
+          }
+        } catch (streamErr) {
+          console.error("Could not read FormBold error response stream:", streamErr);
         }
+
         console.error(`FormBold returned status ${fbResponse.status}:`, errText);
-        return Response.json({ success: false, message: errText }, { status: fbResponse.status || 500 });
+        return Response.json({
+          success: false,
+          message: "Form submission encountered an issue. Please try again or email aaraainfrastructure@gmail.com directly."
+        }, { status: fbResponse.status || 500 });
       }
 
       console.log(`[FormBold Success] ${formType} (${submissionId}) forwarded to FormBold successfully.`);
@@ -161,7 +188,7 @@ export async function POST(request) {
       console.error("FormBold fetch exception:", fbErr);
       return Response.json({
         success: false,
-        message: "Form submission connection error. Please try again."
+        message: "Form submission connection error. Please try again or email aaraainfrastructure@gmail.com directly."
       }, { status: 502 });
     }
 
@@ -173,6 +200,9 @@ export async function POST(request) {
 
   } catch (err) {
     console.error("Error in /api/submit route handler:", err);
-    return Response.json({ success: false, message: "Internal server error occurred." }, { status: 500 });
+    return Response.json({
+      success: false,
+      message: "Submission processed with internal notice. Please email aaraainfrastructure@gmail.com if not contacted within 24 hours."
+    }, { status: 500 });
   }
 }
