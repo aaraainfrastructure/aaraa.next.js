@@ -368,14 +368,14 @@ export default function BlogPostDetail({ page }) {
           {page.quoteText && (
             <div className="blog-quote-block blog-reveal">
               <span className="blog-quote-icon">“</span>
-              <p className="blog-quote-text">"{page.quoteText}"</p>
+              <p className="blog-quote-text">"{page.quoteText.replace(/^["'“]+|["'”]+$/g, '')}"</p>
               <div className="blog-quote-cite">
                 <div className="blog-quote-avatar">
-                  {page.quoteCite ? page.quoteCite.charAt(0) : 'A'}
+                  {page.quoteCite ? page.quoteCite.charAt(0) : 'S'}
                 </div>
                 <div className="blog-quote-meta">
-                  <div className="blog-quote-name">{page.quoteCite.split('/')[0]?.trim()}</div>
-                  <div className="blog-quote-title">{page.quoteCite.split('/')[1]?.trim() || 'AARAA Executive'}</div>
+                  <div className="blog-quote-name">{page.quoteCite ? page.quoteCite.split('/')[0]?.trim() : 'Shanmugam'}</div>
+                  <div className="blog-quote-title">{page.quoteCite && page.quoteCite.includes('/') ? page.quoteCite.split('/')[1]?.trim() : 'Operations Head'}</div>
                 </div>
               </div>
             </div>
