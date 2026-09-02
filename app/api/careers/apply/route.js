@@ -222,6 +222,8 @@ export async function POST(request) {
       const fbFormData = new FormData();
       fbFormData.append('application_id', submissionId);
       fbFormData.append('subject', `AARAA Career Application — ${submissionId} — ${position}`);
+      fbFormData.append('_to', 'aaraainfrastructure@gmail.com');
+      fbFormData.append('_replyto', email);
       fbFormData.append('job_id', jobCode);
       fbFormData.append('job_title', position);
       fbFormData.append('full_name', name);
