@@ -81,7 +81,6 @@ async function generateCareerApplicationId() {
     console.warn("Local storage directory read warning (expected on read-only serverless runtimes):", err.message);
   }
 
-  // If local directory sequence reading is unavailable, use timestamp millis remainder for uniqueness
   const nextSeq = maxSeq > 0 
     ? String(maxSeq + 1).padStart(3, '0')
     : String(Date.now() % 1000).padStart(3, '0');
@@ -239,8 +238,15 @@ export async function POST(request) {
 
       if (uploads.length > 0) {
         const up = uploads[0];
-        const blob = new Blob([up.buffer], { type: up.mimetype || 'application/pdf' });
-        fbFormData.append('resume', blob, up.originalname);
+        // Construct native File object for proper multipart email attachment handling in Node/FormBold
+        const fileObj = new File([up.buffer], up.originalname, { 
+          type: up.mimetype || 'application/pdf' 
+        });
+
+        fbFormData.append('resume', fileObj, up.originalname);
+        fbFormData.append('attachment', fileObj, up.originalname);
+        fbFormData.append('file', fileObj, up.originalname);
+        fbFormData.append('attached_resume_name', up.originalname);
       }
 
       const fbResponse = await fetch(FORMBOLD_URL, {
@@ -269,7 +275,7 @@ export async function POST(request) {
         }, { status: fbResponse.status || 500 });
       }
 
-      console.log(`[FormBold Success] Application ${submissionId} submitted successfully to FormBold (${FORMBOLD_URL}).`);
+      console.log(`[FormBold Success] Application ${submissionId} submitted successfully to FormBold (${FORMBOLD_URL}) with attachment.`);
     } catch (fbErr) {
       console.error("FormBold fetch exception:", fbErr);
       return Response.json({
