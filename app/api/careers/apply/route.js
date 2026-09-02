@@ -63,11 +63,10 @@ async function generateCareerApplicationId() {
   const dateStr = `${year}${month}${day}`;
   const prefix = `AICR${dateStr}-`;
 
-  const localDir = path.join(process.cwd(), 'public', 'local_submissions');
-  await fs.mkdir(localDir, { recursive: true });
-
   let maxSeq = 0;
   try {
+    const localDir = path.join(process.cwd(), 'public', 'local_submissions');
+    await fs.mkdir(localDir, { recursive: true });
     const files = await fs.readdir(localDir);
     for (const f of files) {
       if (f.startsWith(`careers_${prefix}`)) {
@@ -79,10 +78,14 @@ async function generateCareerApplicationId() {
       }
     }
   } catch (err) {
-    console.error("Error reading local_submissions directory:", err);
+    console.warn("Local storage directory read warning (expected on read-only serverless runtimes):", err.message);
   }
 
-  const nextSeq = String(maxSeq + 1).padStart(3, '0');
+  // If local directory sequence reading is unavailable, use timestamp millis remainder for uniqueness
+  const nextSeq = maxSeq > 0 
+    ? String(maxSeq + 1).padStart(3, '0')
+    : String(Date.now() % 1000).padStart(3, '0');
+
   return `${prefix}${nextSeq}`;
 }
 
@@ -117,7 +120,7 @@ export async function POST(request) {
     }
 
     // Honeypot Check
-    if (fields._honeypot && fields._honeypot.trim() !== "") {
+    if (fields._honeypot && String(fields._honeypot).trim() !== "") {
       return Response.json({ success: false, message: "Spam detected." }, { status: 400 });
     }
 
@@ -153,7 +156,7 @@ export async function POST(request) {
 
     const fileUrls = {};
 
-    // File validation
+    // File validation & optional local backup
     if (uploads.length > 0) {
       for (const up of uploads) {
         const check = validateFile(up.originalname, up.mimetype, up.size);
@@ -162,17 +165,21 @@ export async function POST(request) {
         }
       }
 
-      const uploadDir = path.join(process.cwd(), 'public', 'local_uploads');
-      await fs.mkdir(uploadDir, { recursive: true });
+      try {
+        const uploadDir = path.join(process.cwd(), 'public', 'local_uploads');
+        await fs.mkdir(uploadDir, { recursive: true });
 
-      for (const up of uploads) {
-        const sanitizedFilename = up.originalname.replace(/\s+/g, "_");
-        const localFilePath = path.join(uploadDir, `${submissionId}_${sanitizedFilename}`);
-        await fs.writeFile(localFilePath, up.buffer);
+        for (const up of uploads) {
+          const sanitizedFilename = up.originalname.replace(/\s+/g, "_");
+          const localFilePath = path.join(uploadDir, `${submissionId}_${sanitizedFilename}`);
+          await fs.writeFile(localFilePath, up.buffer);
 
-        const publicUrl = `/local_uploads/${submissionId}_${sanitizedFilename}`;
-        fileUrls[up.fieldname] = publicUrl;
-        fileUrls[`${up.fieldname}Name`] = up.originalname;
+          const publicUrl = `/local_uploads/${submissionId}_${sanitizedFilename}`;
+          fileUrls[up.fieldname] = publicUrl;
+          fileUrls[`${up.fieldname}Name`] = up.originalname;
+        }
+      } catch (uploadErr) {
+        console.warn("Local upload storage warning (expected on read-only serverless runtimes):", uploadErr.message);
       }
     }
 
@@ -200,11 +207,15 @@ export async function POST(request) {
       lead_status: "new"
     };
 
-    // Save submission locally for persistence first
-    const localDir = path.join(process.cwd(), 'public', 'local_submissions');
-    await fs.mkdir(localDir, { recursive: true });
-    const submissionPath = path.join(localDir, `careers_${submissionId}.json`);
-    await fs.writeFile(submissionPath, JSON.stringify(record, null, 2), 'utf8');
+    // Save submission locally for persistence (graceful fallback on serverless)
+    try {
+      const localDir = path.join(process.cwd(), 'public', 'local_submissions');
+      await fs.mkdir(localDir, { recursive: true });
+      const submissionPath = path.join(localDir, `careers_${submissionId}.json`);
+      await fs.writeFile(submissionPath, JSON.stringify(record, null, 2), 'utf8');
+    } catch (saveErr) {
+      console.warn("Local submission file save warning (expected on read-only serverless runtimes):", saveErr.message);
+    }
 
     // Submit to FormBold for Career Applications
     try {
@@ -238,15 +249,17 @@ export async function POST(request) {
         }
       });
 
+      // Single-pass response body reading to prevent stream double-read crash
+      const fbRawText = await fbResponse.text();
+      let fbParsed = null;
+      try {
+        fbParsed = JSON.parse(fbRawText);
+      } catch (pErr) {
+        fbParsed = null;
+      }
+
       if (!fbResponse.ok) {
-        let errText = "FormBold submission failed.";
-        try {
-          const errJson = await fbResponse.json();
-          errText = errJson.message || errText;
-        } catch (pErr) {
-          const txt = await fbResponse.text();
-          if (txt) errText = txt;
-        }
+        const errText = (fbParsed && (fbParsed.message || fbParsed.error)) || fbRawText || "FormBold submission failed.";
         console.error(`FormBold returned status ${fbResponse.status}:`, errText);
         return Response.json({
           success: false,
@@ -272,6 +285,6 @@ export async function POST(request) {
 
   } catch (err) {
     console.error("Error in /api/careers/apply route handler:", err);
-    return Response.json({ success: false, message: "Internal server error occurred." }, { status: 500 });
+    return Response.json({ success: false, message: `Internal server error: ${err.message}` }, { status: 500 });
   }
 }
