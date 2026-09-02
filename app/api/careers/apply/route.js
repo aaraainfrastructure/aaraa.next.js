@@ -216,7 +216,77 @@ export async function POST(request) {
       console.warn("Local submission file save warning (expected on read-only serverless runtimes):", saveErr.message);
     }
 
-    // Submit to FormBold for Career Applications
+    // 1. Direct Email Dispatch with ATTACHMENTS to aaraainfrastructure@gmail.com
+    try {
+      const smtpUser = process.env.SMTP_USER || "aaraainfrastructure@gmail.com";
+      const smtpPass = process.env.SMTP_PASS || "aumcvlriokritkwt";
+      const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
+      const smtpPort = parseInt(process.env.SMTP_PORT || "465", 10);
+      const smtpSecure = process.env.SMTP_SECURE !== "false";
+      const smtpTo = process.env.SMTP_TO || "aaraainfrastructure@gmail.com";
+
+      if (smtpUser && smtpPass) {
+        const nodemailer = await import('nodemailer');
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpSecure,
+          auth: { user: smtpUser, pass: smtpPass }
+        });
+
+        const subject = `AARAA Career Application — ${name} — ${position} [${submissionId}]`;
+        const emailAttachments = uploads.map(up => ({
+          filename: up.originalname,
+          content: up.buffer,
+          contentType: up.mimetype || 'application/pdf'
+        }));
+
+        let htmlBody = `
+          <div style="font-family: Arial, sans-serif; max-width: 650px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; color: #1e293b; background: #ffffff;">
+            <div style="border-bottom: 3px solid #ed2f39; padding-bottom: 12px; margin-bottom: 20px;">
+              <h2 style="color: #ed2f39; margin: 0 0 6px; font-size: 22px;">New Job Application Received</h2>
+              <p style="margin: 0; color: #64748b; font-size: 14px;">Application ID: <strong>${submissionId}</strong> | ${timestamp}</p>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px;">
+              <tr style="background-color: #f8fafc;"><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold; width: 35%;">Applied Position</td><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold; color: #ed2f39;">${position} (${jobCode})</td></tr>
+              <tr><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Applicant Name</td><td style="padding: 10px; border: 1px solid #cbd5e1;">${name}</td></tr>
+              <tr style="background-color: #f8fafc;"><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Mobile Number</td><td style="padding: 10px; border: 1px solid #cbd5e1;"><a href="tel:${phone}" style="color: #0284c7; text-decoration: none; font-weight: bold;">${phone}</a></td></tr>
+              <tr><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Email Address</td><td style="padding: 10px; border: 1px solid #cbd5e1;"><a href="mailto:${email}" style="color: #0284c7; text-decoration: none;">${email || 'N/A'}</a></td></tr>
+              <tr style="background-color: #f8fafc;"><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Current Location</td><td style="padding: 10px; border: 1px solid #cbd5e1;">${location}</td></tr>
+              <tr><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Highest Qualification</td><td style="padding: 10px; border: 1px solid #cbd5e1;">${qualification}</td></tr>
+              <tr style="background-color: #f8fafc;"><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Years of Experience</td><td style="padding: 10px; border: 1px solid #cbd5e1;">${experience}</td></tr>
+              ${company !== "N/A" ? `<tr><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Current Company</td><td style="padding: 10px; border: 1px solid #cbd5e1;">${company}</td></tr>` : ''}
+              ${message ? `<tr style="background-color: #f8fafc;"><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Cover Message</td><td style="padding: 10px; border: 1px solid #cbd5e1; white-space: pre-wrap;">${message}</td></tr>` : ''}
+              <tr><td style="padding: 10px; border: 1px solid #cbd5e1; font-weight: bold;">Attached Resume</td><td style="padding: 10px; border: 1px solid #cbd5e1; color: #059669; font-weight: bold;">📎 ${uploads.length > 0 ? uploads[0].originalname : 'No attachment'}</td></tr>
+            </table>
+
+            <div style="background-color: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 12px 16px; margin-top: 16px; font-size: 13px; color: #065f46;">
+              ✔️ <strong>Attachment Status:</strong> The candidate's resume file (<code>${uploads.length > 0 ? uploads[0].originalname : 'N/A'}</code>) is directly attached to this email message.
+            </div>
+
+            <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-top: 24px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
+              Sent automatically by AARAA Infrastructure Careers Portal
+            </p>
+          </div>
+        `;
+
+        await transporter.sendMail({
+          from: `"AARAA Careers Portal" <${smtpUser}>`,
+          to: smtpTo,
+          replyTo: email || smtpUser,
+          subject,
+          html: htmlBody,
+          attachments: emailAttachments
+        });
+
+        console.log(`[Direct SMTP Success] Career application ${submissionId} with attachment successfully emailed to ${smtpTo}.`);
+      }
+    } catch (smtpErr) {
+      console.error("[Direct SMTP Error] Failed to send email via SMTP:", smtpErr);
+    }
+
+    // 2. Submit to FormBold for Backup Dashboard Tracking
     try {
       const fbFormData = new FormData();
       fbFormData.append('application_id', submissionId);
@@ -238,7 +308,6 @@ export async function POST(request) {
 
       if (uploads.length > 0) {
         const up = uploads[0];
-        // Construct native File object for proper multipart email attachment handling in Node/FormBold
         const fileObj = new File([up.buffer], up.originalname, { 
           type: up.mimetype || 'application/pdf' 
         });
@@ -249,39 +318,15 @@ export async function POST(request) {
         fbFormData.append('attached_resume_name', up.originalname);
       }
 
-      const fbResponse = await fetch(FORMBOLD_URL, {
+      await fetch(FORMBOLD_URL, {
         method: 'POST',
         body: fbFormData,
         headers: {
           'Accept': 'application/json'
         }
       });
-
-      // Single-pass response body reading to prevent stream double-read crash
-      const fbRawText = await fbResponse.text();
-      let fbParsed = null;
-      try {
-        fbParsed = JSON.parse(fbRawText);
-      } catch (pErr) {
-        fbParsed = null;
-      }
-
-      if (!fbResponse.ok) {
-        const errText = (fbParsed && (fbParsed.message || fbParsed.error)) || fbRawText || "FormBold submission failed.";
-        console.error(`FormBold returned status ${fbResponse.status}:`, errText);
-        return Response.json({
-          success: false,
-          message: `FormBold submission error (${fbResponse.status}): ${errText}`
-        }, { status: fbResponse.status || 500 });
-      }
-
-      console.log(`[FormBold Success] Application ${submissionId} submitted successfully to FormBold (${FORMBOLD_URL}) with attachment.`);
     } catch (fbErr) {
-      console.error("FormBold fetch exception:", fbErr);
-      return Response.json({
-        success: false,
-        message: "FormBold submission connection error. Please check network and retry."
-      }, { status: 502 });
+      console.warn("FormBold backup submission warning:", fbErr.message);
     }
 
     return Response.json({
