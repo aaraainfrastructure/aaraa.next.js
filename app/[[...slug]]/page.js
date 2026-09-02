@@ -23,6 +23,26 @@ function isJunkOrUtility(sourcePath = '') {
   return false;
 }
 
+function isBlogPostPath(sourcePath = '') {
+  if (!sourcePath) return false;
+  const norm = sourcePath.replace(/\\/g, '/');
+  return (
+    norm.startsWith('blog/') ||
+    norm.startsWith('blog-post-') ||
+    norm.startsWith('potluck-celebration-') ||
+    norm.startsWith('onam-celebration-') ||
+    norm.includes('400-MLD-') ||
+    norm.includes('400-mld-') ||
+    norm.includes('140.6_MW_') ||
+    norm.includes('180-MWp-') ||
+    norm.includes('180-mwp-') ||
+    norm.includes('industrial-development-blue-star') ||
+    norm.includes('solar-epc-civil-infrastructure') ||
+    norm.includes('institutional-development-vibgyor') ||
+    norm.includes('vibgyor-institutional-development')
+  );
+}
+
 export async function generateStaticParams() {
   const ROOT = path.join(process.cwd(), 'legacy-pages');
   const params = [];
@@ -77,7 +97,7 @@ export async function generateMetadata({params}){
   const pathName = slug.join('/');
   let ogImage = '/logo.png';
   
-  if (p.sourcePath && (p.sourcePath.startsWith('blog-post-') || p.sourcePath.startsWith('potluck-celebration-') || p.sourcePath.startsWith('onam-celebration-') || p.sourcePath.startsWith('blog/'))) {
+  if (p.sourcePath && isBlogPostPath(p.sourcePath)) {
     try {
       const ROOT = path.join(process.cwd(), 'legacy-pages');
       const file = path.resolve(ROOT, p.sourcePath);
@@ -203,7 +223,7 @@ export default async function Page({params}){
   }
 
   // Intercept blog posts and render the redesigned premium layout
-  if (p.sourcePath && (p.sourcePath.startsWith('blog-post-') || p.sourcePath.startsWith('potluck-celebration-') || p.sourcePath.startsWith('onam-celebration-') || p.sourcePath.startsWith('blog/'))) {
+  if (p.sourcePath && isBlogPostPath(p.sourcePath)) {
     try {
       const ROOT = path.join(process.cwd(), 'legacy-pages');
       const file = path.resolve(ROOT, p.sourcePath);
@@ -229,4 +249,3 @@ export default async function Page({params}){
     </>
   );
 }
-
