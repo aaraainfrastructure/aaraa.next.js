@@ -370,8 +370,12 @@ export default function BlogPostDetail({ page }) {
               <span className="blog-quote-icon">“</span>
               <p className="blog-quote-text">"{page.quoteText.replace(/^["'“]+|["'”]+$/g, '')}"</p>
               <div className="blog-quote-cite">
-                <div className="blog-quote-avatar">
-                  {page.quoteCite ? page.quoteCite.charAt(0) : 'S'}
+                <div className="blog-quote-avatar" style={{ overflow: 'hidden', padding: 0 }}>
+                  {page.quoteCite && (page.quoteCite.toLowerCase().includes('shanmugam') || page.quoteCite.toLowerCase().includes('operations head')) ? (
+                    <img src="/image/team/shanmugam.png" alt="Shanmugam - Operations Head" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    page.quoteCite ? page.quoteCite.charAt(0) : 'S'
+                  )}
                 </div>
                 <div className="blog-quote-meta">
                   <div className="blog-quote-name">{page.quoteCite ? page.quoteCite.split('/')[0]?.trim() : 'Shanmugam'}</div>
