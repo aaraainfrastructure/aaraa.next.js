@@ -78,6 +78,41 @@ export default function RootLayout({children}){
           `}
         </Script>
 
+        {/* Domain-Wide Dead Click & Quick-Back Frustration Prevention Guard */}
+        <Script id="ux-frustration-prevention-guard" strategy="afterInteractive">
+          {`
+            (function() {
+              if (typeof window === 'undefined') return;
+
+              // 1. Dead Click Prevention: Route clicks on un-linked card thumbnails/badges to their inner <a> links
+              document.addEventListener('click', function(e) {
+                var target = e.target;
+                if (!target) return;
+                if (target.closest('a') || target.closest('button') || target.closest('input') || target.closest('textarea') || target.closest('select')) return;
+
+                var card = target.closest('.blog-card, .blog-slide-card, .project-card, .service-card, .blog-card-img-wrap, .project-item, .peb-gallery-item');
+                if (card) {
+                  var link = card.querySelector('a[href]');
+                  if (link && link.href) {
+                    window.location.href = link.href;
+                  }
+                }
+              }, true);
+
+              // 2. Ensure all external links open in new tab to prevent accidental quick-backs
+              document.addEventListener('DOMContentLoaded', function() {
+                var links = document.querySelectorAll('a[href^="http"]');
+                links.forEach(function(l) {
+                  if (l.hostname !== window.location.hostname && !l.hasAttribute('target')) {
+                    l.setAttribute('target', '_blank');
+                    l.setAttribute('rel', 'noopener noreferrer');
+                  }
+                });
+              });
+            })();
+          `}
+        </Script>
+
         {/* Domain-Wide Mobile/Tablet Lead Form Auto-Pop Suppression Guard */}
         <Script id="disable-mobile-lead-autopop" strategy="afterInteractive">
           {`
