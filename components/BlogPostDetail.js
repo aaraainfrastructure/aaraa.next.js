@@ -384,41 +384,6 @@ export default function BlogPostDetail({ page }) {
               </div>
             </div>
           )}
-
-          {/* Celebration Highlights Section */}
-          <div className="blog-celebration-section blog-reveal">
-            <h3 className="blog-celebration-title">Building a Culture of Excellence</h3>
-            <div className="blog-celebration-grid">
-              <div className="blog-celebration-card">
-                <span className="blog-celebration-icon"><Icons.Users /></span>
-                <div>
-                  <h4 className="blog-celebration-name">Team Spirit</h4>
-                  <p className="blog-celebration-desc">Fostering collaboration, leadership, and structured field mentorship across all active project locations.</p>
-                </div>
-              </div>
-              <div className="blog-celebration-card">
-                <span className="blog-celebration-icon"><Icons.ChefHat /></span>
-                <div>
-                  <h4 className="blog-celebration-name">Homemade Food</h4>
-                  <p className="blog-celebration-desc">Cultivating wellness and a supportive work family dynamic during team luncheons and office potlucks.</p>
-                </div>
-              </div>
-              <div className="blog-celebration-card">
-                <span className="blog-celebration-icon"><Icons.Globe /></span>
-                <div>
-                  <h4 className="blog-celebration-name">Cultural Diversity</h4>
-                  <p className="blog-celebration-desc">Celebrating inclusive growth and unique ideas from young engineering talent from diverse regions.</p>
-                </div>
-              </div>
-              <div className="blog-celebration-card">
-                <span className="blog-celebration-icon"><Icons.Heart /></span>
-                <div>
-                  <h4 className="blog-celebration-name">Employee Engagement</h4>
-                  <p className="blog-celebration-desc">Providing direct career-path mapping and permanent engineering placements for top performers.</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </main>
       </section>
 
