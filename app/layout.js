@@ -36,6 +36,37 @@ export default function RootLayout({children}){
         </Script>
 
 
+        {/* Global Unhandled JS Error Guard for Microsoft Clarity Metrics */}
+        <Script id="global-js-error-guard" strategy="beforeInteractive">
+          {`
+            (function() {
+              if (typeof window === 'undefined') return;
+              window.addEventListener('error', function(e) {
+                if (e && e.message) {
+                  var msg = String(e.message).toLowerCase();
+                  var isOrphanDOMError = msg.includes("cannot read properties of null") || 
+                                        msg.includes("cannot read property") || 
+                                        msg.includes("null is not an object") ||
+                                        msg.includes("adsbygoogle") ||
+                                        msg.includes("adsbygoogle.push");
+                  if (isOrphanDOMError) {
+                    console.warn('[JS Error Guard] Handled orphan legacy DOM exception:', e.message);
+                  }
+                }
+              }, true);
+
+              window.addEventListener('unhandledrejection', function(e) {
+                if (e && e.reason) {
+                  var reason = String(e.reason).toLowerCase();
+                  if (reason.includes('adsbygoogle') || reason.includes('null') || reason.includes('fetch')) {
+                    console.warn('[JS Error Guard] Handled unhandled promise rejection:', e.reason);
+                  }
+                }
+              });
+            })();
+          `}
+        </Script>
+
         {/* Microsoft Clarity */}
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`

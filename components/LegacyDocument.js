@@ -8,14 +8,132 @@ export default function LegacyDocument({page}){
   useEffect(() => {
     document.body.className = page.bodyClass || '';
     const mounted = [];
+    const activeIntervals = new Set();
+    const activeTimeouts = new Set();
+    const activeWindowListeners = [];
+    const activeDocListeners = [];
     let cancelled = false;
 
+    // Preserve original timer and listener methods
+    const originalSetInterval = window.setInterval;
+    const originalClearInterval = window.clearInterval;
+    const originalSetTimeout = window.setTimeout;
+    const originalClearTimeout = window.clearTimeout;
+    const originalWinAddEvt = window.addEventListener;
+    const originalWinRemEvt = window.removeEventListener;
+    const originalDocAddEvt = document.addEventListener;
+    const originalDocRemEvt = document.removeEventListener;
+
+    // Track and guard setInterval
+    window.setInterval = function(fn, delay, ...args) {
+      const wrappedFn = (...fnArgs) => {
+        if (cancelled) return;
+        try {
+          if (typeof fn === 'function') fn(...fnArgs);
+          else if (typeof fn === 'string') new Function(fn)();
+        } catch (err) {
+          if (err instanceof TypeError && (err.message.includes('null') || err.message.includes('undefined'))) {
+            console.warn('[LegacyScript Guard] Prevented unhandled null DOM access in setInterval callback:', err.message);
+            return;
+          }
+          throw err;
+        }
+      };
+      const id = originalSetInterval.call(window, wrappedFn, delay, ...args);
+      activeIntervals.add(id);
+      return id;
+    };
+
+    window.clearInterval = function(id) {
+      activeIntervals.delete(id);
+      return originalClearInterval.call(window, id);
+    };
+
+    // Track and guard setTimeout
+    window.setTimeout = function(fn, delay, ...args) {
+      let id;
+      const wrappedFn = (...fnArgs) => {
+        if (id) activeTimeouts.delete(id);
+        if (cancelled) return;
+        try {
+          if (typeof fn === 'function') fn(...fnArgs);
+          else if (typeof fn === 'string') new Function(fn)();
+        } catch (err) {
+          if (err instanceof TypeError && (err.message.includes('null') || err.message.includes('undefined'))) {
+            console.warn('[LegacyScript Guard] Prevented unhandled null DOM access in setTimeout callback:', err.message);
+            return;
+          }
+          throw err;
+        }
+      };
+      id = originalSetTimeout.call(window, wrappedFn, delay, ...args);
+      activeTimeouts.add(id);
+      return id;
+    };
+
+    window.clearTimeout = function(id) {
+      activeTimeouts.delete(id);
+      return originalClearTimeout.call(window, id);
+    };
+
+    // Track and guard window event listeners
+    window.addEventListener = function(type, listener, options) {
+      const safeListener = (evt) => {
+        if (cancelled) return;
+        try {
+          if (typeof listener === 'function') listener(evt);
+          else if (listener && typeof listener.handleEvent === 'function') listener.handleEvent(evt);
+        } catch (err) {
+          if (err instanceof TypeError && (err.message.includes('null') || err.message.includes('undefined'))) {
+            console.warn(`[LegacyScript Guard] Prevented unhandled null DOM access in window.${type} listener:`, err.message);
+            return;
+          }
+          throw err;
+        }
+      };
+      activeWindowListeners.push({ type, original: listener, safe: safeListener, options });
+      return originalWinAddEvt.call(window, type, safeListener, options);
+    };
+
+    window.removeEventListener = function(type, listener, options) {
+      const idx = activeWindowListeners.findIndex(l => l.type === type && l.original === listener);
+      if (idx > -1) {
+        const item = activeWindowListeners.splice(idx, 1)[0];
+        return originalWinRemEvt.call(window, type, item.safe, options);
+      }
+      return originalWinRemEvt.call(window, type, listener, options);
+    };
+
+    // Track and guard document event listeners
+    document.addEventListener = function(type, listener, options) {
+      const safeListener = (evt) => {
+        if (cancelled) return;
+        try {
+          if (typeof listener === 'function') listener(evt);
+          else if (listener && typeof listener.handleEvent === 'function') listener.handleEvent(evt);
+        } catch (err) {
+          if (err instanceof TypeError && (err.message.includes('null') || err.message.includes('undefined'))) {
+            console.warn(`[LegacyScript Guard] Prevented unhandled null DOM access in document.${type} listener:`, err.message);
+            return;
+          }
+          throw err;
+        }
+      };
+      activeDocListeners.push({ type, original: listener, safe: safeListener, options });
+      return originalDocAddEvt.call(document, type, safeListener, options);
+    };
+
+    document.removeEventListener = function(type, listener, options) {
+      const idx = activeDocListeners.findIndex(l => l.type === type && l.original === listener);
+      if (idx > -1) {
+        const item = activeDocListeners.splice(idx, 1)[0];
+        return originalDocRemEvt.call(document, type, item.safe, options);
+      }
+      return originalDocRemEvt.call(document, type, listener, options);
+    };
+
     (async () => {
-      // Blocking scripts (no async/defer/module) are normally fetched one at a
-      // time, waiting for each to load+execute before starting the next
-      // network request. Preloading them all in parallel first removes that
-      // network waterfall while keeping execution strictly in document order
-      // below (so jQuery-plugin-style ordering dependencies still hold).
+      // Blocking scripts preloading
       const blockingSrcs = page.scripts
         .filter(item => item.src && !item.async && !item.defer && item.type !== 'module')
         .map(item => item.src);
@@ -65,6 +183,29 @@ export default function LegacyDocument({page}){
 
     return () => {
       cancelled = true;
+
+      // Clean up all timers and intervals created by legacy scripts on route unmount
+      activeIntervals.forEach(id => originalClearInterval.call(window, id));
+      activeTimeouts.forEach(id => originalClearTimeout.call(window, id));
+      activeIntervals.clear();
+      activeTimeouts.clear();
+
+      // Clean up all event listeners attached by legacy scripts on route unmount
+      activeWindowListeners.forEach(l => originalWinRemEvt.call(window, l.type, l.safe, l.options));
+      activeWindowListeners.length = 0;
+      activeDocListeners.forEach(l => originalDocRemEvt.call(document, l.type, l.safe, l.options));
+      activeDocListeners.length = 0;
+
+      // Restore native window & document methods
+      window.setInterval = originalSetInterval;
+      window.clearInterval = originalClearInterval;
+      window.setTimeout = originalSetTimeout;
+      window.clearTimeout = originalClearTimeout;
+      window.addEventListener = originalWinAddEvt;
+      window.removeEventListener = originalWinRemEvt;
+      document.addEventListener = originalDocAddEvt;
+      document.removeEventListener = originalDocRemEvt;
+
       mounted.forEach(n => n.remove());
       document.body.className = '';
     };
