@@ -126,6 +126,7 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(11, 19, 43, 0.6) 0%, rgba(11, 19, 43, 0.95) 100%);
+  opacity: 0.8;
   z-index: 2;
 }
 
