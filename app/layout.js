@@ -78,7 +78,7 @@ export default function RootLayout({children}){
           `}
         </Script>
 
-        {/* Domain-Wide Dead Click & Quick-Back Frustration Prevention Guard */}
+        {/* Domain-Wide Dead Click, Broken Image & Quick-Back Frustration Prevention Guard */}
         <Script id="ux-frustration-prevention-guard" strategy="afterInteractive">
           {`
             (function() {
@@ -88,9 +88,25 @@ export default function RootLayout({children}){
               document.addEventListener('click', function(e) {
                 var target = e.target;
                 if (!target) return;
+                
+                // Handle internal hash anchor links safely
+                var anchor = target.closest('a[href^="#"]');
+                if (anchor) {
+                  var hash = anchor.getAttribute('href');
+                  if (hash && hash.length > 1) {
+                    var targetEl = document.querySelector(hash);
+                    if (targetEl) {
+                      e.preventDefault();
+                      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      return;
+                    }
+                  }
+                }
+
+                // Ignore direct clicks on interactive elements
                 if (target.closest('a') || target.closest('button') || target.closest('input') || target.closest('textarea') || target.closest('select')) return;
 
-                var card = target.closest('.blog-card, .blog-slide-card, .project-card, .service-card, .blog-card-img-wrap, .project-item, .peb-gallery-item');
+                var card = target.closest('.blog-card, .blog-slide-card, .project-card, .service-card, .blog-card-img-wrap, .project-item, .peb-gallery-item, .gallery-item');
                 if (card) {
                   var link = card.querySelector('a[href]');
                   if (link && link.href) {
@@ -99,7 +115,19 @@ export default function RootLayout({children}){
                 }
               }, true);
 
-              // 2. Ensure all external links open in new tab to prevent accidental quick-backs
+              // 2. Image Load Error Guard: Automatically handle broken image links gracefully
+              window.addEventListener('error', function(e) {
+                var target = e.target;
+                if (target && target.tagName === 'IMG') {
+                  if (!target.getAttribute('data-fallback-applied')) {
+                    target.setAttribute('data-fallback-applied', 'true');
+                    target.style.objectFit = 'cover';
+                    target.src = '/image/logo/logo-black.png';
+                  }
+                }
+              }, true);
+
+              // 3. Ensure all external links open in new tab to prevent accidental quick-backs
               document.addEventListener('DOMContentLoaded', function() {
                 var links = document.querySelectorAll('a[href^="http"]');
                 links.forEach(function(l) {
