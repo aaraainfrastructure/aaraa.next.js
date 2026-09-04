@@ -1129,4 +1129,12 @@ html body .section-about.p-testimonials .section-about-inner .right .heading-sec
     .section-about.p-testimonials .section-about-inner .right {
         padding: 36px 24px !important;
     }
+}
+
+/* Blog Page Hero Banner Overlay Opacity (60%) */
+.blog-hero-overlay,
+.blog-hero::before,
+.blog-hero::after,
+section.blog-hero .overlay {
+    opacity: 0.6 !important;
 }
