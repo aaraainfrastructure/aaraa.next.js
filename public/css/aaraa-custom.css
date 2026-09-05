@@ -1131,10 +1131,10 @@ html body .section-about.p-testimonials .section-about-inner .right .heading-sec
     }
 }
 
-/* Blog Page Hero Banner Overlay Opacity (60%) */
+/* Blog Page Hero Banner Overlay Opacity (70%) */
 .blog-hero-overlay,
 .blog-hero::before,
 .blog-hero::after,
 section.blog-hero .overlay {
-    opacity: 0.6 !important;
+    opacity: 0.7 !important;
 }
