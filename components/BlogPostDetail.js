@@ -293,16 +293,9 @@ export default function BlogPostDetail({ page }) {
             </div>
           )}
 
-          {/* Article Prose Content */}
-          <article 
-            ref={proseRef}
-            className="blog-prose blog-reveal"
-            dangerouslySetInnerHTML={{ __html: page.articleHtml }}
-          />
-
           {/* Image & Video Gallery Grid */}
           {page.galleryImages && page.galleryImages.length > 0 && (
-            <div className="blog-gallery-section blog-reveal">
+            <div className="blog-gallery-section blog-reveal" style={{ marginBottom: '48px' }}>
               <h3 className="blog-gallery-title">
                 {page.category === 'Corporate & Culture' || (page.title && (page.title.includes('Onam') || page.title.includes('Celebration'))) ? 'Celebration Photo & Video Gallery' : 'Project Site Gallery'}
               </h3>
@@ -363,6 +356,13 @@ export default function BlogPostDetail({ page }) {
               </div>
             </div>
           )}
+
+          {/* Article Prose Content */}
+          <article 
+            ref={proseRef}
+            className="blog-prose blog-reveal"
+            dangerouslySetInnerHTML={{ __html: page.articleHtml }}
+          />
 
           {/* Quote Block */}
           {page.quoteText && (
