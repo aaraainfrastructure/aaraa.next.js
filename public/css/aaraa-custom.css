@@ -1161,4 +1161,249 @@ html body .section-about.p-testimonials .section-about-inner .right .heading-sec
 .blog-hero::after,
 section.blog-hero .overlay {
     opacity: 0.4 !important;
+}
+
+/* ==========================================================================
+   AARAA ISO CERTIFICATES SECTION & MATCH-AND-MOVE MODAL
+   ========================================================================== */
+
+.certificates-section {
+  background-color: #ffffff !important;
+  padding: 60px 0 70px 0 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.certificates-wrapper {
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.certificates-header {
+  margin-bottom: 40px !important;
+  text-align: center !important;
+}
+
+.certificates-header .sub-title {
+  color: #ed2f39 !important;
+  font-size: 13px !important;
+  letter-spacing: 2px !important;
+  font-weight: 700 !important;
+  display: block !important;
+  text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+}
+
+.certificates-header .title {
+  font-size: clamp(2rem, 3.2vw, 2.8rem) !important;
+  color: #0b0c20 !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.certificates-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  gap: 32px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 0 20px !important;
+}
+
+.certificate-card {
+  flex: 1 1 33.333% !important;
+  max-width: 602px !important;
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  cursor: pointer !important;
+  transition: transform 0.4s cubic-bezier(0.22, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.3s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  user-select: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+.certificate-card:hover,
+.certificate-card:focus-visible {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12) !important;
+  border-color: rgba(237, 47, 57, 0.5) !important;
+}
+
+.certificate-img-wrap {
+  width: 100% !important;
+  aspect-ratio: 602 / 869 !important;
+  overflow: hidden !important;
+  border-radius: 6px !important;
+  background: #f8f9fa !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.certificate-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  border-radius: 4px !important;
+}
+
+.certificate-caption {
+  margin-top: 18px !important;
+  text-align: center !important;
+}
+
+.certificate-caption h3 {
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  color: #0b0c20 !important;
+  margin: 0 0 4px 0 !important;
+}
+
+.certificate-caption p {
+  font-size: 14px !important;
+  color: #555555 !important;
+  margin: 0 !important;
+  font-weight: 600 !important;
+}
+
+@media (max-width: 991px) {
+  .certificates-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 28px !important;
+  }
+  .certificate-card {
+    width: 100% !important;
+    max-width: 480px !important;
+  }
+}
+
+/* MATCH & MOVE FULLSCREEN MODAL PREVIEW */
+.cert-modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 999999 !important;
+  background: rgba(11, 12, 32, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.5s cubic-bezier(0.22, 0.8, 0.25, 1) !important;
+}
+
+.cert-modal-overlay.active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.cert-modal-close {
+  position: absolute !important;
+  top: 24px !important;
+  right: 28px !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  font-size: 32px !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 1000010 !important;
+  transition: all 0.3s ease !important;
+  outline: none !important;
+}
+
+.cert-modal-close:hover,
+.cert-modal-close:focus-visible {
+  background: #ed2f39 !important;
+  border-color: #ed2f39 !important;
+  transform: scale(1.1) !important;
+}
+
+.cert-modal-stage {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+.cert-modal-card {
+  position: absolute !important;
+  width: min(602px, 86vw) !important;
+  height: auto !important;
+  max-height: 88vh !important;
+  aspect-ratio: 602 / 869 !important;
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45) !important;
+  padding: 12px !important;
+  box-sizing: border-box !important;
+  transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.25, 1),
+              opacity 0.7s cubic-bezier(0.22, 0.8, 0.25, 1),
+              filter 0.7s cubic-bezier(0.22, 0.8, 0.25, 1) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  will-change: transform, opacity, filter !important;
+}
+
+.cert-modal-card img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  border-radius: 6px !important;
+}
+
+/* Modal Card States according to user table */
+.cert-modal-card.state-center {
+  z-index: 1000005 !important;
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+  cursor: default !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+.cert-modal-card.state-left {
+  z-index: 1000001 !important;
+  opacity: 0.20 !important;
+  filter: blur(2px) !important;
+  transform: translate3d(-52vw, 0, 0) scale(0.82) !important;
+}
+
+.cert-modal-card.state-right {
+  z-index: 1000001 !important;
+  opacity: 0.20 !important;
+  filter: blur(2px) !important;
+  transform: translate3d(52vw, 0, 0) scale(0.82) !important;
+}
+
+@media (max-width: 768px) {
+  .cert-modal-card.state-left {
+    transform: translate3d(-65vw, 0, 0) scale(0.75) !important;
+  }
+  .cert-modal-card.state-right {
+    transform: translate3d(65vw, 0, 0) scale(0.75) !important;
+  }
 }
