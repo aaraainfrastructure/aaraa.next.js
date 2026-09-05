@@ -206,6 +206,8 @@ export default async function Page({params}){
   }
 
   const REDIRECTS_MAP = {
+    'blog/rmky-industrial-construction-dobbaspet-karnataka': '/blog/ramky-industrial-construction-dobbaspet-karnataka',
+    'rmky-industrial-construction-dobbaspet-karnataka': '/ramky-industrial-construction-dobbaspet-karnataka',
     'location/tuticorin/solar-epc-contractor': '/location/thoothukudi/solar-epc-contractor',
     'location/tuticorin/commercial-contractor': '/location/thoothukudi/commercial-contractor',
     'location/tuticorin/construction-companies': '/location/thoothukudi/construction-companies',
