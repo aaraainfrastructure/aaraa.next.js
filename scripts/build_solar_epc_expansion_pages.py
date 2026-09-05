@@ -12,7 +12,7 @@ SOLAR_PAGES_DATA = [
         "h1": "Solar EPC Contractors in Chennai | Turnkey Solar Power Projects",
         "proof_title": "Proven Tamil Nadu Solar Reference: 180 MWp Utility Solar Power Project",
         "proof_text": "Headquartered in Guindy, Chennai, AARAA Infrastructure delivered full civil, structural, and electrical Balance of Plant (BoP) execution for the landmark <strong>180 MWp Utility Solar Power Project in Tuticorin, Tamil Nadu</strong>.",
-        "sectors": "Industrial rooftop solar arrays in Sriperumbudur & Oragadam, commercial corporate office rooftop solar, utility-scale ground-mounted solar parks, and high-voltage grid evacuation switchyards."
+        "sectors": "industrial solar power arrays in Sriperumbudur & Oragadam, commercial corporate office solar EPC, utility-scale ground-mounted solar parks, and high-voltage grid evacuation switchyards."
     },
     {
         "location_key": "karnataka",
@@ -33,12 +33,12 @@ SOLAR_PAGES_DATA = [
         "canonical_url": "https://www.aaraainfrastructure.com/location/delhi/solar-epc-contractor",
         "location_name": "Delhi",
         "title": "Solar EPC Contractors in Delhi | Top Solar EPC Companies",
-        "meta_desc": "Explore leading Solar EPC contractors in Delhi. Turnkey commercial, industrial & rooftop solar power plant engineering across Delhi NCR. Request a consultation.",
+        "meta_desc": "Explore leading Solar EPC contractors in Delhi. Turnkey commercial, industrial & solar EPC power plant engineering across Delhi NCR. Request a consultation.",
         "meta_keywords": "Solar EPC Contractors in Delhi, Top Solar EPC Contractors in Delhi, Top 10 Solar EPC Contractors in Delhi, Solar EPC Companies Delhi NCR, Commercial Solar Delhi",
         "h1": "Solar EPC Contractors in Delhi | Turnkey Solar Engineering & EPC",
         "proof_title": "Turnkey Solar Engineering & BoP Capability in Delhi NCR",
         "proof_text": "AARAA Infrastructure provides multi-megawatt turnkey solar EPC services across Delhi, combining DC/AC electrical design, tier-1 module procurement, structural mounting systems, and grid synchronization.",
-        "sectors": "Commercial office rooftop solar systems, institutional campus solar arrays, industrial warehouse solar power plants, and grid-connected solar power projects."
+        "sectors": "Commercial office solar power systems, institutional campus solar arrays, industrial warehouse solar power plants, and grid-connected solar power projects."
     },
     {
         "location_key": "mumbai",
@@ -46,12 +46,12 @@ SOLAR_PAGES_DATA = [
         "canonical_url": "https://www.aaraainfrastructure.com/location/mumbai/solar-epc-contractor",
         "location_name": "Mumbai",
         "title": "Solar EPC Contractors in Mumbai | Top Solar EPC Companies",
-        "meta_desc": "Explore leading Solar EPC contractors in Mumbai. Commercial rooftop solar, industrial solar power plants & turnkey solar EPC across Mumbai & Thane. Request consultation.",
-        "meta_keywords": "Solar EPC Contractors in Mumbai, Top Solar EPC Contractors in Mumbai, Top 10 Solar EPC Contractors in Mumbai, Solar EPC Companies Mumbai, Rooftop Solar Mumbai",
+        "meta_desc": "Explore leading Solar EPC contractors in Mumbai. commercial solar power, industrial solar power plants & turnkey solar EPC across Mumbai & Thane. Request consultation.",
+        "meta_keywords": "Solar EPC Contractors in Mumbai, Top Solar EPC Contractors in Mumbai, Top 10 Solar EPC Contractors in Mumbai, Solar EPC Companies Mumbai, solar EPC Mumbai",
         "h1": "Solar EPC Contractors in Mumbai | Turnkey Commercial & Industrial Solar",
         "proof_title": "Commercial & Industrial Solar Infrastructure Credentials in Mumbai",
-        "proof_text": "With our branch office at WeWork, Oberoi Commerz II, Mumbai, AARAA Infrastructure delivers high-yield commercial rooftop solar installations, industrial plant solar power systems, and high-wind-resistant solar mounting structures across Mumbai, Thane, and Navi Mumbai.",
-        "sectors": "Commercial high-rise rooftop solar arrays, corporate campus solar power, industrial manufacturing plant solar installations in Thane/Rabale, and net-metering solar projects."
+        "proof_text": "With our branch office at WeWork, Oberoi Commerz II, Mumbai, AARAA Infrastructure delivers high-yield commercial solar power installations, industrial plant solar power systems, and high-wind-resistant solar mounting structures across Mumbai, Thane, and Navi Mumbai.",
+        "sectors": "Commercial high-rise solar power arrays, corporate campus solar power, industrial manufacturing plant solar installations in Thane/Rabale, and net-metering solar projects."
     },
     {
         "location_key": "andhra-pradesh",
@@ -124,12 +124,12 @@ SOLAR_PAGES_DATA = [
         "canonical_url": "https://www.aaraainfrastructure.com/location/amaravati/solar-epc-contractor",
         "location_name": "Amaravati",
         "title": "Solar EPC Contractors in Amaravati | Top Solar EPC Companies",
-        "meta_desc": "Explore leading Solar EPC contractors in Amaravati. Delivering commercial rooftop solar, institutional solar power & solar EPC projects across AP capital region.",
+        "meta_desc": "Explore leading Solar EPC contractors in Amaravati. Delivering commercial solar power, institutional solar power & solar EPC projects across AP capital region.",
         "meta_keywords": "Solar EPC Contractors in Amaravati, Top Solar EPC Contractors in Amaravati, Top 10 Solar EPC Contractors in Amaravati, Solar EPC Companies Amaravati",
         "h1": "Solar EPC Contractors in Amaravati | Turnkey Solar Infrastructure Projects",
         "proof_title": "Capital & Regional Renewable Solar EPC Capability in Andhra Pradesh",
-        "proof_text": "AARAA Infrastructure provides turnkey solar EPC engineering, rooftop solar installations, ground-mounted solar arrays, and grid integration across Andhra Pradesh capital region and industrial corridors.",
-        "sectors": "Civic & institutional building rooftop solar systems, commercial office solar power, industrial manufacturing plant solar roofs, and utility solar infrastructure."
+        "proof_text": "AARAA Infrastructure provides turnkey solar EPC engineering, solar EPC installations, ground-mounted solar arrays, and grid integration across Andhra Pradesh capital region and industrial corridors.",
+        "sectors": "Civic & institutional building solar power systems, commercial office solar power, industrial manufacturing plant solar roofs, and utility solar infrastructure."
     },
     {
         "location_key": "telangana",
@@ -137,7 +137,7 @@ SOLAR_PAGES_DATA = [
         "canonical_url": "https://www.aaraainfrastructure.com/location/telangana/solar-epc-contractor",
         "location_name": "Telangana",
         "title": "Solar EPC Contractors in Telangana | Top Solar EPC Companies",
-        "meta_desc": "Explore leading Solar EPC contractors in Telangana. Delivering industrial captive solar plants, commercial rooftop solar & utility solar across TSIIC Hyderabad.",
+        "meta_desc": "Explore leading Solar EPC contractors in Telangana. Delivering industrial captive solar plants, commercial solar power & utility solar across TSIIC Hyderabad.",
         "meta_keywords": "Solar EPC Contractors in Telangana, Top Solar EPC Contractors in Telangana, Top 10 Solar EPC Contractors in Telangana, Solar EPC Companies Hyderabad",
         "h1": "Solar EPC Contractors in Telangana | Turnkey Industrial & Utility Solar",
         "proof_title": "Industrial Solar EPC & BoP Credentials in Telangana",
@@ -150,12 +150,12 @@ SOLAR_PAGES_DATA = [
         "canonical_url": "https://www.aaraainfrastructure.com/location/ncr/solar-epc-contractor",
         "location_name": "NCR",
         "title": "Solar EPC Contractors in NCR | Top Solar EPC Companies",
-        "meta_desc": "Explore leading Solar EPC contractors in NCR (Delhi NCR). Industrial warehouse rooftop solar, commercial solar power plants & solar EPC across Noida & Gurugram.",
+        "meta_desc": "Explore leading Solar EPC contractors in NCR (Delhi NCR). Industrial warehouse solar EPC, commercial solar power plants & solar EPC across Noida & Gurugram.",
         "meta_keywords": "Solar EPC Contractors in NCR, Top Solar EPC Contractors in NCR, Top 10 Solar EPC Contractors in Delhi NCR, Solar EPC Noida Gurugram, Industrial Solar NCR",
         "h1": "Solar EPC Contractors in NCR | Turnkey Industrial & Commercial Solar",
         "proof_title": "Industrial & Commercial Solar EPC Credentials in Delhi NCR",
-        "proof_text": "AARAA Infrastructure delivers high-capacity industrial rooftop solar systems, automated logistics hub solar power plants, and commercial building solar installations across National Capital Region hubs (Noida, Greater Noida, Gurugram, Faridabad).",
-        "sectors": "Logistics distribution hub rooftop solar, automotive manufacturing plant solar systems, electronic assembly facility solar power, and commercial solar microgrids."
+        "proof_text": "AARAA Infrastructure delivers high-capacity industrial solar power systems, automated logistics hub solar power plants, and commercial building solar installations across National Capital Region hubs (Noida, Greater Noida, Gurugram, Faridabad).",
+        "sectors": "Logistics distribution hub solar EPC, automotive manufacturing plant solar systems, electronic assembly facility solar power, and commercial solar microgrids."
     },
     {
         "location_key": "tamil-nadu",
@@ -167,8 +167,8 @@ SOLAR_PAGES_DATA = [
         "meta_keywords": "Solar EPC Contractors in Tamil Nadu, Top Solar EPC Contractors in Tamil Nadu, Top 10 Solar EPC Contractors in Tamil Nadu, Solar EPC Companies TN, Utility Solar TN",
         "h1": "Solar EPC Contractors in Tamil Nadu | Turnkey Utility & Industrial Solar",
         "proof_title": "Statewide Utility & Industrial Solar Infrastructure Credentials",
-        "proof_text": "Headquartered in Guindy, Chennai, AARAA Infrastructure executed full Balance of Plant (BoP) scope for the landmark <strong>180 MWp Utility Solar Power Project in Tuticorin</strong>, alongside industrial rooftop solar plants across Sriperumbudur, Hosur, and Coimbatore.",
-        "sectors": "Utility-scale ground-mounted solar PV power parks, industrial captive solar plants, commercial corporate rooftop solar arrays, and high-voltage grid evacuation switchyards."
+        "proof_text": "Headquartered in Guindy, Chennai, AARAA Infrastructure executed full Balance of Plant (BoP) scope for the landmark <strong>180 MWp Utility Solar Power Project in Tuticorin</strong>, alongside industrial solar power plants across Sriperumbudur, Hosur, and Coimbatore.",
+        "sectors": "Utility-scale ground-mounted solar PV power parks, industrial captive solar plants, commercial corporate solar power arrays, and high-voltage grid evacuation switchyards."
     }
 ]
 
@@ -207,7 +207,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         "addressRegion": "{location_name}",
         "addressCountry": "IN"
       }},
-      "description": "Leading Solar EPC contractor in {location_name} specializing in turnkey engineering, procurement, and construction for utility-scale solar parks, industrial rooftop solar, and commercial solar power plants."
+      "description": "Leading Solar EPC contractor in {location_name} specializing in turnkey engineering, procurement, and construction for utility-scale solar parks, industrial solar power, and commercial solar power plants."
     }}
     </script>
 
@@ -222,7 +222,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
           "name": "What type of turnkey solar EPC projects does AARAA handle in {location_name}?",
           "acceptedAnswer": {{
             "@type": "Answer",
-            "text": "AARAA Infrastructure handles utility-scale ground-mounted solar power plants, industrial captive rooftop solar systems, commercial solar arrays, and wind-solar hybrid Balance of Plant (BoP) packages across {location_name}."
+            "text": "AARAA Infrastructure handles utility-scale ground-mounted solar power plants, industrial captive solar EPC systems, commercial solar arrays, and wind-solar hybrid Balance of Plant (BoP) packages across {location_name}."
           }}
         }},
         {{
@@ -387,7 +387,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <p>When evaluating the <strong>Top 10 Solar EPC Contractors in {location_name}</strong> for utility-scale solar parks or commercial captive power plants, prospective project owners should rely on transparent, objective technical evaluation criteria rather than unverified promotional rankings:</p>
             <ul>
                 <li><strong>1. Single-Point Turnkey Accountability:</strong> Integrated design-build responsibility eliminating multi-vendor coordination risks.</li>
-                <li><strong>2. Proven Solar BoP Track Record:</strong> Verified experience in delivering high-capacity utility solar parks or industrial rooftop solar plants.</li>
+                <li><strong>2. Proven Solar BoP Track Record:</strong> Verified experience in delivering high-capacity utility solar parks or industrial solar power plants.</li>
                 <li><strong>3. In-House Electrical &amp; Structural Design:</strong> Expert solar PV array modeling (PVsyst), 3D shading analysis, and high-wind MMS foundation engineering.</li>
                 <li><strong>4. Tier-1 Procurement Networks:</strong> Direct supply partnerships for ALMM-approved solar modules, Tier-1 central/string inverters, and galvanised steel mounting structures.</li>
                 <li><strong>5. DISCOM &amp; CEIG Clearance Expertise:</strong> Established permit workflows for Chief Electrical Inspectorate to Government (CEIG) approvals and net-metering/open-access PPA clearances.</li>
@@ -529,7 +529,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                                 <option value="Utility-Scale Solar">Utility-Scale Solar</option>
                                 <option value="Industrial Solar">Industrial Solar</option>
                                 <option value="Commercial Solar">Commercial Solar</option>
-                                <option value="Rooftop Solar">Rooftop Solar</option>
+                                <option value="Solar EPC">Solar EPC</option>
                                 <option value="Ground-Mounted Solar">Ground-Mounted Solar</option>
                                 <option value="Solar Power Plant">Solar Power Plant</option>
                                 <option value="Hybrid Renewable Energy">Hybrid Renewable Energy</option>
