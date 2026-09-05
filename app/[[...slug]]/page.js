@@ -39,7 +39,9 @@ function isBlogPostPath(sourcePath = '') {
     norm.includes('industrial-development-blue-star') ||
     norm.includes('solar-epc-civil-infrastructure') ||
     norm.includes('institutional-development-vibgyor') ||
-    norm.includes('vibgyor-institutional-development')
+    norm.includes('vibgyor-institutional-development') ||
+    norm.includes('ramky-industrial-construction-dobbaspet-karnataka') ||
+    norm.includes('rmky-industrial-construction-dobbaspet-karnataka')
   );
 }
 
