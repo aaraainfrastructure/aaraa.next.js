@@ -1296,15 +1296,15 @@ section.blog-hero .overlay {
   position: fixed !important;
   inset: 0 !important;
   z-index: 999999 !important;
-  background: rgba(11, 12, 32, 0.85) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
+  background: rgba(11, 12, 32, 0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   opacity: 0 !important;
   pointer-events: none !important;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .cert-modal-overlay.active {
@@ -1347,62 +1347,29 @@ section.blog-hero .overlay {
   align-items: center !important;
   justify-content: center !important;
   overflow: hidden !important;
+  perspective: 1200px !important;
 }
 
-/* Modal Slot Containers for Center, Left, and Right Receded Positions */
-.cert-modal-slot {
-  position: absolute !important;
-  top: 50% !important;
-  width: min(602px, 86vw) !important;
-  height: auto !important;
-  max-height: 88vh !important;
-  aspect-ratio: 602 / 869 !important;
-  box-sizing: border-box !important;
-  pointer-events: none !important;
-}
-
-.cert-modal-slot.slot-center {
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-}
-
-.cert-modal-slot.slot-left {
-  left: calc(50% - 54vw) !important;
-  transform: translate(-50%, -50%) !important;
-}
-
-.cert-modal-slot.slot-right {
-  left: calc(50% + 54vw) !important;
-  transform: translate(-50%, -50%) !important;
-}
-
-@media (max-width: 768px) {
-  .cert-modal-slot.slot-left {
-    left: calc(50% - 68vw) !important;
-  }
-  .cert-modal-slot.slot-right {
-    left: calc(50% + 68vw) !important;
-  }
-}
-
-/* FLIP Modal Certificate Card Elements */
+/* Layered Certificate Cards inside Stage */
 .cert-modal-card {
   position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: min(602px, calc(100vw - 40px)) !important;
+  height: auto !important;
+  aspect-ratio: 602 / 869 !important;
+  max-height: 88vh !important;
   background: #ffffff !important;
   border-radius: 12px !important;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45) !important;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5) !important;
   padding: 12px !important;
   box-sizing: border-box !important;
   cursor: pointer !important;
   user-select: none !important;
   pointer-events: auto !important;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
   will-change: transform, opacity, filter !important;
 }
 
@@ -1414,39 +1381,47 @@ section.blog-hero .overlay {
   border-radius: 6px !important;
 }
 
+/* Center Active Card (Front, 100%, Full A4) */
 .cert-modal-card.state-center {
   z-index: 1000005 !important;
   opacity: 1 !important;
   filter: blur(0px) brightness(1) !important;
   cursor: default !important;
-  transform: scale(1) !important;
+  transform: translate(-50%, -50%) scale(1) !important;
 }
 
-.cert-modal-card.state-receded {
+/* Left Receded Card (Behind Left, 20% Opacity) */
+.cert-modal-card.state-left {
   z-index: 1000001 !important;
   opacity: 0.20 !important;
-  filter: blur(1px) brightness(0.65) !important;
+  filter: blur(1px) brightness(0.7) !important;
   cursor: pointer !important;
-  transform: scale(0.82) !important;
+  transform: translate(calc(-50% - 240px), -50%) scale(0.82) !important;
 }
 
-/* FLIP GHOST ELEMENT */
-.cert-flip-ghost {
-  position: fixed !important;
-  z-index: 1000020 !important;
-  background: #ffffff !important;
-  border-radius: 8px !important;
-  padding: 8px !important;
-  box-sizing: border-box !important;
-  pointer-events: none !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4) !important;
-  overflow: hidden !important;
+/* Right Receded Card (Behind Right, 20% Opacity) */
+.cert-modal-card.state-right {
+  z-index: 1000001 !important;
+  opacity: 0.20 !important;
+  filter: blur(1px) brightness(0.7) !important;
+  cursor: pointer !important;
+  transform: translate(calc(-50% + 240px), -50%) scale(0.82) !important;
 }
 
-.cert-flip-ghost img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  display: block !important;
-  border-radius: 4px !important;
+@media (max-width: 992px) {
+  .cert-modal-card.state-left {
+    transform: translate(calc(-50% - 160px), -50%) scale(0.75) !important;
+  }
+  .cert-modal-card.state-right {
+    transform: translate(calc(-50% + 160px), -50%) scale(0.75) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .cert-modal-card.state-left {
+    transform: translate(calc(-50% - 90px), -50%) scale(0.68) !important;
+  }
+  .cert-modal-card.state-right {
+    transform: translate(calc(-50% + 90px), -50%) scale(0.68) !important;
+  }
 }

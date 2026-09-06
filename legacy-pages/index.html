@@ -642,10 +642,16 @@ fbq('track', 'PageView');
       
       overlay.innerHTML = `
         <button class="cert-modal-close" id="aaraaCertModalCloseBtn" aria-label="Close modal">&times;</button>
-        <div class="cert-modal-stage">
-          <div class="cert-modal-slot slot-left" id="aaraaSlotLeft"></div>
-          <div class="cert-modal-slot slot-center" id="aaraaSlotCenter"></div>
-          <div class="cert-modal-slot slot-right" id="aaraaSlotRight"></div>
+        <div class="cert-modal-stage" id="aaraaCertModalStage">
+          <div class="cert-modal-card" id="aaraaModalCard0" data-cert-index="0" tabIndex="0" role="button" aria-label="View ISO 9001:2015 Certificate">
+            <img src="${certData[0].src}" alt="ISO 9001:2015 Quality Management System Certificate - AARAA Infrastructure" />
+          </div>
+          <div class="cert-modal-card" id="aaraaModalCard1" data-cert-index="1" tabIndex="0" role="button" aria-label="View ISO 14001:2015 Certificate">
+            <img src="${certData[1].src}" alt="ISO 14001:2015 Environmental Management System Certificate - AARAA Infrastructure" />
+          </div>
+          <div class="cert-modal-card" id="aaraaModalCard2" data-cert-index="2" tabIndex="0" role="button" aria-label="View ISO 45001:2018 Certificate">
+            <img src="${certData[2].src}" alt="ISO 45001:2018 Occupational Health & Safety System Certificate - AARAA Infrastructure" />
+          </div>
         </div>
       `;
       document.body.appendChild(overlay);
@@ -666,39 +672,40 @@ fbq('track', 'PageView');
           window.aaraaCloseCertModal();
         }
       });
+
+      [0, 1, 2].forEach(i => {
+        const cardEl = document.getElementById(`aaraaModalCard${i}`);
+        if (cardEl) {
+          cardEl.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (activeIndex !== null && i !== activeIndex) {
+              window.aaraaSwitchCertModal(i);
+            }
+          });
+        }
+      });
     }
     return overlay;
   }
 
-  function renderSlots(centerIdx) {
-    const leftSlot = document.getElementById('aaraaSlotLeft');
-    const centerSlot = document.getElementById('aaraaSlotCenter');
-    const rightSlot = document.getElementById('aaraaSlotRight');
-
-    const leftIdx = (centerIdx + 2) % 3;
-    const rightIdx = (centerIdx + 1) % 3;
-
-    leftSlot.innerHTML = createCardHTML(leftIdx, 'state-receded');
-    centerSlot.innerHTML = createCardHTML(centerIdx, 'state-center');
-    rightSlot.innerHTML = createCardHTML(rightIdx, 'state-receded');
-
-    leftSlot.firstElementChild.addEventListener('click', function(e) {
-      e.stopPropagation();
-      window.aaraaSwitchCertModal(leftIdx);
+  function applyStates(centerIndex) {
+    [0, 1, 2].forEach(i => {
+      const el = document.getElementById(`aaraaModalCard${i}`);
+      if (!el) return;
+      el.classList.remove('state-center', 'state-left', 'state-right');
+      if (i === centerIndex) {
+        el.classList.add('state-center');
+      } else if (centerIndex === 0) {
+        if (i === 1) el.classList.add('state-right');
+        else if (i === 2) el.classList.add('state-left');
+      } else if (centerIndex === 1) {
+        if (i === 0) el.classList.add('state-left');
+        else if (i === 2) el.classList.add('state-right');
+      } else if (centerIndex === 2) {
+        if (i === 0) el.classList.add('state-right');
+        else if (i === 1) el.classList.add('state-left');
+      }
     });
-    rightSlot.firstElementChild.addEventListener('click', function(e) {
-      e.stopPropagation();
-      window.aaraaSwitchCertModal(rightIdx);
-    });
-  }
-
-  function createCardHTML(idx, stateClass) {
-    const item = certData[idx];
-    return `
-      <div class="cert-modal-card ${stateClass}" data-cert-index="${idx}" tabIndex="0" role="button" aria-label="View ${item.title}">
-        <img src="${item.src}" alt="${item.title} - AARAA Infrastructure" />
-      </div>
-    `;
   }
 
   window.aaraaOpenCertModal = function(index, event) {
@@ -707,61 +714,65 @@ fbq('track', 'PageView');
     activeIndex = index;
     isAnimating = true;
 
-    const cards = document.querySelectorAll('.certificates-row .certificate-card');
-    const triggerCard = cards[index] || (event && event.currentTarget);
-    const startRect = triggerCard ? triggerCard.getBoundingClientRect() : { top: window.innerHeight/2 - 200, left: window.innerWidth/2 - 150, width: 300, height: 400 };
+    const rowCards = document.querySelectorAll('.certificates-row .certificate-card');
+    const firstRects = Array.from(rowCards).map(card => card.getBoundingClientRect());
 
-    renderSlots(index);
-    const centerSlot = document.getElementById('aaraaSlotCenter');
-    const centerCard = centerSlot.firstElementChild;
-    if (centerCard) centerCard.style.opacity = '0';
+    applyStates(index);
 
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    const targetRect = centerSlot.getBoundingClientRect();
+    const modalCards = [
+      document.getElementById('aaraaModalCard0'),
+      document.getElementById('aaraaModalCard1'),
+      document.getElementById('aaraaModalCard2')
+    ];
+    const lastRects = modalCards.map(card => card.getBoundingClientRect());
 
-    const ghost = document.createElement('div');
-    ghost.className = 'cert-flip-ghost';
-    ghost.style.left = startRect.left + 'px';
-    ghost.style.top = startRect.top + 'px';
-    ghost.style.width = startRect.width + 'px';
-    ghost.style.height = startRect.height + 'px';
-    ghost.innerHTML = `<img src="${certData[index].src}" alt="" />`;
-    document.body.appendChild(ghost);
+    const animPromises = [];
+    modalCards.forEach((card, i) => {
+      const first = firstRects[i];
+      const last = lastRects[i];
+      if (!first || !last || last.width === 0) return;
 
-    const anim = ghost.animate([
-      {
-        left: startRect.left + 'px',
-        top: startRect.top + 'px',
-        width: startRect.width + 'px',
-        height: startRect.height + 'px',
-        borderRadius: '12px'
-      },
-      {
-        left: targetRect.left + 'px',
-        top: targetRect.top + 'px',
-        width: targetRect.width + 'px',
-        height: targetRect.height + 'px',
-        borderRadius: '12px'
-      }
-    ], {
-      duration: 600,
-      easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      fill: 'forwards'
+      const deltaX = (first.left + first.width / 2) - (last.left + last.width / 2);
+      const deltaY = (first.top + first.height / 2) - (last.top + last.height / 2);
+      const scale = first.width / last.width;
+      const targetOpacity = i === index ? 1 : 0.20;
+
+      let baseStateTranslate = 'translate(-50%, -50%)';
+      if (card.classList.contains('state-left')) baseStateTranslate = 'translate(calc(-50% - 240px), -50%)';
+      else if (card.classList.contains('state-right')) baseStateTranslate = 'translate(calc(-50% + 240px), -50%)';
+
+      const anim = card.animate([
+        {
+          transform: `${baseStateTranslate} translate(${deltaX}px, ${deltaY}px) scale(${scale})`,
+          opacity: 1
+        },
+        {
+          transform: `${baseStateTranslate} translate(0px, 0px) scale(${i === index ? 1 : 0.82})`,
+          opacity: targetOpacity
+        }
+      ], {
+        duration: 750,
+        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        fill: 'both'
+      });
+
+      animPromises.push(anim.finished);
     });
 
-    anim.onfinish = function() {
-      if (centerCard) centerCard.style.opacity = '1';
-      if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+    Promise.all(animPromises).then(() => {
       isAnimating = false;
-    };
+    }).catch(() => {
+      isAnimating = false;
+    });
   };
 
   window.aaraaSwitchCertModal = function(newIndex) {
     if (isAnimating || newIndex === activeIndex) return;
     activeIndex = newIndex;
-    renderSlots(newIndex);
+    applyStates(newIndex);
   };
 
   window.aaraaCloseCertModal = function() {
@@ -770,54 +781,59 @@ fbq('track', 'PageView');
     if (!overlay || !overlay.classList.contains('active')) return;
 
     isAnimating = true;
-    const centerSlot = document.getElementById('aaraaSlotCenter');
-    const centerCard = centerSlot ? centerSlot.firstElementChild : null;
-    const centerRect = centerCard ? centerCard.getBoundingClientRect() : centerSlot.getBoundingClientRect();
+    const rowCards = document.querySelectorAll('.certificates-row .certificate-card');
+    const targetRects = Array.from(rowCards).map(card => card.getBoundingClientRect());
 
-    const cards = document.querySelectorAll('.certificates-row .certificate-card');
-    const targetCard = cards[activeIndex];
-    const endRect = targetCard ? targetCard.getBoundingClientRect() : { top: window.innerHeight/2 - 200, left: window.innerWidth/2 - 150, width: 300, height: 400 };
-
-    if (centerCard) centerCard.style.opacity = '0';
+    const modalCards = [
+      document.getElementById('aaraaModalCard0'),
+      document.getElementById('aaraaModalCard1'),
+      document.getElementById('aaraaModalCard2')
+    ];
+    const currentRects = modalCards.map(card => card.getBoundingClientRect());
 
     overlay.classList.remove('active');
     document.body.style.overflow = '';
 
-    const ghost = document.createElement('div');
-    ghost.className = 'cert-flip-ghost';
-    ghost.style.left = centerRect.left + 'px';
-    ghost.style.top = centerRect.top + 'px';
-    ghost.style.width = centerRect.width + 'px';
-    ghost.style.height = centerRect.height + 'px';
-    ghost.innerHTML = `<img src="${certData[activeIndex].src}" alt="" />`;
-    document.body.appendChild(ghost);
+    const animPromises = [];
+    modalCards.forEach((card, i) => {
+      const current = currentRects[i];
+      const target = targetRects[i];
+      if (!current || !target || current.width === 0) return;
 
-    const anim = ghost.animate([
-      {
-        left: centerRect.left + 'px',
-        top: centerRect.top + 'px',
-        width: centerRect.width + 'px',
-        height: centerRect.height + 'px',
-        borderRadius: '12px'
-      },
-      {
-        left: endRect.left + 'px',
-        top: endRect.top + 'px',
-        width: endRect.width + 'px',
-        height: endRect.height + 'px',
-        borderRadius: '12px'
-      }
-    ], {
-      duration: 500,
-      easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      fill: 'forwards'
+      const deltaX = (target.left + target.width / 2) - (current.left + current.width / 2);
+      const deltaY = (target.top + target.height / 2) - (current.top + current.height / 2);
+      const scale = target.width / current.width;
+      const startOpacity = i === activeIndex ? 1 : 0.20;
+
+      let baseStateTranslate = 'translate(-50%, -50%)';
+      if (card.classList.contains('state-left')) baseStateTranslate = 'translate(calc(-50% - 240px), -50%)';
+      else if (card.classList.contains('state-right')) baseStateTranslate = 'translate(calc(-50% + 240px), -50%)';
+
+      const anim = card.animate([
+        {
+          transform: `${baseStateTranslate} translate(0px, 0px) scale(${i === activeIndex ? 1 : 0.82})`,
+          opacity: startOpacity
+        },
+        {
+          transform: `${baseStateTranslate} translate(${deltaX}px, ${deltaY}px) scale(${scale})`,
+          opacity: 1
+        }
+      ], {
+        duration: 650,
+        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        fill: 'both'
+      });
+
+      animPromises.push(anim.finished);
     });
 
-    anim.onfinish = function() {
-      if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+    Promise.all(animPromises).then(() => {
       activeIndex = null;
       isAnimating = false;
-    };
+    }).catch(() => {
+      activeIndex = null;
+      isAnimating = false;
+    });
   };
 })();
 </script>
