@@ -1367,21 +1367,21 @@ section.blog-hero .overlay {
 }
 
 .cert-modal-slot.slot-left {
-  left: calc(50% - 52vw) !important;
+  left: calc(50% - 54vw) !important;
   transform: translate(-50%, -50%) !important;
 }
 
 .cert-modal-slot.slot-right {
-  left: calc(50% + 52vw) !important;
+  left: calc(50% + 54vw) !important;
   transform: translate(-50%, -50%) !important;
 }
 
 @media (max-width: 768px) {
   .cert-modal-slot.slot-left {
-    left: calc(50% - 66vw) !important;
+    left: calc(50% - 68vw) !important;
   }
   .cert-modal-slot.slot-right {
-    left: calc(50% + 66vw) !important;
+    left: calc(50% + 68vw) !important;
   }
 }
 
@@ -1397,10 +1397,12 @@ section.blog-hero .overlay {
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45) !important;
   padding: 12px !important;
   box-sizing: border-box !important;
-  transform-origin: top left !important;
   cursor: pointer !important;
   user-select: none !important;
   pointer-events: auto !important;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
   will-change: transform, opacity, filter !important;
 }
 
@@ -1412,12 +1414,12 @@ section.blog-hero .overlay {
   border-radius: 6px !important;
 }
 
-/* Modal Card States according to user table */
 .cert-modal-card.state-center {
   z-index: 1000005 !important;
   opacity: 1 !important;
   filter: blur(0px) brightness(1) !important;
   cursor: default !important;
+  transform: scale(1) !important;
 }
 
 .cert-modal-card.state-receded {
@@ -1425,4 +1427,26 @@ section.blog-hero .overlay {
   opacity: 0.20 !important;
   filter: blur(1px) brightness(0.65) !important;
   cursor: pointer !important;
+  transform: scale(0.82) !important;
+}
+
+/* FLIP GHOST ELEMENT */
+.cert-flip-ghost {
+  position: fixed !important;
+  z-index: 1000020 !important;
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  box-sizing: border-box !important;
+  pointer-events: none !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4) !important;
+  overflow: hidden !important;
+}
+
+.cert-flip-ghost img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  border-radius: 4px !important;
 }
