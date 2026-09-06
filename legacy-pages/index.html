@@ -618,6 +618,210 @@ fbq('track', 'PageView');
   </div>
 </section>
 
+<!-- ISO Certificate Shared-Element FLIP Animation Script -->
+<script>
+(function() {
+  const certData = [
+    { title: 'ISO 9001:2015', sub: 'Quality Management System', src: '/image/certificates/iso-9001-2015-certificate.jpg' },
+    { title: 'ISO 14001:2015', sub: 'Environmental Management System', src: '/image/certificates/iso-14001-2015-certificate.jpg' },
+    { title: 'ISO 45001:2018', sub: 'Occupational Health & Safety System', src: '/image/certificates/iso-45001-2018-certificate.jpg' }
+  ];
+
+  let activeIndex = null;
+  let isAnimating = false;
+
+  function ensureModalDOM() {
+    let overlay = document.getElementById('aaraaCertModalOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'aaraaCertModalOverlay';
+      overlay.className = 'cert-modal-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'ISO Certificates Viewer');
+      
+      overlay.innerHTML = `
+        <button class="cert-modal-close" id="aaraaCertModalCloseBtn" aria-label="Close modal">&times;</button>
+        <div class="cert-modal-stage">
+          <div class="cert-modal-slot slot-left" id="aaraaSlotLeft"></div>
+          <div class="cert-modal-slot slot-center" id="aaraaSlotCenter"></div>
+          <div class="cert-modal-slot slot-right" id="aaraaSlotRight"></div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay || e.target.classList.contains('cert-modal-stage')) {
+          window.aaraaCloseCertModal();
+        }
+      });
+
+      document.getElementById('aaraaCertModalCloseBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        window.aaraaCloseCertModal();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && activeIndex !== null) {
+          window.aaraaCloseCertModal();
+        }
+      });
+    }
+    return overlay;
+  }
+
+  function renderSlots(centerIdx) {
+    const leftSlot = document.getElementById('aaraaSlotLeft');
+    const centerSlot = document.getElementById('aaraaSlotCenter');
+    const rightSlot = document.getElementById('aaraaSlotRight');
+
+    const leftIdx = (centerIdx + 2) % 3;
+    const rightIdx = (centerIdx + 1) % 3;
+
+    leftSlot.innerHTML = createCardHTML(leftIdx, 'state-receded');
+    centerSlot.innerHTML = createCardHTML(centerIdx, 'state-center');
+    rightSlot.innerHTML = createCardHTML(rightIdx, 'state-receded');
+
+    leftSlot.firstElementChild.addEventListener('click', function(e) {
+      e.stopPropagation();
+      window.aaraaSwitchCertModal(leftIdx);
+    });
+    rightSlot.firstElementChild.addEventListener('click', function(e) {
+      e.stopPropagation();
+      window.aaraaSwitchCertModal(rightIdx);
+    });
+  }
+
+  function createCardHTML(idx, stateClass) {
+    const item = certData[idx];
+    return `
+      <div class="cert-modal-card ${stateClass}" data-cert-index="${idx}" tabIndex="0" role="button" aria-label="View ${item.title}">
+        <img src="${item.src}" alt="${item.title} - AARAA Infrastructure" />
+      </div>
+    `;
+  }
+
+  window.aaraaOpenCertModal = function(index, event) {
+    if (isAnimating) return;
+    const overlay = ensureModalDOM();
+    activeIndex = index;
+    isAnimating = true;
+
+    const cards = document.querySelectorAll('.certificates-row .certificate-card');
+    const triggerCard = cards[index] || (event && event.currentTarget);
+    const startRect = triggerCard ? triggerCard.getBoundingClientRect() : { top: window.innerHeight/2 - 200, left: window.innerWidth/2 - 150, width: 300, height: 400 };
+
+    renderSlots(index);
+    const centerSlot = document.getElementById('aaraaSlotCenter');
+    const centerCard = centerSlot.firstElementChild;
+    if (centerCard) centerCard.style.opacity = '0';
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    const targetRect = centerSlot.getBoundingClientRect();
+
+    const ghost = document.createElement('div');
+    ghost.className = 'cert-flip-ghost';
+    ghost.style.left = startRect.left + 'px';
+    ghost.style.top = startRect.top + 'px';
+    ghost.style.width = startRect.width + 'px';
+    ghost.style.height = startRect.height + 'px';
+    ghost.innerHTML = `<img src="${certData[index].src}" alt="" />`;
+    document.body.appendChild(ghost);
+
+    const anim = ghost.animate([
+      {
+        left: startRect.left + 'px',
+        top: startRect.top + 'px',
+        width: startRect.width + 'px',
+        height: startRect.height + 'px',
+        borderRadius: '12px'
+      },
+      {
+        left: targetRect.left + 'px',
+        top: targetRect.top + 'px',
+        width: targetRect.width + 'px',
+        height: targetRect.height + 'px',
+        borderRadius: '12px'
+      }
+    ], {
+      duration: 600,
+      easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      fill: 'forwards'
+    });
+
+    anim.onfinish = function() {
+      if (centerCard) centerCard.style.opacity = '1';
+      if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+      isAnimating = false;
+    };
+  };
+
+  window.aaraaSwitchCertModal = function(newIndex) {
+    if (isAnimating || newIndex === activeIndex) return;
+    activeIndex = newIndex;
+    renderSlots(newIndex);
+  };
+
+  window.aaraaCloseCertModal = function() {
+    if (isAnimating || activeIndex === null) return;
+    const overlay = document.getElementById('aaraaCertModalOverlay');
+    if (!overlay || !overlay.classList.contains('active')) return;
+
+    isAnimating = true;
+    const centerSlot = document.getElementById('aaraaSlotCenter');
+    const centerCard = centerSlot ? centerSlot.firstElementChild : null;
+    const centerRect = centerCard ? centerCard.getBoundingClientRect() : centerSlot.getBoundingClientRect();
+
+    const cards = document.querySelectorAll('.certificates-row .certificate-card');
+    const targetCard = cards[activeIndex];
+    const endRect = targetCard ? targetCard.getBoundingClientRect() : { top: window.innerHeight/2 - 200, left: window.innerWidth/2 - 150, width: 300, height: 400 };
+
+    if (centerCard) centerCard.style.opacity = '0';
+
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+
+    const ghost = document.createElement('div');
+    ghost.className = 'cert-flip-ghost';
+    ghost.style.left = centerRect.left + 'px';
+    ghost.style.top = centerRect.top + 'px';
+    ghost.style.width = centerRect.width + 'px';
+    ghost.style.height = centerRect.height + 'px';
+    ghost.innerHTML = `<img src="${certData[activeIndex].src}" alt="" />`;
+    document.body.appendChild(ghost);
+
+    const anim = ghost.animate([
+      {
+        left: centerRect.left + 'px',
+        top: centerRect.top + 'px',
+        width: centerRect.width + 'px',
+        height: centerRect.height + 'px',
+        borderRadius: '12px'
+      },
+      {
+        left: endRect.left + 'px',
+        top: endRect.top + 'px',
+        width: endRect.width + 'px',
+        height: endRect.height + 'px',
+        borderRadius: '12px'
+      }
+    ], {
+      duration: 500,
+      easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      fill: 'forwards'
+    });
+
+    anim.onfinish = function() {
+      if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+      activeIndex = null;
+      isAnimating = false;
+    };
+  };
+})();
+</script>
+
 <main class="main-content">
 <section class="section-about h-2 tf-spacing-48">
 <div class="tf-container w-1650">
