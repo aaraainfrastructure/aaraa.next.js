@@ -1020,12 +1020,13 @@ body.yt-ready .yt-hero__poster { opacity: 0; }
 }
 
 .section-about.p-testimonials .section-about-inner .left {
-    flex: 0 0 42% !important;
-    max-width: 42% !important;
-    width: 42% !important;
+    flex: 0 0 38% !important;
+    max-width: 38% !important;
+    width: 38% !important;
     position: relative !important;
     min-height: 480px !important;
     background: #0b0c20 !important;
+    overflow: hidden !important;
 }
 
 .section-about.p-testimonials .section-about-inner .left img,
@@ -1033,17 +1034,21 @@ body.yt-ready .yt-hero__poster { opacity: 0; }
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: left top !important;
+    object-position: left center !important;
     display: block !important;
-    mix-blend-mode: multiply !important;
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+    filter: none !important;
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
 }
 
 .section-about.p-testimonials .section-about-inner .icon-section {
     position: absolute !important;
     top: 0 !important;
-    left: 42% !important;
-    width: 75px !important;
-    height: 75px !important;
+    left: 38% !important;
+    width: 80px !important;
+    height: 80px !important;
     background-color: #ed2f39 !important;
     display: flex !important;
     align-items: center !important;
@@ -1052,9 +1057,12 @@ body.yt-ready .yt-hero__poster { opacity: 0; }
 }
 
 .section-about.p-testimonials .section-about-inner .icon-section i {
-    font-size: 38px !important;
+    font-size: 42px !important;
     color: #ffffff !important;
-    padding-bottom: 0 !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .section-about.p-testimonials .section-about-inner .icon-section::before {
@@ -1062,9 +1070,9 @@ body.yt-ready .yt-hero__poster { opacity: 0; }
 }
 
 .section-about.p-testimonials .section-about-inner .right {
-    flex: 0 0 58% !important;
-    max-width: 58% !important;
-    width: 58% !important;
+    flex: 0 0 62% !important;
+    max-width: 62% !important;
+    width: 62% !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -1110,27 +1118,60 @@ html body .section-about.p-testimonials .section-about-inner .right .heading-sec
     line-height: 1.15 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
-    margin-bottom: 0px !important;
+    margin-bottom: 2px !important;
     color: #ffffff !important;
+    letter-spacing: -0.5px !important;
 }
 
 .section-about.p-testimonials .section-about-inner .right .heading-80-bold {
-    font-size: clamp(2.5rem, 3.8vw, 4.4rem) !important;
+    font-size: clamp(2.6rem, 3.8vw, 4.4rem) !important;
     font-weight: 800 !important;
-    line-height: 1.1 !important;
+    line-height: 1.08 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     margin-bottom: 24px !important;
     color: #ffffff !important;
+    letter-spacing: -0.5px !important;
 }
 
 .section-about.p-testimonials .section-about-inner .right .text p {
-    font-size: clamp(0.95rem, 1.1vw, 1.05rem) !important;
+    font-size: clamp(0.95rem, 1.05vw, 1.05rem) !important;
     font-weight: 700 !important;
     line-height: 1.6 !important;
     color: rgba(255, 255, 255, 0.95) !important;
     margin-bottom: 32px !important;
-    max-width: 560px !important;
+    max-width: 600px !important;
+}
+
+.section-about.p-testimonials .section-about-inner .right .tf-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    height: 52px !important;
+    padding: 0 !important;
+    background: #ed2f39 !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.section-about.p-testimonials .section-about-inner .right .tf-btn span {
+    padding: 0 28px !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.8px !important;
+}
+
+.section-about.p-testimonials .section-about-inner .right .tf-btn .icon {
+    width: 52px !important;
+    height: 52px !important;
+    background: #18192d !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
 }
 
 @media (max-width: 991px) {
@@ -1146,8 +1187,19 @@ html body .section-about.p-testimonials .section-about-inner .right .heading-sec
     }
 
     .section-about.p-testimonials .section-about-inner .left {
-        min-height: 300px !important;
-        height: 300px !important;
+        min-height: 340px !important;
+        height: 340px !important;
+    }
+
+    .section-about.p-testimonials .section-about-inner .left img,
+    .section-about.p-testimonials .section-about-inner .left.image img {
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
+    }
+
+    .section-about.p-testimonials .section-about-inner .icon-section {
+        left: 24px !important;
+        top: 24px !important;
     }
 
     .section-about.p-testimonials .section-about-inner .right {
