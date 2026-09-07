@@ -582,7 +582,7 @@ fbq('track', 'PageView');
       </div>
       <div class="certificates-row" id="certificatesRow">
         <!-- Certificate 1: ISO 9001:2015 -->
-        <div class="certificate-card" data-cert-index="0" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View ISO 9001:2015 Quality Management Certificate" onclick="window.aaraaOpenCertModal(0, event)" onkeydown="if(event.key==='Enter'||event.key===' ')window.aaraaOpenCertModal(0, event)">
+        <div class="certificate-card" id="certCard0" data-cert-index="0" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View ISO 9001:2015 Quality Management Certificate" onclick="window.aaraaOpenCertModal(0, event)" onkeydown="if(event.key==='Enter'||event.key===' ')window.aaraaOpenCertModal(0, event)">
           <div class="certificate-img-wrap">
             <img src="/image/certificates/iso-9001-2015-certificate.jpg" alt="ISO 9001:2015 Quality Management System Certificate - AARAA Infrastructure" class="certificate-img" loading="eager" />
           </div>
@@ -593,7 +593,7 @@ fbq('track', 'PageView');
         </div>
 
         <!-- Certificate 2: ISO 14001:2015 -->
-        <div class="certificate-card" data-cert-index="1" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View ISO 14001:2015 Environmental Management Certificate" onclick="window.aaraaOpenCertModal(1, event)" onkeydown="if(event.key==='Enter'||event.key===' ')window.aaraaOpenCertModal(1, event)">
+        <div class="certificate-card" id="certCard1" data-cert-index="1" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View ISO 14001:2015 Environmental Management Certificate" onclick="window.aaraaOpenCertModal(1, event)" onkeydown="if(event.key==='Enter'||event.key===' ')window.aaraaOpenCertModal(1, event)">
           <div class="certificate-img-wrap">
             <img src="/image/certificates/iso-14001-2015-certificate.jpg" alt="ISO 14001:2015 Environmental Management System Certificate - AARAA Infrastructure" class="certificate-img" loading="eager" />
           </div>
@@ -604,7 +604,7 @@ fbq('track', 'PageView');
         </div>
 
         <!-- Certificate 3: ISO 45001:2018 -->
-        <div class="certificate-card" data-cert-index="2" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View ISO 45001:2018 Occupational Health and Safety Certificate" onclick="window.aaraaOpenCertModal(2, event)" onkeydown="if(event.key==='Enter'||event.key===' ')window.aaraaOpenCertModal(2, event)">
+        <div class="certificate-card" id="certCard2" data-cert-index="2" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View ISO 45001:2018 Occupational Health and Safety Certificate" onclick="window.aaraaOpenCertModal(2, event)" onkeydown="if(event.key==='Enter'||event.key===' ')window.aaraaOpenCertModal(2, event)">
           <div class="certificate-img-wrap">
             <img src="/image/certificates/iso-45001-2018-certificate.jpg" alt="ISO 45001:2018 Occupational Health & Safety Certificate - AARAA Infrastructure" class="certificate-img" loading="eager" />
           </div>
@@ -654,11 +654,15 @@ fbq('track', 'PageView');
   }
 
   function getCertCards() {
+    const list = document.querySelectorAll('.certificates-row .certificate-card');
+    if (list && list.length === 3) {
+      return Array.from(list);
+    }
     return [
       document.getElementById('certCard0'),
       document.getElementById('certCard1'),
       document.getElementById('certCard2')
-    ];
+    ].filter(Boolean);
   }
 
   function applyStates(centerIndex) {
@@ -685,15 +689,22 @@ fbq('track', 'PageView');
     const cards = getCertCards();
     const animPromises = [];
 
+    console.log('[Cert FLIP] Animating 3 cards:', { firsts, lasts, startOpacities, endOpacities });
+
     cards.forEach((card, i) => {
       const first = firsts[i];
       const last = lasts[i];
-      if (!card || !first || !last || last.width === 0 || last.height === 0) return;
+      if (!card || !first || !last || last.width === 0 || last.height === 0) {
+        console.warn('[Cert FLIP] Missing rect for card index', i, { card, first, last });
+        return;
+      }
 
       const dx = first.left - last.left;
       const dy = first.top - last.top;
       const scaleW = first.width / last.width;
       const scaleH = first.height / last.height;
+
+      console.log(`[Cert FLIP] Card ${i} delta:`, { dx, dy, scaleW, scaleH });
 
       card.style.transition = 'none';
 
@@ -721,8 +732,10 @@ fbq('track', 'PageView');
       cards.forEach(card => {
         if (card) card.style.transition = '';
       });
+      console.log('[Cert FLIP] Animation completed clean.');
       if (onComplete) onComplete();
-    }).catch(() => {
+    }).catch(err => {
+      console.error('[Cert FLIP] Animation error:', err);
       cards.forEach(card => {
         if (card) card.style.transition = '';
       });
@@ -731,10 +744,16 @@ fbq('track', 'PageView');
   }
 
   window.aaraaOpenCertModal = function(index, event) {
+    console.log('[Cert FLIP] Open clicked for index:', index);
     if (isAnimating) return;
     const section = document.querySelector('.certificates-section');
     const backdrop = ensureBackdropDOM();
     const cards = getCertCards();
+
+    if (cards.length < 3) {
+      console.error('[Cert FLIP] Could not find 3 certificate cards in DOM!', cards);
+      return;
+    }
 
     if (activeIndex !== null) {
       if (index !== activeIndex) {
@@ -770,6 +789,7 @@ fbq('track', 'PageView');
   };
 
   window.aaraaSwitchCertModal = function(newIndex) {
+    console.log('[Cert FLIP] Switch clicked for index:', newIndex, 'current:', activeIndex);
     if (isAnimating || newIndex === activeIndex || activeIndex === null) return;
     isAnimating = true;
     const cards = getCertCards();
@@ -795,6 +815,7 @@ fbq('track', 'PageView');
   };
 
   window.aaraaCloseCertModal = function() {
+    console.log('[Cert FLIP] Close triggered.');
     if (isAnimating || activeIndex === null) return;
     isAnimating = true;
     const section = document.querySelector('.certificates-section');
