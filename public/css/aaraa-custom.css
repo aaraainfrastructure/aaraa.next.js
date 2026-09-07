@@ -1266,32 +1266,32 @@ section.blog-hero .overlay {
   justify-content: space-between !important;
   gap: 40px !important;
   width: 100% !important;
-  max-width: 1440px !important;
+  max-width: 1560px !important;
   margin: 0 auto !important;
   padding: 0 20px !important;
   box-sizing: border-box !important;
 }
 
 .certificates-side-title {
-  flex: 0 0 42% !important;
-  max-width: 42% !important;
+  flex: 0 0 46% !important;
+  max-width: 46% !important;
   box-sizing: border-box !important;
 }
 
 .cert-hero-title {
   font-family: 'Roboto Condensed', sans-serif !important;
-  font-size: clamp(3.2rem, 5.2vw, 5.8rem) !important;
-  font-weight: 900 !important;
-  line-height: 0.96 !important;
-  letter-spacing: -1.5px !important;
+  font-size: clamp(3rem, 7vw, 125px) !important;
+  font-weight: 800 !important;
+  line-height: 0.98 !important;
+  letter-spacing: -2px !important;
   color: #0b0c20 !important;
   margin: 0 !important;
   text-transform: uppercase !important;
 }
 
 .certificates-row {
-  flex: 0 0 54% !important;
-  max-width: 54% !important;
+  flex: 0 0 50% !important;
+  max-width: 50% !important;
   display: flex !important;
   flex-direction: row !important;
   justify-content: flex-start !important;
