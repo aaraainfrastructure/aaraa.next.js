@@ -780,7 +780,7 @@ fbq('track', 'PageView');
 
     // 3. LAST: Get bounding rects of 3 cards in focus positions
     const lasts = cards.map(c => c.getBoundingClientRect());
-    const endOpacities = [0, 1, 2].map(i => i === index ? 1 : 0.20);
+    const endOpacities = [0, 1, 2].map(i => i === index ? 1 : 0.25);
 
     // 4. INVERT & PLAY: Animate all 3 cards simultaneously
     animate3Cards(firsts, lasts, startOpacities, endOpacities, 800, function() {
@@ -796,7 +796,7 @@ fbq('track', 'PageView');
 
     // 1. FIRST: Current on-screen focus rects & opacities
     const firsts = cards.map(c => c.getBoundingClientRect());
-    const startOpacities = [0, 1, 2].map(i => i === activeIndex ? 1 : 0.20);
+    const startOpacities = [0, 1, 2].map(i => i === activeIndex ? 1 : 0.25);
 
     activeIndex = newIndex;
 
@@ -806,7 +806,7 @@ fbq('track', 'PageView');
 
     // 3. LAST: New focus rects & opacities
     const lasts = cards.map(c => c.getBoundingClientRect());
-    const endOpacities = [0, 1, 2].map(i => i === newIndex ? 1 : 0.20);
+    const endOpacities = [0, 1, 2].map(i => i === newIndex ? 1 : 0.25);
 
     // 4. INVERT & PLAY: Animate position swap
     animate3Cards(firsts, lasts, startOpacities, endOpacities, 800, function() {

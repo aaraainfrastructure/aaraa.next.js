@@ -1393,6 +1393,11 @@ section.blog-hero .overlay {
 }
 
 /* Section Focus-Mode Override for the 3 Actual Certificate Cards */
+.certificates-section.focus-mode {
+  position: relative !important;
+  z-index: 999995 !important;
+}
+
 .certificates-section.focus-mode .certificates-row {
   position: static !important;
 }
@@ -1407,13 +1412,22 @@ section.blog-hero .overlay {
   max-height: 88vh !important;
   background: #ffffff !important;
   border-radius: 12px !important;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6) !important;
   padding: 12px !important;
   box-sizing: border-box !important;
   cursor: pointer !important;
   user-select: none !important;
   pointer-events: auto !important;
   will-change: transform, opacity, filter !important;
+}
+
+.certificates-section.focus-mode .certificate-card img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  opacity: 1 !important;
+  filter: none !important;
 }
 
 .certificates-section.focus-mode .certificate-caption {
@@ -1424,25 +1438,25 @@ section.blog-hero .overlay {
 .certificates-section.focus-mode .certificate-card.state-center {
   z-index: 1000005 !important;
   opacity: 1 !important;
-  filter: blur(0px) brightness(1) !important;
+  filter: none !important;
   cursor: default !important;
   transform: translate(-50%, -50%) scale(1) !important;
 }
 
-/* Left Receded Card (Behind Left, 20% Opacity) */
+/* Left Receded Card (Behind Left, 25% Opacity) */
 .certificates-section.focus-mode .certificate-card.state-left {
   z-index: 1000001 !important;
-  opacity: 0.20 !important;
-  filter: blur(1px) brightness(0.7) !important;
+  opacity: 0.25 !important;
+  filter: none !important;
   cursor: pointer !important;
   transform: translate(calc(-50% - 240px), -50%) scale(0.82) !important;
 }
 
-/* Right Receded Card (Behind Right, 20% Opacity) */
+/* Right Receded Card (Behind Right, 25% Opacity) */
 .certificates-section.focus-mode .certificate-card.state-right {
   z-index: 1000001 !important;
-  opacity: 0.20 !important;
-  filter: blur(1px) brightness(0.7) !important;
+  opacity: 0.25 !important;
+  filter: none !important;
   cursor: pointer !important;
   transform: translate(calc(-50% + 240px), -50%) scale(0.82) !important;
 }
