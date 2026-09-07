@@ -1113,34 +1113,37 @@ html body .section-about.p-testimonials .section-about-inner .right .heading-sec
 }
 
 .section-about.p-testimonials .section-about-inner .right .heading-75 {
-    font-size: clamp(2.2rem, 3.2vw, 3.8rem) !important;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: clamp(2.8rem, 4.2vw, 4.8rem) !important;
     font-weight: 400 !important;
-    line-height: 1.15 !important;
+    line-height: 1.08 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
-    margin-bottom: 2px !important;
+    margin-bottom: 4px !important;
     color: #ffffff !important;
-    letter-spacing: -0.5px !important;
+    letter-spacing: 0px !important;
 }
 
 .section-about.p-testimonials .section-about-inner .right .heading-80-bold {
-    font-size: clamp(2.6rem, 3.8vw, 4.4rem) !important;
-    font-weight: 800 !important;
-    line-height: 1.08 !important;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-size: clamp(3.2rem, 4.8vw, 5.4rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.04 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     margin-bottom: 24px !important;
     color: #ffffff !important;
-    letter-spacing: -0.5px !important;
+    letter-spacing: 0px !important;
 }
 
 .section-about.p-testimonials .section-about-inner .right .text p {
-    font-size: clamp(0.95rem, 1.05vw, 1.05rem) !important;
-    font-weight: 700 !important;
-    line-height: 1.6 !important;
-    color: rgba(255, 255, 255, 0.95) !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: clamp(0.95rem, 1.1vw, 1.1rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.55 !important;
+    color: rgba(255, 255, 255, 0.98) !important;
     margin-bottom: 32px !important;
-    max-width: 600px !important;
+    max-width: 580px !important;
 }
 
 .section-about.p-testimonials .section-about-inner .right .tf-btn {
