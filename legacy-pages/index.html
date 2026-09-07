@@ -621,48 +621,25 @@ fbq('track', 'PageView');
 <!-- ISO Certificate Shared-Element FLIP Animation Script -->
 <script>
 (function() {
-  const certData = [
-    { title: 'ISO 9001:2015', sub: 'Quality Management System', src: '/image/certificates/iso-9001-2015-certificate.jpg' },
-    { title: 'ISO 14001:2015', sub: 'Environmental Management System', src: '/image/certificates/iso-14001-2015-certificate.jpg' },
-    { title: 'ISO 45001:2018', sub: 'Occupational Health & Safety System', src: '/image/certificates/iso-45001-2018-certificate.jpg' }
-  ];
-
   let activeIndex = null;
   let isAnimating = false;
 
-  function ensureModalDOM() {
-    let overlay = document.getElementById('aaraaCertModalOverlay');
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.id = 'aaraaCertModalOverlay';
-      overlay.className = 'cert-modal-overlay';
-      overlay.setAttribute('role', 'dialog');
-      overlay.setAttribute('aria-modal', 'true');
-      overlay.setAttribute('aria-label', 'ISO Certificates Viewer');
-      
-      overlay.innerHTML = `
-        <button class="cert-modal-close" id="aaraaCertModalCloseBtn" aria-label="Close modal">&times;</button>
-        <div class="cert-modal-stage" id="aaraaCertModalStage">
-          <div class="cert-modal-card" id="aaraaModalCard0" data-cert-index="0" tabIndex="0" role="button" aria-label="View ISO 9001:2015 Certificate">
-            <img src="${certData[0].src}" alt="ISO 9001:2015 Quality Management System Certificate - AARAA Infrastructure" />
-          </div>
-          <div class="cert-modal-card" id="aaraaModalCard1" data-cert-index="1" tabIndex="0" role="button" aria-label="View ISO 14001:2015 Certificate">
-            <img src="${certData[1].src}" alt="ISO 14001:2015 Environmental Management System Certificate - AARAA Infrastructure" />
-          </div>
-          <div class="cert-modal-card" id="aaraaModalCard2" data-cert-index="2" tabIndex="0" role="button" aria-label="View ISO 45001:2018 Certificate">
-            <img src="${certData[2].src}" alt="ISO 45001:2018 Occupational Health & Safety System Certificate - AARAA Infrastructure" />
-          </div>
-        </div>
-      `;
-      document.body.appendChild(overlay);
+  function ensureBackdropDOM() {
+    let backdrop = document.getElementById('certFocusBackdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.id = 'certFocusBackdrop';
+      backdrop.className = 'cert-focus-backdrop';
+      backdrop.innerHTML = `<button class="cert-focus-close" id="certFocusCloseBtn" aria-label="Close viewer">&times;</button>`;
+      document.body.appendChild(backdrop);
 
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay || e.target.classList.contains('cert-modal-stage')) {
+      backdrop.addEventListener('click', function(e) {
+        if (e.target === backdrop) {
           window.aaraaCloseCertModal();
         }
       });
 
-      document.getElementById('aaraaCertModalCloseBtn').addEventListener('click', function(e) {
+      document.getElementById('certFocusCloseBtn').addEventListener('click', function(e) {
         e.stopPropagation();
         window.aaraaCloseCertModal();
       });
@@ -672,25 +649,21 @@ fbq('track', 'PageView');
           window.aaraaCloseCertModal();
         }
       });
-
-      [0, 1, 2].forEach(i => {
-        const cardEl = document.getElementById(`aaraaModalCard${i}`);
-        if (cardEl) {
-          cardEl.addEventListener('click', function(e) {
-            e.stopPropagation();
-            if (activeIndex !== null && i !== activeIndex) {
-              window.aaraaSwitchCertModal(i);
-            }
-          });
-        }
-      });
     }
-    return overlay;
+    return backdrop;
+  }
+
+  function getCertCards() {
+    return [
+      document.getElementById('certCard0'),
+      document.getElementById('certCard1'),
+      document.getElementById('certCard2')
+    ];
   }
 
   function applyStates(centerIndex) {
-    [0, 1, 2].forEach(i => {
-      const el = document.getElementById(`aaraaModalCard${i}`);
+    const cards = getCertCards();
+    cards.forEach((el, i) => {
       if (!el) return;
       el.classList.remove('state-center', 'state-left', 'state-right');
       if (i === centerIndex) {
@@ -709,18 +682,13 @@ fbq('track', 'PageView');
   }
 
   function animate3Cards(firsts, lasts, startOpacities, endOpacities, duration, onComplete) {
-    const modalCards = [
-      document.getElementById('aaraaModalCard0'),
-      document.getElementById('aaraaModalCard1'),
-      document.getElementById('aaraaModalCard2')
-    ];
-
+    const cards = getCertCards();
     const animPromises = [];
 
-    modalCards.forEach((card, i) => {
+    cards.forEach((card, i) => {
       const first = firsts[i];
       const last = lasts[i];
-      if (!first || !last || last.width === 0 || last.height === 0) return;
+      if (!card || !first || !last || last.width === 0 || last.height === 0) return;
 
       const dx = first.left - last.left;
       const dy = first.top - last.top;
@@ -750,13 +718,13 @@ fbq('track', 'PageView');
     });
 
     Promise.all(animPromises).then(() => {
-      modalCards.forEach(card => {
-        card.style.transition = '';
+      cards.forEach(card => {
+        if (card) card.style.transition = '';
       });
       if (onComplete) onComplete();
     }).catch(() => {
-      modalCards.forEach(card => {
-        card.style.transition = '';
+      cards.forEach(card => {
+        if (card) card.style.transition = '';
       });
       if (onComplete) onComplete();
     });
@@ -764,31 +732,35 @@ fbq('track', 'PageView');
 
   window.aaraaOpenCertModal = function(index, event) {
     if (isAnimating) return;
-    const overlay = ensureModalDOM();
-    activeIndex = index;
+    const section = document.querySelector('.certificates-section');
+    const backdrop = ensureBackdropDOM();
+    const cards = getCertCards();
+
+    if (activeIndex !== null) {
+      if (index !== activeIndex) {
+        window.aaraaSwitchCertModal(index);
+      }
+      return;
+    }
+
     isAnimating = true;
 
-    // 1. FIRST: Get bounding rects of 3 cards in the row on the page
-    const rowCards = document.querySelectorAll('.certificates-row .certificate-card');
-    const firsts = Array.from(rowCards).map(card => card.getBoundingClientRect());
+    // 1. FIRST: Get bounding rects of 3 cards in row layout on page
+    const firsts = cards.map(c => c.getBoundingClientRect());
     const startOpacities = [1, 1, 1];
 
-    // 2. Set modal state & show overlay
+    // 2. Enable focus mode and apply state classes
+    if (section) section.classList.add('focus-mode');
     applyStates(index);
-    overlay.classList.add('active');
+    activeIndex = index;
+    backdrop.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Force browser layout calculation
-    overlay.offsetHeight;
+    // Force browser layout reflow
+    document.body.offsetHeight;
 
-    // 3. LAST: Get target bounding rects of 3 cards in the modal stage
-    const modalCards = [
-      document.getElementById('aaraaModalCard0'),
-      document.getElementById('aaraaModalCard1'),
-      document.getElementById('aaraaModalCard2')
-    ];
-    const lasts = modalCards.map(card => card.getBoundingClientRect());
-
+    // 3. LAST: Get bounding rects of 3 cards in focus positions
+    const lasts = cards.map(c => c.getBoundingClientRect());
     const endOpacities = [0, 1, 2].map(i => i === index ? 1 : 0.20);
 
     // 4. INVERT & PLAY: Animate all 3 cards simultaneously
@@ -798,31 +770,25 @@ fbq('track', 'PageView');
   };
 
   window.aaraaSwitchCertModal = function(newIndex) {
-    if (isAnimating || newIndex === activeIndex) return;
+    if (isAnimating || newIndex === activeIndex || activeIndex === null) return;
     isAnimating = true;
+    const cards = getCertCards();
 
-    const modalCards = [
-      document.getElementById('aaraaModalCard0'),
-      document.getElementById('aaraaModalCard1'),
-      document.getElementById('aaraaModalCard2')
-    ];
-
-    // 1. FIRST: Current modal positions & opacities
-    const firsts = modalCards.map(card => card.getBoundingClientRect());
+    // 1. FIRST: Current on-screen focus rects & opacities
+    const firsts = cards.map(c => c.getBoundingClientRect());
     const startOpacities = [0, 1, 2].map(i => i === activeIndex ? 1 : 0.20);
 
     activeIndex = newIndex;
 
-    // 2. Set new modal state
+    // 2. Set new focus state
     applyStates(newIndex);
-    const overlay = document.getElementById('aaraaCertModalOverlay');
-    overlay.offsetHeight;
+    document.body.offsetHeight;
 
-    // 3. LAST: New modal positions & opacities
-    const lasts = modalCards.map(card => card.getBoundingClientRect());
+    // 3. LAST: New focus rects & opacities
+    const lasts = cards.map(c => c.getBoundingClientRect());
     const endOpacities = [0, 1, 2].map(i => i === newIndex ? 1 : 0.20);
 
-    // 4. INVERT & PLAY: Animate all 3 cards swapping positions live
+    // 4. INVERT & PLAY: Animate position swap
     animate3Cards(firsts, lasts, startOpacities, endOpacities, 800, function() {
       isAnimating = false;
     });
@@ -830,31 +796,30 @@ fbq('track', 'PageView');
 
   window.aaraaCloseCertModal = function() {
     if (isAnimating || activeIndex === null) return;
-    const overlay = document.getElementById('aaraaCertModalOverlay');
-    if (!overlay || !overlay.classList.contains('active')) return;
-
     isAnimating = true;
+    const section = document.querySelector('.certificates-section');
+    const backdrop = document.getElementById('certFocusBackdrop');
+    const cards = getCertCards();
 
-    const modalCards = [
-      document.getElementById('aaraaModalCard0'),
-      document.getElementById('aaraaModalCard1'),
-      document.getElementById('aaraaModalCard2')
-    ];
-
-    // 1. FIRST: Current modal positions & opacities
-    const firsts = modalCards.map(card => card.getBoundingClientRect());
+    // 1. FIRST: Current focus rects & opacities
+    const firsts = cards.map(c => c.getBoundingClientRect());
     const startOpacities = [0, 1, 2].map(i => i === activeIndex ? 1 : 0.20);
 
-    // 2. LAST: Target positions in the 3-column row on the page
-    const rowCards = document.querySelectorAll('.certificates-row .certificate-card');
-    const lasts = Array.from(rowCards).map(card => card.getBoundingClientRect());
-    const endOpacities = [1, 1, 1];
-
-    // Start overlay fade out
-    overlay.classList.remove('active');
+    // 2. Remove focus mode & state classes
+    if (section) section.classList.remove('focus-mode');
+    cards.forEach(el => {
+      if (el) el.classList.remove('state-center', 'state-left', 'state-right');
+    });
+    if (backdrop) backdrop.classList.remove('active');
     document.body.style.overflow = '';
 
-    // 3. INVERT & PLAY: Animate all 3 cards back to row positions
+    document.body.offsetHeight;
+
+    // 3. LAST: Original row rects on the page
+    const lasts = cards.map(c => c.getBoundingClientRect());
+    const endOpacities = [1, 1, 1];
+
+    // 4. INVERT & PLAY: Animate all 3 cards back to row positions
     animate3Cards(firsts, lasts, startOpacities, endOpacities, 700, function() {
       activeIndex = null;
       isAnimating = false;

@@ -1343,28 +1343,25 @@ section.blog-hero .overlay {
   }
 }
 
-/* MATCH & MOVE FULLSCREEN MODAL PREVIEW OVERLAY */
-.cert-modal-overlay {
+/* MATCH & MOVE DIRECT 3-CARD FOCUS STAGE OVERLAY */
+.cert-focus-backdrop {
   position: fixed !important;
   inset: 0 !important;
-  z-index: 999999 !important;
+  z-index: 999990 !important;
   background: rgba(11, 12, 32, 0.88) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
   opacity: 0 !important;
   pointer-events: none !important;
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.cert-modal-overlay.active {
+.cert-focus-backdrop.active {
   opacity: 1 !important;
   pointer-events: auto !important;
 }
 
-.cert-modal-close {
+.cert-focus-close {
   position: absolute !important;
   top: 24px !important;
   right: 28px !important;
@@ -1385,26 +1382,20 @@ section.blog-hero .overlay {
   outline: none !important;
 }
 
-.cert-modal-close:hover,
-.cert-modal-close:focus-visible {
+.cert-focus-close:hover,
+.cert-focus-close:focus-visible {
   background: #ed2f39 !important;
   border-color: #ed2f39 !important;
   transform: scale(1.1) !important;
 }
 
-.cert-modal-stage {
-  position: absolute !important;
-  inset: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  overflow: hidden !important;
-  perspective: 1200px !important;
+/* Section Focus-Mode Override for the 3 Actual Certificate Cards */
+.certificates-section.focus-mode .certificates-row {
+  position: static !important;
 }
 
-/* Layered Certificate Cards inside Stage */
-.cert-modal-card {
-  position: absolute !important;
+.certificates-section.focus-mode .certificate-card {
+  position: fixed !important;
   top: 50% !important;
   left: 50% !important;
   width: min(602px, calc(100vw - 40px)) !important;
@@ -1419,22 +1410,15 @@ section.blog-hero .overlay {
   cursor: pointer !important;
   user-select: none !important;
   pointer-events: auto !important;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
   will-change: transform, opacity, filter !important;
 }
 
-.cert-modal-card img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  display: block !important;
-  border-radius: 6px !important;
+.certificates-section.focus-mode .certificate-caption {
+  display: none !important;
 }
 
 /* Center Active Card (Front, 100%, Full A4) */
-.cert-modal-card.state-center {
+.certificates-section.focus-mode .certificate-card.state-center {
   z-index: 1000005 !important;
   opacity: 1 !important;
   filter: blur(0px) brightness(1) !important;
@@ -1443,7 +1427,7 @@ section.blog-hero .overlay {
 }
 
 /* Left Receded Card (Behind Left, 20% Opacity) */
-.cert-modal-card.state-left {
+.certificates-section.focus-mode .certificate-card.state-left {
   z-index: 1000001 !important;
   opacity: 0.20 !important;
   filter: blur(1px) brightness(0.7) !important;
@@ -1452,7 +1436,7 @@ section.blog-hero .overlay {
 }
 
 /* Right Receded Card (Behind Right, 20% Opacity) */
-.cert-modal-card.state-right {
+.certificates-section.focus-mode .certificate-card.state-right {
   z-index: 1000001 !important;
   opacity: 0.20 !important;
   filter: blur(1px) brightness(0.7) !important;
@@ -1461,19 +1445,19 @@ section.blog-hero .overlay {
 }
 
 @media (max-width: 992px) {
-  .cert-modal-card.state-left {
+  .certificates-section.focus-mode .certificate-card.state-left {
     transform: translate(calc(-50% - 160px), -50%) scale(0.75) !important;
   }
-  .cert-modal-card.state-right {
+  .certificates-section.focus-mode .certificate-card.state-right {
     transform: translate(calc(-50% + 160px), -50%) scale(0.75) !important;
   }
 }
 
 @media (max-width: 600px) {
-  .cert-modal-card.state-left {
+  .certificates-section.focus-mode .certificate-card.state-left {
     transform: translate(calc(-50% - 90px), -50%) scale(0.68) !important;
   }
-  .cert-modal-card.state-right {
+  .certificates-section.focus-mode .certificate-card.state-right {
     transform: translate(calc(-50% + 90px), -50%) scale(0.68) !important;
   }
 }
