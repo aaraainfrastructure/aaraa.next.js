@@ -1306,6 +1306,7 @@ section.blog-hero .overlay {
 .cert-youtube-iframe {
   width: 100% !important;
   height: 100% !important;
+  object-fit: cover !important;
   border: 0 !important;
   border: none !important;
   outline: none !important;
