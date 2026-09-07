@@ -1418,12 +1418,12 @@ section.blog-hero .overlay {
   position: fixed !important;
   inset: 0 !important;
   z-index: 999990 !important;
-  background: rgba(11, 12, 32, 0.88) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  background: rgba(11, 12, 32, 0.84) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   opacity: 0 !important;
   pointer-events: none !important;
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .cert-focus-backdrop.active {
@@ -1432,16 +1432,16 @@ section.blog-hero .overlay {
 }
 
 .cert-focus-close {
-  position: absolute !important;
+  position: fixed !important;
   top: 24px !important;
   right: 28px !important;
-  width: 50px !important;
-  height: 50px !important;
+  width: 52px !important;
+  height: 52px !important;
   border-radius: 50% !important;
-  background: rgba(255, 255, 255, 0.15) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
   color: #ffffff !important;
-  font-size: 32px !important;
+  font-size: 34px !important;
   line-height: 1 !important;
   display: flex !important;
   align-items: center !important;
@@ -1473,14 +1473,14 @@ section.blog-hero .overlay {
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
-  width: min(602px, calc(100vw - 40px)) !important;
+  width: min(720px, calc(90vw - 20px)) !important;
   height: auto !important;
   aspect-ratio: 602 / 869 !important;
-  max-height: 88vh !important;
+  max-height: 90vh !important;
   background: #ffffff !important;
   border-radius: 12px !important;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6) !important;
-  padding: 12px !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65) !important;
+  padding: 14px !important;
   box-sizing: border-box !important;
   cursor: pointer !important;
   user-select: none !important;
@@ -1495,6 +1495,7 @@ section.blog-hero .overlay {
   display: block !important;
   opacity: 1 !important;
   filter: none !important;
+  border-radius: 6px !important;
 }
 
 .certificates-section.focus-mode .certificate-caption {
@@ -1516,7 +1517,7 @@ section.blog-hero .overlay {
   opacity: 0.25 !important;
   filter: none !important;
   cursor: pointer !important;
-  transform: translate(calc(-50% - 240px), -50%) scale(0.82) !important;
+  transform: translate(calc(-50% - 280px), -50%) scale(0.8) !important;
 }
 
 /* Right Receded Card (Behind Right, 25% Opacity) */
@@ -1525,15 +1526,32 @@ section.blog-hero .overlay {
   opacity: 0.25 !important;
   filter: none !important;
   cursor: pointer !important;
-  transform: translate(calc(-50% + 240px), -50%) scale(0.82) !important;
+  transform: translate(calc(-50% + 280px), -50%) scale(0.8) !important;
 }
 
 @media (max-width: 992px) {
+  .certificates-section.focus-mode .certificate-card {
+    width: min(580px, calc(94vw - 16px)) !important;
+    max-height: 86vh !important;
+  }
   .certificates-section.focus-mode .certificate-card.state-left {
-    transform: translate(calc(-50% - 160px), -50%) scale(0.75) !important;
+    transform: translate(calc(-50% - 160px), -50%) scale(0.72) !important;
   }
   .certificates-section.focus-mode .certificate-card.state-right {
-    transform: translate(calc(-50% + 160px), -50%) scale(0.75) !important;
+    transform: translate(calc(-50% + 160px), -50%) scale(0.72) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .certificates-section.focus-mode .certificate-card {
+    width: calc(100vw - 28px) !important;
+    max-height: 82vh !important;
+  }
+  .certificates-section.focus-mode .certificate-card.state-left {
+    transform: translate(calc(-50% - 80px), -50%) scale(0.65) !important;
+  }
+  .certificates-section.focus-mode .certificate-card.state-right {
+    transform: translate(calc(-50% + 80px), -50%) scale(0.65) !important;
   }
 }
 
