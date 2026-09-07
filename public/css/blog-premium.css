@@ -711,28 +711,74 @@
   margin: 0 auto;
 }
 
+.blog-related-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
 .blog-related-title {
   font-family: var(--font-serif);
   font-size: 36px;
   font-weight: 800;
   color: var(--color-dark);
-  margin-bottom: 48px;
-  text-align: center;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.blog-related-arrow-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.blog-related-arrow-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border, #E2E8F0);
+  color: var(--color-dark, #0F172A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.blog-related-arrow-btn:hover {
+  background: var(--color-primary, #ED2F39);
+  color: #FFFFFF;
+  border-color: var(--color-primary, #ED2F39);
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(237, 47, 57, 0.3);
+}
+
+.blog-related-arrow-btn:active {
+  transform: scale(0.96);
 }
 
 .blog-related-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 24px;
+  padding-bottom: 20px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-@media (min-width: 768px) {
-  .blog-related-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.blog-related-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .blog-related-card {
+  flex: 0 0 calc(33.333% - 16px);
+  min-width: 300px;
   background: var(--color-bg-light);
   border-radius: var(--radius-premium);
   overflow: hidden;
@@ -744,6 +790,20 @@
   flex-direction: column;
   height: 100%;
   transition: all var(--transition-smooth);
+}
+
+@media (max-width: 991px) {
+  .blog-related-card {
+    flex: 0 0 calc(50% - 12px);
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-related-card {
+    flex: 0 0 85%;
+    min-width: 260px;
+  }
 }
 
 .blog-related-card:hover {

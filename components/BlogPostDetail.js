@@ -47,7 +47,10 @@ const Icons = {
 const RELATED_POSTS = [
   { id: 'onam-celebration-at-our-office', title: 'Onam Celebration at Our Office', category: 'Corporate & Culture', image: '/image/blog/onam-celebration-at-our-office.jpg', date: 'August 28, 2026' },
   { id: 'blog-post-9.html', title: 'BOAT Apprenticeship Partner', category: 'Partnerships', image: '/image/blog/blog-boat-partnership.png', date: 'July 3, 2026' },
-  { id: 'blog-post-3.html', title: '180 MWp Solar Project Tuticorin', category: 'Solar Energy', image: '/image/blog/blog-tuticorin.png', date: 'June 20, 2026' }
+  { id: 'blog-post-3.html', title: '180 MWp Solar Project Tuticorin', category: 'Solar Energy', image: '/image/blog/blog-tuticorin.png', date: 'June 20, 2026' },
+  { id: 'ramky-industrial-construction-dobbaspet-karnataka', title: 'RAMKY Industrial Facility Dobbaspet', category: 'Industrial Construction', image: '/image/blog/ramky-industrial-facility.png', date: 'September 1, 2026' },
+  { id: 'solar-infrastructure-project-hulikunte-karnataka', title: 'Solar Infrastructure Project Hulikunte', category: 'Renewable Energy', image: '/image/blog/solar-infrastructure.png', date: 'August 15, 2026' },
+  { id: 'aaraa-infrastructure-strengthens-industry-academia-collaboration-through-mou', title: 'Industry-Academia MoU Collaboration', category: 'Corporate & Growth', image: '/image/blog/mou-signing.png', date: 'August 10, 2026' }
 ];
 
 export default function BlogPostDetail({ page }) {
@@ -56,6 +59,14 @@ export default function BlogPostDetail({ page }) {
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [revealedElements, setRevealedElements] = useState({});
   const proseRef = useRef(null);
+  const relatedScrollRef = useRef(null);
+
+  const scrollRelated = (direction) => {
+    if (relatedScrollRef.current) {
+      const scrollAmount = direction === 'left' ? -380 : 380;
+      relatedScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const openLightbox = (index) => {
     setLightboxIndex(index);
@@ -390,8 +401,36 @@ export default function BlogPostDetail({ page }) {
       {/* Related Posts Section */}
       <section className="blog-related-section">
         <div className="blog-related-container">
-          <h2 className="blog-related-title">Explore Related Stories</h2>
-          <div className="blog-related-grid">
+          <div className="blog-related-header-wrapper">
+            <h2 className="blog-related-title">Explore Related Stories</h2>
+            <div className="blog-related-arrow-nav">
+              <button 
+                type="button"
+                onClick={() => scrollRelated('left')} 
+                className="blog-related-arrow-btn prev"
+                aria-label="Previous story"
+                title="Previous Stories"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 12H5"/>
+                  <path d="M12 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              <button 
+                type="button"
+                onClick={() => scrollRelated('right')} 
+                className="blog-related-arrow-btn next"
+                aria-label="Next story"
+                title="Next Stories"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14"/>
+                  <path d="M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div ref={relatedScrollRef} className="blog-related-grid">
             {RELATED_POSTS.map((post, idx) => (
               <Link key={idx} href={`/${post.id}`} className="blog-related-card">
                 <div className="blog-related-img">
