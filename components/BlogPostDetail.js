@@ -46,11 +46,11 @@ const Icons = {
 // Hardcoded premium related stories data
 const RELATED_POSTS = [
   { id: 'onam-celebration-at-our-office', title: 'Onam Celebration at Our Office', category: 'Corporate & Culture', image: '/image/blog/onam-celebration-at-our-office.jpg', date: 'August 28, 2026' },
-  { id: 'blog-post-9.html', title: 'BOAT Apprenticeship Partner', category: 'Partnerships', image: '/image/blog/blog-boat-partnership.png', date: 'July 3, 2026' },
-  { id: 'blog-post-3.html', title: '180 MWp Solar Project Tuticorin', category: 'Solar Energy', image: '/image/blog/blog-tuticorin.png', date: 'June 20, 2026' },
-  { id: 'ramky-industrial-construction-dobbaspet-karnataka', title: 'RAMKY Industrial Facility Dobbaspet', category: 'Industrial Construction', image: '/image/blog/ramky-industrial-facility.png', date: 'September 1, 2026' },
-  { id: 'solar-infrastructure-project-hulikunte-karnataka', title: 'Solar Infrastructure Project Hulikunte', category: 'Renewable Energy', image: '/image/blog/solar-infrastructure.png', date: 'August 15, 2026' },
-  { id: 'aaraa-infrastructure-strengthens-industry-academia-collaboration-through-mou', title: 'Industry-Academia MoU Collaboration', category: 'Corporate & Growth', image: '/image/blog/mou-signing.png', date: 'August 10, 2026' }
+  { id: 'boat-apprenticeship-partner', title: 'BOAT Apprenticeship Partner', category: 'Partnerships', image: '/image/blog/blog-boat-partnership.png', date: 'July 3, 2026' },
+  { id: '180-mwp-solar-power-project-tuticorin', title: '180 MWp Solar Project Tuticorin', category: 'Solar Energy', image: '/image/blog/blog-tuticorin.png', date: 'June 20, 2026' },
+  { id: 'ramky-industrial-construction-dobbaspet-karnataka', title: 'RAMKY Industrial Facility Dobbaspet', category: 'Industrial Construction', image: '/image/blog/ramky-industrial-construction-dobbaspet-karnataka.jpg', date: 'September 1, 2026' },
+  { id: 'solar-infrastructure-project-hulikunte-karnataka', title: 'Solar Infrastructure Project Hulikunte', category: 'Renewable Energy', image: '/image/blog/solar-infrastructure-project-hulikunte-karnataka.jpg', date: 'August 15, 2026' },
+  { id: 'aaraa-infrastructure-strengthens-industry-academia-collaboration-through-mou', title: 'Industry-Academia MoU Collaboration', category: 'Corporate & Growth', image: '/image/blog/aaraa-infrastructure-strengthens-industry-academia-collaboration-through-mou.jpg', date: 'August 10, 2026' }
 ];
 
 export default function BlogPostDetail({ page }) {
