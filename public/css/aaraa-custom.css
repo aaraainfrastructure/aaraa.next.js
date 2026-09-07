@@ -1273,14 +1273,14 @@ section.blog-hero .overlay {
 }
 
 .certificates-side-title {
-  flex: 0 0 46% !important;
-  max-width: 46% !important;
+  flex: 0 0 44% !important;
+  max-width: 44% !important;
   box-sizing: border-box !important;
 }
 
 .cert-hero-title {
   font-family: 'Roboto Condensed', sans-serif !important;
-  font-size: clamp(3rem, 7vw, 125px) !important;
+  font-size: clamp(3rem, 6.5vw, 110px) !important;
   font-weight: 800 !important;
   line-height: 0.98 !important;
   letter-spacing: -2px !important;
@@ -1289,17 +1289,27 @@ section.blog-hero .overlay {
   text-transform: uppercase !important;
 }
 
-.certificates-row {
-  flex: 0 0 50% !important;
-  max-width: 50% !important;
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
+.certificates-video-wrap {
+  flex: 0 0 52% !important;
+  max-width: 52% !important;
+  width: 52% !important;
+  aspect-ratio: 16 / 9 !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
   position: relative !important;
-  padding: 20px 0 !important;
-  min-height: 460px !important;
-  gap: 0 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14) !important;
+  background: #000000 !important;
+}
+
+.cert-youtube-iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+  border: none !important;
+  outline: none !important;
+  display: block !important;
 }
 
 .certificate-card {
@@ -1394,6 +1404,11 @@ section.blog-hero .overlay {
     flex: 0 0 100% !important;
     max-width: 100% !important;
     text-align: center !important;
+  }
+  .certificates-video-wrap {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
   }
   .certificates-row {
     flex: 0 0 100% !important;
