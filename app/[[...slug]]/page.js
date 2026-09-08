@@ -97,7 +97,7 @@ export async function generateMetadata({params}){
   }
 
   const pathName = slug.join('/');
-  let ogImage = '/logo.png';
+  let ogImage = '/image/project-item/project-item-12.jpg';
   
   if (p.sourcePath && isBlogPostPath(p.sourcePath)) {
     try {
@@ -105,7 +105,7 @@ export async function generateMetadata({params}){
       const file = path.resolve(ROOT, p.sourcePath);
       const rawHtml = await fs.readFile(file, 'utf8');
       const blogData = parseBlogPost(rawHtml, p.sourcePath);
-      if (blogData.heroImage) {
+      if (blogData.heroImage && !blogData.heroImage.includes('logo')) {
         ogImage = blogData.heroImage;
       }
     } catch (err) {
@@ -174,6 +174,16 @@ export async function generateMetadata({params}){
     description: p.description || undefined,
     alternates: { canonical: canonicalUrl },
     robots: { index: true, follow: true },
+    icons: {
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+        { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+        { url: '/image/logo/favicon.png', type: 'image/png' },
+      ],
+      shortcut: '/image/logo/favicon.png',
+      apple: '/apple-touch-icon.png',
+    },
     openGraph: {
       title: p.title,
       description: p.description || undefined,

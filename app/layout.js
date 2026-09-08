@@ -5,6 +5,16 @@ import Script from 'next/script';
 export const metadata = {
   metadataBase: new URL('https://www.aaraainfrastructure.com'),
   title: 'AARAA Infrastructure',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/image/logo/favicon.png', type: 'image/png' },
+    ],
+    shortcut: '/image/logo/favicon.png',
+    apple: '/apple-touch-icon.png',
+  },
   verification: {
     google: 'google_site_verification_placeholder',
     other: {
@@ -17,6 +27,11 @@ export default function RootLayout({children}){
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="shortcut icon" href="/image/logo/favicon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="stylesheet" href="/css/brand_marquee.css" />
       </head>
       <body>
