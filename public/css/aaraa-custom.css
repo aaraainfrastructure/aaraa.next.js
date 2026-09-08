@@ -3,7 +3,7 @@
    ========================================================================== */
 
 :root {
-    --ai-red: #ea2a31;
+    --ai-red: #e8262d;
     --fab-size: 60px;
     --fab-gap: 14px;
     --fab-pad: 18px;
@@ -18,7 +18,7 @@
 
 /* Preloader */
 .ai-preloader {
-    position: fixed; inset: 0; z-index: 9999; background: var(--ai-red);
+    position: fixed; inset: 0; z-index: 9999; background: #e8262d;
     display: grid; place-items: center; opacity: 1; visibility: visible;
     transition: opacity .4s ease, visibility .4s ease;
     animation: aiFadeOut .4s ease forwards; animation-delay: 4s;
