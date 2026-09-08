@@ -1399,12 +1399,20 @@ section.blog-hero .overlay {
   .certificates-content-grid {
     flex-direction: column !important;
     align-items: center !important;
-    gap: 24px !important;
+    gap: 28px !important;
   }
   .certificates-side-title {
     flex: 0 0 100% !important;
     max-width: 100% !important;
     text-align: center !important;
+    margin-top: 8px !important;
+    margin-bottom: 12px !important;
+  }
+  .cert-hero-title {
+    font-size: clamp(2.4rem, 8vw, 4rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.5px !important;
+    margin: 0 auto !important;
   }
   .certificates-video-wrap {
     flex: 0 0 100% !important;
