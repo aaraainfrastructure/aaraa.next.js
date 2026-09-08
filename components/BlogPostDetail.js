@@ -51,7 +51,8 @@ const RELATED_POSTS = [
   { id: 'ramky-industrial-construction-dobbaspet-karnataka', title: 'RAMKY Industrial Facility Dobbaspet', category: 'Industrial Construction', image: '/image/blog/ramky-industrial-construction-dobbaspet-karnataka.jpg', date: 'September 1, 2026' },
   { id: 'solar-infrastructure-project-hulikunte-karnataka', title: 'Solar Infrastructure Project Hulikunte', category: 'Renewable Energy', image: '/image/blog/solar-infrastructure-project-hulikunte-karnataka.jpg', date: 'August 15, 2026' },
   { id: 'aaraa-infrastructure-strengthens-industry-academia-collaboration-through-mou', title: 'Industry-Academia MoU Collaboration', category: 'Corporate & Growth', image: '/image/blog/aaraa-infrastructure-strengthens-industry-academia-collaboration-through-mou.jpg', date: 'August 10, 2026' },
-  { id: '400-mld-swro-desalination-project-perur-chennai', title: '400 MLD SWRO Desalination Plant Perur', category: 'Water Infrastructure', image: '/image/blog/perur-desalination/perur-desalination-1.jpg', date: 'October 22, 2025' }
+  { id: '400-mld-swro-desalination-project-perur-chennai', title: '400 MLD SWRO Desalination Plant Perur', category: 'Water Infrastructure', image: '/image/blog/perur-desalination/perur-desalination-1.jpg', date: 'October 22, 2025' },
+  { id: 'km-palace-marriage-hall-kundrathur-chennai', title: 'KM Palace Marriage Hall Kundrathur', category: 'Commercial Infrastructure', image: '/images/km-palace/km-palace-6.jpg', date: 'September 15, 2025' }
 ];
 
 export default function BlogPostDetail({ page }) {
