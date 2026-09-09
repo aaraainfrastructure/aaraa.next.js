@@ -60,11 +60,26 @@ const RELATED_POSTS = [
 export default function BlogPostDetail({ page }) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('');
+  const [activeSlide, setActiveSlide] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [revealedElements, setRevealedElements] = useState({});
   const proseRef = useRef(null);
   const relatedScrollRef = useRef(null);
   const galleryScrollRef = useRef(null);
+
+  const nextSlide = (e) => {
+    if (e) e.stopPropagation();
+    if (page.galleryImages && page.galleryImages.length > 0) {
+      setActiveSlide((prev) => (prev + 1) % page.galleryImages.length);
+    }
+  };
+
+  const prevSlide = (e) => {
+    if (e) e.stopPropagation();
+    if (page.galleryImages && page.galleryImages.length > 0) {
+      setActiveSlide((prev) => (prev - 1 + page.galleryImages.length) % page.galleryImages.length);
+    }
+  };
 
   const scrollGallery = (direction) => {
     if (galleryScrollRef.current) {
@@ -316,102 +331,87 @@ export default function BlogPostDetail({ page }) {
             </div>
           )}
 
-          {/* Image & Video Gallery Horizontal Carousel Slider */}
+          {/* Image & Video Gallery Featured Main-Column Slideshow */}
           {page.galleryImages && page.galleryImages.length > 0 && (
-            <div className="blog-gallery-section blog-reveal" style={{ marginBottom: '48px' }}>
-              <div className="blog-gallery-header-wrapper">
+            <div className="blog-featured-gallery blog-reveal">
+              <div className="blog-gallery-header-wrapper" style={{ marginBottom: '16px' }}>
                 <h3 className="blog-gallery-title">
                   {page.category === 'Corporate & Culture' || (page.title && (page.title.includes('Onam') || page.title.includes('Celebration'))) ? 'Celebration Photo & Video Gallery' : 'Project Site Gallery'}
                 </h3>
               </div>
 
-              <div className="blog-gallery-slider-wrapper">
-                {page.galleryImages.length > 1 && (
-                  <button 
-                    type="button"
-                    className="blog-gallery-arrow-btn prev"
-                    onClick={() => scrollGallery('left')}
-                    aria-label="Previous gallery image"
-                    title="Previous Image"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M15 18l-6-6 6-6"/>
-                    </svg>
-                  </button>
-                )}
+              {(() => {
+                const currentItem = page.galleryImages[activeSlide] || page.galleryImages[0];
+                const isVideo = currentItem.type === 'video' || currentItem.src.endsWith('.mp4') || currentItem.src.endsWith('.webm');
+                return (
+                  <div>
+                    {/* Featured Image / Video Display Box */}
+                    <div className="blog-featured-img-wrap" onClick={() => openLightbox(activeSlide)}>
+                      {/* Navigation Overlay Arrow Buttons */}
+                      {page.galleryImages.length > 1 && (
+                        <button 
+                          type="button" 
+                          className="blog-featured-overlay-arrow prev" 
+                          onClick={prevSlide}
+                          aria-label="Previous slide"
+                          title="Previous"
+                        >
+                          ‹
+                        </button>
+                      )}
 
-                <div ref={galleryScrollRef} className="blog-gallery-slider">
-                  {page.galleryImages.map((item, index) => {
-                    const isVideo = item.type === 'video' || item.src.endsWith('.mp4') || item.src.endsWith('.webm');
-                    return (
-                      <div 
-                        key={index} 
-                        className="blog-gallery-card"
-                        onClick={() => openLightbox(index)}
-                      >
-                        <div className="blog-gallery-card-img-wrap">
-                          {isVideo ? (
-                            <div style={{ position: 'relative', width: '100%', height: '100%', background: '#000', overflow: 'hidden' }}>
-                              <video 
-                                src={`${item.src}#t=0.1`} 
-                                poster={page.heroImage} 
-                                muted 
-                                preload="metadata" 
-                                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} 
-                              />
-                              <div style={{
-                                position: 'absolute',
-                                inset: 0,
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyCenter: 'center',
-                                background: 'rgba(0,0,0,0.35)'
-                              }}>
-                                <div style={{
-                                  width: '48px',
-                                  height: '48px',
-                                  borderRadius: '50%',
-                                  background: 'rgba(186,0,19,0.95)',
-                                  color: '#fff',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  fontSize: '18px',
-                                  paddingLeft: '3px',
-                                  boxShadow: '0 4px 15px rgba(186,0,19,0.5)'
-                                }}>
-                                  ▶
-                                </div>
-                              </div>
-                            </div>
-                          ) : (
-                            <img src={item.src} alt={item.heading || item.alt} loading="lazy" />
-                          )}
+                      {isVideo ? (
+                        <div style={{ position: 'relative', width: '100%', height: '100%', background: '#000' }}>
+                          <video 
+                            src={`${currentItem.src}#t=0.1`} 
+                            poster={page.heroImage} 
+                            controls 
+                            preload="metadata" 
+                            style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                          />
                         </div>
+                      ) : (
+                        <img src={currentItem.src} alt={currentItem.heading || currentItem.alt} />
+                      )}
 
-                        <div className="blog-gallery-card-body">
-                          <h4 className="blog-gallery-card-title">{item.heading || 'Site Construction'}</h4>
-                          <p className="blog-gallery-card-desc">{item.description || item.alt}</p>
-                        </div>
+                      {page.galleryImages.length > 1 && (
+                        <button 
+                          type="button" 
+                          className="blog-featured-overlay-arrow next" 
+                          onClick={nextSlide}
+                          aria-label="Next slide"
+                          title="Next"
+                        >
+                          ›
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Active Image Title and Description Card */}
+                    <div className="blog-featured-caption-card">
+                      <h4 className="blog-featured-caption-title">{currentItem.heading || 'Project Construction'}</h4>
+                      <p className="blog-featured-caption-desc">{currentItem.description || currentItem.alt}</p>
+                    </div>
+
+                    {/* Interactive Thumbnail Selector Strip */}
+                    {page.galleryImages.length > 1 && (
+                      <div className="blog-featured-thumbnails-row">
+                        {page.galleryImages.map((thumb, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            className={`blog-featured-thumb-btn ${idx === activeSlide ? 'active' : ''}`}
+                            onClick={() => setActiveSlide(idx)}
+                            aria-label={`View slide ${idx + 1}`}
+                          >
+                            <img src={thumb.src} alt={thumb.heading || thumb.alt} />
+                          </button>
+                        ))}
                       </div>
-                    );
-                  })}
-                </div>
-
-                {page.galleryImages.length > 1 && (
-                  <button 
-                    type="button"
-                    className="blog-gallery-arrow-btn next"
-                    onClick={() => scrollGallery('right')}
-                    aria-label="Next gallery image"
-                    title="Next Image"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
-                  </button>
-                )}
-              </div>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
           )}
 
