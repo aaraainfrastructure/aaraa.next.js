@@ -114,6 +114,7 @@ export async function generateMetadata({params}){
   }
 
   const REDIRECTS_MAP = {
+    'blog-post-3': '/blog/aaraa-infrastructure-180mwp-leap-green-project-thoothukudi',
     'work_shed': '/blog/work-shed-construction-gummidipoondi-chennai',
     'rmk-tn': '/blog/ramky-industrial-construction-dobbaspet-karnataka',
     'marriage-hall-details': '/blog/km-palace-marriage-hall-kundrathur-chennai',
@@ -228,6 +229,7 @@ export default async function Page({params}){
   }
 
   const REDIRECTS_MAP = {
+    'blog-post-3': '/blog/aaraa-infrastructure-180mwp-leap-green-project-thoothukudi',
     'work_shed': '/blog/work-shed-construction-gummidipoondi-chennai',
     'rmk-tn': '/blog/ramky-industrial-construction-dobbaspet-karnataka',
     'marriage-hall-details': '/blog/km-palace-marriage-hall-kundrathur-chennai',
