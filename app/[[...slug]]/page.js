@@ -115,6 +115,9 @@ export async function generateMetadata({params}){
 
   const REDIRECTS_MAP = {
     'blog-post-3': '/blog/aaraa-infrastructure-180mwp-leap-green-project-thoothukudi',
+    'icr-civil-foundation-solar-project-toravi-karnataka': '/blog/icr-civil-foundation-solar-project-toravi-karnataka',
+    'icr-civil-foundation-solar-project-toravi-karnataka.html': '/blog/icr-civil-foundation-solar-project-toravi-karnataka',
+    'blog/icr-civil-foundation-solar-project-toravi-karnataka.html': '/blog/icr-civil-foundation-solar-project-toravi-karnataka',
     'shell-projet': '/blog/shell-petrol-bunk-wagholi-pune',
     'blog/shell-projet': '/blog/shell-petrol-bunk-wagholi-pune',
     'work_shed': '/blog/work-shed-construction-gummidipoondi-chennai',
@@ -232,6 +235,9 @@ export default async function Page({params}){
 
   const REDIRECTS_MAP = {
     'blog-post-3': '/blog/aaraa-infrastructure-180mwp-leap-green-project-thoothukudi',
+    'icr-civil-foundation-solar-project-toravi-karnataka': '/blog/icr-civil-foundation-solar-project-toravi-karnataka',
+    'icr-civil-foundation-solar-project-toravi-karnataka.html': '/blog/icr-civil-foundation-solar-project-toravi-karnataka',
+    'blog/icr-civil-foundation-solar-project-toravi-karnataka.html': '/blog/icr-civil-foundation-solar-project-toravi-karnataka',
     'shell-projet': '/blog/shell-petrol-bunk-wagholi-pune',
     'blog/shell-projet': '/blog/shell-petrol-bunk-wagholi-pune',
     'work_shed': '/blog/work-shed-construction-gummidipoondi-chennai',

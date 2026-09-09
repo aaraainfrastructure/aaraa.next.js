@@ -16,6 +16,9 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/projects-details.html', destination: '/completed-projects', permanent: true },
+      { source: '/icr-civil-foundation-solar-project-toravi-karnataka', destination: '/blog/icr-civil-foundation-solar-project-toravi-karnataka', permanent: true },
+      { source: '/icr-civil-foundation-solar-project-toravi-karnataka.html', destination: '/blog/icr-civil-foundation-solar-project-toravi-karnataka', permanent: true },
+      { source: '/blog/icr-civil-foundation-solar-project-toravi-karnataka.html', destination: '/blog/icr-civil-foundation-solar-project-toravi-karnataka', permanent: true },
       { source: '/projects-details', destination: '/completed-projects', permanent: true },
       { source: '/ongoingorchid-project.html', destination: '/project-details-orchid', permanent: true },
       { source: '/ongoingorchid-project', destination: '/project-details-orchid', permanent: true },
