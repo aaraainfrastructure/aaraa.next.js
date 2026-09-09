@@ -1480,7 +1480,7 @@ AARAA is a trusted construction partner known for solving complex challenges, no
           <h2 class="title tf-animate-2">Project Stories &amp; Industry Insights<span style="color:#ea2a31">.</span></h2>
         </div>
       </div>
-      <div class="col-md-4 text-end d-none d-md-flex align-items-center justify-content-end gap-3">
+      <div class="col-md-4 text-end d-flex align-items-center justify-content-end gap-3 mt-3 mt-md-0">
         <!-- Arrow Navigation -->
         <button id="blogPrevBtn" class="blog-nav-btn" aria-label="Previous posts"><i class="fas fa-chevron-left"></i></button>
         <button id="blogNextBtn" class="blog-nav-btn" aria-label="Next posts"><i class="fas fa-chevron-right"></i></button>
@@ -2193,29 +2193,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Mousemove cursor translation
-  container.addEventListener('mousemove', function (e) {
-    if (isDragging) return;
+  // Navigation buttons smooth click sliding
+  function shiftByCards(direction) {
     updateDimensions();
-    
-    var rect = container.getBoundingClientRect();
-    var x = e.clientX - rect.left;
-    
-    // 80px comfort padding zone on left and right to easily hit limits
-    var padding = 80;
-    var activeWidth = rect.width - (padding * 2);
-    if (activeWidth <= 0) return;
-    
-    var relX = x - padding;
-    var percentage = relX / activeWidth;
-    if (percentage < 0) percentage = 0;
-    if (percentage > 1) percentage = 1;
-
-    targetTranslate = -percentage * maxScroll;
+    var firstCard = track.querySelector('.blog-slide-card');
+    var cardWidth = firstCard ? firstCard.offsetWidth : 360;
+    var gap = 30;
+    var shiftAmt = (cardWidth + gap) * direction;
+    targetTranslate = targetTranslate + shiftAmt;
+    targetTranslate = Math.max(-maxScroll, Math.min(0, targetTranslate));
     triggerAnimation();
-  });
+  }
 
-  // Touch and drag implementation
+  // Touch and drag implementation for mobile/touch swipe
   function startDrag(clientX) {
     isDragging = true;
     startX = clientX;
@@ -2255,7 +2245,7 @@ document.addEventListener("DOMContentLoaded", () => {
     triggerAnimation();
   }
 
-  // Drag event listeners
+  // Drag event listeners for touch devices
   container.addEventListener('mousedown', function (e) {
     if (e.button !== 0 || e.target.closest('a') || e.target.closest('button')) return;
     startDrag(e.clientX);
@@ -2290,15 +2280,6 @@ document.addEventListener("DOMContentLoaded", () => {
   container.addEventListener('touchend', function () {
     endDrag();
   });
-
-  // Keep navigation buttons active
-  function shiftByCards(direction) {
-    updateDimensions();
-    var shiftAmt = 370 * direction; // Approximately 1 card width + gap
-    targetTranslate = targetTranslate + shiftAmt;
-    targetTranslate = Math.max(-maxScroll, Math.min(0, targetTranslate));
-    triggerAnimation();
-  }
 
   if (nextBtn) {
     nextBtn.addEventListener('click', function () {
