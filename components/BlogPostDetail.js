@@ -64,6 +64,14 @@ export default function BlogPostDetail({ page }) {
   const [revealedElements, setRevealedElements] = useState({});
   const proseRef = useRef(null);
   const relatedScrollRef = useRef(null);
+  const galleryScrollRef = useRef(null);
+
+  const scrollGallery = (direction) => {
+    if (galleryScrollRef.current) {
+      const scrollAmount = direction === 'left' ? -340 : 340;
+      galleryScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const scrollRelated = (direction) => {
     if (relatedScrollRef.current) {
@@ -308,66 +316,101 @@ export default function BlogPostDetail({ page }) {
             </div>
           )}
 
-          {/* Image & Video Gallery Grid */}
+          {/* Image & Video Gallery Horizontal Carousel Slider */}
           {page.galleryImages && page.galleryImages.length > 0 && (
             <div className="blog-gallery-section blog-reveal" style={{ marginBottom: '48px' }}>
-              <h3 className="blog-gallery-title">
-                {page.category === 'Corporate & Culture' || (page.title && (page.title.includes('Onam') || page.title.includes('Celebration'))) ? 'Celebration Photo & Video Gallery' : 'Project Site Gallery'}
-              </h3>
-              <div className="blog-gallery-grid">
-                {page.galleryImages.map((item, index) => {
-                  const isVideo = item.type === 'video' || item.src.endsWith('.mp4') || item.src.endsWith('.webm');
-                  return (
-                    <div 
-                      key={index} 
-                      className={`blog-gallery-item ${index % 3 === 0 ? 'span-2' : ''}`}
-                      onClick={() => openLightbox(index)}
-                    >
-                      {isVideo ? (
-                        <div style={{ position: 'relative', width: '100%', height: '100%', background: '#000', overflow: 'hidden' }}>
-                          <video 
-                            src={`${item.src}#t=0.1`} 
-                            poster={page.heroImage} 
-                            muted 
-                            preload="metadata" 
-                            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} 
-                          />
-                          <div style={{
-                            position: 'absolute',
-                            inset: 0,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            background: 'rgba(0,0,0,0.35)'
-                          }}>
-                            <div style={{
-                              width: '60px',
-                              height: '60px',
-                              borderRadius: '50%',
-                              background: 'rgba(186,0,19,0.95)',
-                              color: '#fff',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              fontSize: '22px',
-                              paddingLeft: '4px',
-                              boxShadow: '0 4px 25px rgba(186,0,19,0.6)'
-                            }}>
-                              ▶
+              <div className="blog-gallery-header-wrapper">
+                <h3 className="blog-gallery-title">
+                  {page.category === 'Corporate & Culture' || (page.title && (page.title.includes('Onam') || page.title.includes('Celebration'))) ? 'Celebration Photo & Video Gallery' : 'Project Site Gallery'}
+                </h3>
+              </div>
+
+              <div className="blog-gallery-slider-wrapper">
+                {page.galleryImages.length > 1 && (
+                  <button 
+                    type="button"
+                    className="blog-gallery-arrow-btn prev"
+                    onClick={() => scrollGallery('left')}
+                    aria-label="Previous gallery image"
+                    title="Previous Image"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                  </button>
+                )}
+
+                <div ref={galleryScrollRef} className="blog-gallery-slider">
+                  {page.galleryImages.map((item, index) => {
+                    const isVideo = item.type === 'video' || item.src.endsWith('.mp4') || item.src.endsWith('.webm');
+                    return (
+                      <div 
+                        key={index} 
+                        className="blog-gallery-card"
+                        onClick={() => openLightbox(index)}
+                      >
+                        <div className="blog-gallery-card-img-wrap">
+                          {isVideo ? (
+                            <div style={{ position: 'relative', width: '100%', height: '100%', background: '#000', overflow: 'hidden' }}>
+                              <video 
+                                src={`${item.src}#t=0.1`} 
+                                poster={page.heroImage} 
+                                muted 
+                                preload="metadata" 
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }} 
+                              />
+                              <div style={{
+                                position: 'absolute',
+                                inset: 0,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyCenter: 'center',
+                                background: 'rgba(0,0,0,0.35)'
+                              }}>
+                                <div style={{
+                                  width: '48px',
+                                  height: '48px',
+                                  borderRadius: '50%',
+                                  background: 'rgba(186,0,19,0.95)',
+                                  color: '#fff',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  fontSize: '18px',
+                                  paddingLeft: '3px',
+                                  boxShadow: '0 4px 15px rgba(186,0,19,0.5)'
+                                }}>
+                                  ▶
+                                </div>
+                              </div>
                             </div>
-                          </div>
+                          ) : (
+                            <img src={item.src} alt={item.heading || item.alt} loading="lazy" />
+                          )}
                         </div>
-                      ) : (
-                        <img src={item.src} alt={item.alt} loading="lazy" />
-                      )}
-                      <div className="blog-gallery-overlay">
-                        <span className="blog-gallery-caption">
-                          {isVideo ? '▶ Play Video — ' + item.alt : item.alt}
-                        </span>
+
+                        <div className="blog-gallery-card-body">
+                          <h4 className="blog-gallery-card-title">{item.heading || 'Site Construction'}</h4>
+                          <p className="blog-gallery-card-desc">{item.description || item.alt}</p>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
+
+                {page.galleryImages.length > 1 && (
+                  <button 
+                    type="button"
+                    className="blog-gallery-arrow-btn next"
+                    onClick={() => scrollGallery('right')}
+                    aria-label="Next gallery image"
+                    title="Next Image"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                  </button>
+                )}
               </div>
             </div>
           )}
@@ -536,10 +579,16 @@ export default function BlogPostDetail({ page }) {
                 alt={page.galleryImages[lightboxIndex].alt} 
               />
             )}
-            <div className="blog-lightbox-caption-wrap">
-              <span style={{ fontWeight: 600 }}>{lightboxIndex + 1} / {page.galleryImages.length}</span>
-              <span style={{ margin: '0 6px', opacity: 0.4 }}>•</span>
-              <span>{page.galleryImages[lightboxIndex].alt}</span>
+            <div className="blog-lightbox-caption-wrap" style={{ flexDirection: 'column', gap: '4px', maxWidth: '640px', textAlign: 'center', borderRadius: '16px', padding: '12px 24px' }}>
+              <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff' }}>
+                {page.galleryImages[lightboxIndex].heading || page.galleryImages[lightboxIndex].alt}
+              </div>
+              <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)', fontWeight: 400, lineHeight: '1.4' }}>
+                {page.galleryImages[lightboxIndex].description || page.galleryImages[lightboxIndex].alt}
+              </div>
+              <div style={{ fontSize: '11px', color: 'rgba(255, 255, 255, 0.5)', marginTop: '4px', fontFamily: 'monospace' }}>
+                Image {lightboxIndex + 1} of {page.galleryImages.length}
+              </div>
             </div>
           </div>
         </div>
