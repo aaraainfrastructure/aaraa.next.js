@@ -924,10 +924,10 @@
 
 .blog-related-card-title {
   font-family: var(--font-serif);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
-  line-height: 1.4;
-  margin-bottom: 12px;
+  line-height: 1.3;
+  margin-bottom: 8px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
