@@ -198,20 +198,45 @@ export default function BlogPostDetail({ page }) {
     };
   }, []);
 
-  const handleShare = (platform) => {
-    const url = window.location.href;
-    const title = page.title;
-    if (platform === 'twitter') {
-      window.open(`https://twitter.com/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
-    } else if (platform === 'facebook') {
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-    } else if (platform === 'linkedin') {
-      window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`, '_blank');
+  // Generate JSON-LD Schema for SEO, AEO, and GEO
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": page.title,
+    "description": page.subtitle || `${page.title} - Comprehensive project execution details by AARAA Infrastructure.`,
+    "image": page.heroImage ? `https://www.aaraainfrastructure.com${page.heroImage}` : "https://www.aaraainfrastructure.com/image/project-item/project-item-12.jpg",
+    "datePublished": page.date || "2026-01-01",
+    "author": {
+      "@type": "Organization",
+      "name": "AARAA Infrastructure Pvt. Ltd.",
+      "url": "https://www.aaraainfrastructure.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AARAA Infrastructure Pvt. Ltd.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.aaraainfrastructure.com/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": typeof window !== 'undefined' ? window.location.href : "https://www.aaraainfrastructure.com/blog"
+    },
+    "contentLocation": {
+      "@type": "Place",
+      "name": page.location || "India"
     }
   };
 
   return (
     <div className="premium-blog-wrapper">
+      {/* JSON-LD Schema for SEO, AEO, and GEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+
       {/* Sticky Header with Reading Progress */}
       <nav className="blog-nav-sticky">
         <div className="blog-nav-container">
@@ -412,6 +437,28 @@ export default function BlogPostDetail({ page }) {
                   </div>
                 );
               })()}
+            </div>
+          )}
+
+          {/* AEO & GEO Key Takeaways / Answer-First Summary Box */}
+          {page.subtitle && (
+            <div className="blog-aeo-summary-box blog-reveal" style={{
+              background: 'linear-gradient(135deg, rgba(186, 0, 19, 0.04) 0%, rgba(11, 19, 43, 0.03) 100%)',
+              borderLeft: '4px solid var(--color-primary)',
+              borderRadius: '12px',
+              padding: '24px 28px',
+              marginBottom: '36px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
+              border: '1px solid rgba(0, 0, 0, 0.06)',
+              borderLeftWidth: '4px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                <span style={{ fontSize: '18px', color: 'var(--color-primary)' }}>💡</span>
+                <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '700', color: '#111827', letterSpacing: '-0.01em' }}>Executive Summary &amp; Key Highlights</h4>
+              </div>
+              <p style={{ margin: 0, fontSize: '14.5px', lineHeight: '1.65', color: '#4b5563' }}>
+                {page.subtitle}
+              </p>
             </div>
           )}
 
