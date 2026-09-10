@@ -87,7 +87,7 @@
 .heading-80 { font-size: 80px; font-weight: 400; line-height: 1.1; }
 .heading-80-bold { font-size: 80px; font-weight: 700; line-height: 1.1; }
 .heading-75 { font-size: 75px; font-weight: 400; line-height: 1.1; }
-.text-large-black { font-family: 'IBM Plex Sans JP', sans-serif; font-size: 16px; color: #374151; line-height: 1.65; }
+.text-large-black { font-family: 'IBM Plex Sans JP', sans-serif; font-size: 22px; color: #374151; line-height: 1.65; }
 .text-large-white { font-size: 24px; color: #fff; line-height: 1.6; }
 .heading-uppercase { text-transform: uppercase; }
 
@@ -155,7 +155,7 @@
 
 .about-lead-text {
     font-family: 'IBM Plex Sans JP', sans-serif;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     color: #111827;
     line-height: 1.45;
